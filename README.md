@@ -2,7 +2,8 @@
 
 Guías de laboratorio interactivas para la carrera de Medicina (UPDS).
 
-Abre [`index.html`](index.html) para ver todas las guías.
+Abre [`index.html`](index.html) para ver todas las guías, con una tarjeta por muñeco o equipo.
+Se genera con `python3 indice/build_indice.py`; ahí se agregan los equipos nuevos.
 
 | Guía | Archivo |
 |------|---------|

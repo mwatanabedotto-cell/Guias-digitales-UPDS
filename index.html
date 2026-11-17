@@ -4,44 +4,119 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Guías digitales UPDS</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400&family=Source+Sans+3:wght@400;600&display=swap">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400&family=Source+Sans+3:wght@400;600&display=swap">
 <style>
-:root { --paper:#F1F5F4; --surface:#FFFFFF; --ink:#132226; --muted:#53656A; --line:#D3DDDC; --accent:#0A6A6E; }
-@media (prefers-color-scheme: dark) { :root { --paper:#0D1618; --surface:#142024; --ink:#E2EBEA; --muted:#95A8AA; --line:#283A3E; --accent:#52C0C1; color-scheme: dark; } }
-* { box-sizing: border-box; }
-body { margin:0; background:var(--paper); color:var(--ink); font:1.0625rem/1.6 "Source Sans 3", "Segoe UI", Arial, sans-serif; }
-.wrap { max-width:960px; margin:0 auto; padding:40px max(16px, env(safe-area-inset-left, 0px)) 64px; display:grid; gap:28px; }
-.eyebrow { font:0.75rem "IBM Plex Mono", monospace; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:0; }
-h1, h2 { font-family:Archivo, Arial, sans-serif; margin:0; line-height:1.15; }
-h1 { font-size:2.2rem; font-weight:800; }
-h2 { font-size:1.25rem; font-weight:600; border-top:2px solid var(--ink); padding-top:12px; }
-p { margin:0; }
-.grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
-a.card { display:grid; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px; color:var(--ink); text-decoration:none; }
-a.card:hover, a.card:focus-visible { border-color:var(--accent); outline:none; }
-a.card b { font-family:Archivo, Arial, sans-serif; font-weight:600; font-size:1.1rem; color:var(--accent); }
-a.card span { color:var(--muted); font-size:.92rem; }
+/* Layout: índice de equipos — una banda por especialidad, tarjetas con foto del muñeco. */
+:root { --paper:#F1F5F4; --surface:#FFFFFF; --surface-2:#E6EDEC; --ink:#132226; --muted:#53656A; --line:#D3DDDC; --accent:#0A6A6E; --accent-soft:#D5EAE9;
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif; --font-body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif; --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#0D1618; --surface:#142024; --surface-2:#1B2A2E; --ink:#E2EBEA; --muted:#95A8AA; --line:#283A3E; --accent:#52C0C1; --accent-soft:#163A3C; color-scheme:dark; } }
+:root[data-theme="dark"] { --paper:#0D1618; --surface:#142024; --surface-2:#1B2A2E; --ink:#E2EBEA; --muted:#95A8AA; --line:#283A3E; --accent:#52C0C1; --accent-soft:#163A3C; color-scheme:dark; }
+*, *::before, *::after { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:1.0625rem/1.6 var(--font-body); }
+.wrap { max-width:1100px; margin:0 auto; padding-block:36px 64px; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); display:grid; gap:40px; }
+.eyebrow { font:0.75rem var(--font-mono); text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:0; }
+h1, h2, h3 { font-family:var(--font-display); margin:0; line-height:1.15; text-wrap:balance; }
+h1 { font-size:2.3rem; font-weight:800; letter-spacing:-.02em; }
+h1 span { color:var(--accent); }
+.lede { color:var(--muted); max-width:62ch; margin:0; font-size:1.1rem; }
+.head { display:grid; gap:12px; }
+.group { display:grid; gap:16px; }
+.group-head { display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline; border-top:2px solid var(--ink); padding-top:12px; }
+.group-head h2 { font-size:1.5rem; font-weight:700; }
+.group-head p { margin:0; color:var(--muted); font-size:.95rem; }
+.grid { display:grid; gap:18px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+a.card { display:grid; grid-template-rows:auto 1fr; background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; color:var(--ink); text-decoration:none; transition:border-color .15s, transform .15s; }
+a.card:hover, a.card:focus-visible { border-color:var(--accent); transform:translateY(-2px); outline:none; }
+@media (prefers-reduced-motion: reduce) { a.card { transition:none; } a.card:hover { transform:none; } }
+.photo { aspect-ratio:16/9; width:100%; max-width:100%; object-fit:cover; display:block; background:var(--surface-2); }
+.body { padding:16px 18px 18px; display:grid; gap:8px; align-content:start; }
+.top { display:flex; flex-wrap:wrap; gap:6px 10px; align-items:baseline; justify-content:space-between; }
+.body h3 { font-size:1.3rem; font-weight:700; color:var(--accent); }
+.chip { font:0.72rem var(--font-mono); text-transform:uppercase; letter-spacing:.05em; border:1px solid var(--line); border-radius:999px; padding:2px 10px; color:var(--muted); white-space:nowrap; }
+.modelo { font:0.85rem var(--font-mono); color:var(--muted); margin:0; }
+.practica { margin:0; font-size:.95rem; }
+.dato { margin:0; font:0.8rem var(--font-mono); color:var(--ink); background:var(--accent-soft); border-radius:6px; padding:4px 8px; justify-self:start; }
+.open { font-weight:600; font-size:.92rem; color:var(--accent); }
+footer { color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); padding-top:16px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div style="display:grid;gap:10px">
-    <p class="eyebrow">UPDS · Carrera de Medicina</p>
-    <h1>Guías digitales de laboratorio</h1>
-    <p style="color:var(--muted);max-width:60ch">Guías de uso de los equipos de anatomía y simulación clínica, con pasos, listas de cotejo y puntos clínicos para el Revalida.</p>
-  </div>
-  <h2>Anatomía</h2>
+  <header class="head">
+    <p class="eyebrow">UPDS · Carrera de Medicina · Laboratorio de simulación</p>
+    <h1>Guías digitales <span>por equipo</span></h1>
+    <p class="lede">Elige el muñeco o equipo con el que vas a practicar. Cada guía tiene la preparación, los pasos de cada procedimiento, puntos clínicos para el Revalida y el cuidado del equipo.</p>
+  </header>
   <div class="grid">
-    <a class="card" href="anatomage/index.html"><b>Mesa Anatomage Table 12.0</b><span>Interfaz, prácticas guiadas, manuales por sistema con capturas y listas ES–PT, anatomía funcional y quiz.</span></a>
+      <a class="card" href="anatomage/index.html">
+        <img class="photo" src="anatomage/img/cv-06.jpg" alt="Mesa Anatomage" loading="lazy" width="640" height="360">
+        <div class="body">
+          <p class="eyebrow">Anatomía</p>
+          <div class="top"><h3>Mesa Anatomage</h3><span class="chip">Cadáveres digitales</span></div>
+          <p class="modelo">Table EDU 12.0</p>
+          <p class="practica">Disección virtual, planos, TC, prácticas guiadas con listas ES–PT y quiz.</p>
+          <p class="dato">10 sistemas · 274 vistas</p>
+          <span class="open">Abrir guía →</span>
+        </div>
+      </a>
+      <a class="card" href="gaumard-s117/index.html">
+        <img class="photo" src="gaumard-s117/img/portada.jpg" alt="Simulador pediátrico" loading="lazy" width="640" height="360">
+        <div class="body">
+          <p class="eyebrow">Pediatría</p>
+          <div class="top"><h3>Simulador pediátrico</h3><span class="chip">Niño pequeño</span></div>
+          <p class="modelo">Gaumard S117 / S117.250</p>
+          <p class="practica">Vía aérea, RCP, acceso IV, intraóseo y femoral, ostomías, sondaje y auscultación.</p>
+          <p class="dato">16 procedimientos · TET 3.5</p>
+          <span class="open">Abrir guía →</span>
+        </div>
+      </a>
+      <a class="card" href="gaumard-s157/index.html">
+        <img class="photo" src="gaumard-s157/img/portada.jpg" alt="Mike y Michelle" loading="lazy" width="640" height="360">
+        <div class="body">
+          <p class="eyebrow">Pediatría</p>
+          <div class="top"><h3>Mike y Michelle</h3><span class="chip">Niño escolar</span></div>
+          <p class="modelo">Gaumard S157.250</p>
+          <p class="practica">Vía aérea, RCP, acceso vascular, ostomías, acceso subclavio y drenaje torácico.</p>
+          <p class="dato">15 procedimientos · TET 5.0–5.5</p>
+          <span class="open">Abrir guía →</span>
+        </div>
+      </a>
+      <a class="card" href="gaumard-s320/index.html">
+        <img class="photo" src="gaumard-s320/img/portada.jpg" alt="PEDI Blue" loading="lazy" width="640" height="360">
+        <div class="body">
+          <p class="eyebrow">Neonatología</p>
+          <div class="top"><h3>PEDI Blue</h3><span class="chip">Recién nacido a término</span></div>
+          <p class="modelo">Gaumard S320</p>
+          <p class="practica">Ventilación, intubación, RCP 3:1, cateterismo umbilical e intraóseo.</p>
+          <p class="dato">9 procedimientos · cianosis SmartSkin</p>
+          <span class="open">Abrir guía →</span>
+        </div>
+      </a>
+      <a class="card" href="gaumard-s550/index.html">
+        <img class="photo" src="gaumard-s550/img/portada.jpg" alt="NOELLE" loading="lazy" width="640" height="360">
+        <div class="body">
+          <p class="eyebrow">Obstetricia</p>
+          <div class="top"><h3>NOELLE</h3><span class="chip">Madre y recién nacido</span></div>
+          <p class="modelo">Gaumard S550.100</p>
+          <p class="practica">Leopold, parto, ventosa, distocia, cesárea, nalgas, hemorragia posparto y episiotomía.</p>
+          <p class="dato">17 procedimientos · parto automático</p>
+          <span class="open">Abrir guía →</span>
+        </div>
+      </a>
+      <a class="card" href="gaumard-s504/index.html">
+        <img class="photo" src="gaumard-s504/img/portada.jpg" alt="ZOE" loading="lazy" width="640" height="360">
+        <div class="body">
+          <p class="eyebrow">Ginecología</p>
+          <div class="top"><h3>ZOE</h3><span class="chip">Pelvis femenina adulta</span></div>
+          <p class="modelo">Gaumard S504.100</p>
+          <p class="practica">Espéculo, examen bimanual, DIU, oclusión tubárica y AMV.</p>
+          <p class="dato">12 procedimientos · 6 úteros</p>
+          <span class="open">Abrir guía →</span>
+        </div>
+      </a>
   </div>
-  <h2>Simulación clínica · Gaumard</h2>
-  <div class="grid">
-    <a class="card" href="gaumard-s117/index.html"><b>Simulador pediátrico S117</b><span>Cuidados del paciente y RCP pediátrica, con OMNI y OMNI 2.</span></a>
-    <a class="card" href="gaumard-s157/index.html"><b>Mike y Michelle S157.250</b><span>Simulador pediátrico multipropósito con acceso subclavio y drenaje torácico.</span></a>
-    <a class="card" href="gaumard-s320/index.html"><b>PEDI Blue S320</b><span>Reanimación neonatal con cianosis SmartSkin y cateterismo umbilical.</span></a>
-    <a class="card" href="gaumard-s550/index.html"><b>NOELLE S550.100</b><span>Simulador de parto materno con neonato PEDI Blue: parto, distocia, cesárea, hemorragia posparto y reanimación.</span></a>
-    <a class="card" href="gaumard-s504/index.html"><b>ZOE S504.100</b><span>Simulador ginecológico: espéculo, bimanual, DIU, oclusión tubárica y AMV.</span></a>
-  </div>
+  <footer>Material docente interno de la UPDS basado en los manuales de Anatomage y Gaumard Scientific. No sustituye al instructor.</footer>
 </div>
 </body>
 </html>
