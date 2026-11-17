@@ -1,6 +1,8 @@
 # Guías digitales UPDS
 
-Guías de laboratorio interactivas para la carrera de Medicina (UPDS).
+Guías de laboratorio interactivas para los docentes de la carrera de Medicina (UPDS)
+que operan la mesa Anatomage y los simuladores Gaumard en clase. Los alumnos observan
+las demostraciones sin manipular los equipos.
 
 Abre [`index.html`](index.html) para ver todas las guías, con una tarjeta por muñeco o equipo.
 Se genera con `python3 indice/build_indice.py`; ahí se agregan los equipos nuevos.

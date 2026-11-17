@@ -179,8 +179,8 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     </section>
 
     <section id="procedimientos">
-      <div class="section-head"><p class="eyebrow">03 · Práctica</p><h2>Procedimientos</h2></div>
-      <div class="prose"><p>Cada tarjeta resume qué permite el simulador, cómo prepararlo y cómo dejarlo limpio, con los puntos clínicos que se evalúan. Marca cada procedimiento al practicarlo: el avance se guarda en este navegador.</p></div>
+      <div class="section-head"><p class="eyebrow">03 · Demostración</p><h2>Procedimientos</h2></div>
+      <div class="prose"><p>Cada tarjeta resume qué permite el simulador, cómo prepararlo para la demostración y cómo dejarlo limpio, con puntos clínicos para discutir con los alumnos. Marca los procedimientos que ya tienes listos para demostrar: se guarda en este navegador.</p></div>
       <div id="procs" style="display:grid;gap:28px"></div>
       <button type="button" class="reset-btn" id="reset">Desmarcar todo</button>
     </section>
@@ -204,7 +204,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
 
 <footer><div class="pad"><div>
   <p id="f-src"></p>
-  <p>Gaumard®, OMNI® y los nombres de los simuladores son marcas de Gaumard Scientific. Esta guía es material docente interno de la UPDS; no sustituye al instructor ni está destinada a decisiones clínicas.</p>
+  <p>Gaumard®, OMNI® y los nombres de los simuladores son marcas de Gaumard Scientific. Guía para docentes de la UPDS; no está destinada a decisiones clínicas.</p>
 </div></div></footer>
 
 <script>
@@ -259,8 +259,8 @@ window.SIM = {"key": "gaumard-s320", "title": "PEDI Blue S320", "eyebrow": "UPDS
       (p.blocks || []).forEach(function (b) { h += '<div class="block"><p class="eyebrow">' + b.t + '</p>' + (b.ol ? '<ol>' + li(b.ol) + '</ol>' : '<ul>' + li(b.ul) + '</ul>') + '</div>'; });
       h += '</div>' + (p.img ? '<figure><img src="img/' + p.img + '" alt="' + p.alt + '" loading="lazy"><figcaption>Foto del manual del fabricante.</figcaption></figure>' : '') + '</div>';
       if (p.warn) h += '<div class="warn"><b>Atención</b>' + p.warn.map(function (w) { return '<span>' + w + '</span>'; }).join('') + '</div>';
-      if (p.clinic) h += '<div class="clinic"><p class="label">Punto clínico · Revalida</p><ul>' + li(p.clinic) + '</ul></div>';
-      h += '<label class="done-toggle" for="d-' + p.id + '"><input type="checkbox" id="d-' + p.id + '"' + (done[p.id] ? ' checked' : '') + '> Practicado</label></div></details>';
+      if (p.clinic) h += '<div class="clinic"><p class="label">Para discutir en clase · Revalida</p><ul>' + li(p.clinic) + '</ul></div>';
+      h += '<label class="done-toggle" for="d-' + p.id + '"><input type="checkbox" id="d-' + p.id + '"' + (done[p.id] ? ' checked' : '') + '> Listo para demostrar</label></div></details>';
     });
     wrap.innerHTML = h; procsEl.appendChild(wrap);
   });
@@ -268,9 +268,9 @@ window.SIM = {"key": "gaumard-s320", "title": "PEDI Blue S320", "eyebrow": "UPDS
     var n = 0;
     document.querySelectorAll('.proc').forEach(function (d) {
       var id = d.id.slice(2), on = !!done[id]; if (on) n++;
-      var b = d.querySelector('[data-badge]'); b.textContent = on ? 'Practicado' : 'Pendiente'; b.classList.toggle('done', on);
+      var b = d.querySelector('[data-badge]'); b.textContent = on ? 'Listo' : 'Pendiente'; b.classList.toggle('done', on);
     });
-    $('prog-txt').textContent = n + ' de ' + total + ' procedimientos practicados';
+    $('prog-txt').textContent = n + ' de ' + total + ' procedimientos listos para demostrar';
     $('prog-bar').style.width = (total ? Math.round(n * 100 / total) : 0) + '%';
   }
   procsEl.addEventListener('change', function (e) {

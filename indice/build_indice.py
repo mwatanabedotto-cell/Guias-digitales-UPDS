@@ -7,7 +7,7 @@ GRUPOS = [
   ('Anatomía', 'Mesa de disección virtual', [
     dict(id='anatomage', nombre='Mesa Anatomage', modelo='Table EDU 12.0', paciente='Cadáveres digitales',
          img='anatomage/img/cv-06.jpg', rel='anatomage/index.html', url='https://claude.ai/artifact/EmKeZaHJLdfCL2VKUhb6RC',
-         dato='10 sistemas · 274 vistas', practica='Disección virtual, planos, TC, prácticas guiadas con listas ES–PT y quiz.')]),
+         dato='10 sistemas · 274 vistas', practica='Disección virtual, planos, TC, clases guiadas con estructuras ES–PT y preguntas para la clase.')]),
   ('Pediatría', 'Cuidados del paciente y RCP pediátrica', [
     dict(id='s117', nombre='Simulador pediátrico', modelo='Gaumard S117 / S117.250', paciente='Niño pequeño',
          img='gaumard-s117/img/portada.jpg', rel='gaumard-s117/index.html', url='https://claude.ai/artifact/1fekbKP5dP2dDaibemTWic',
@@ -85,18 +85,18 @@ def build(mode):
     out = [f'''  <div class="grid">
 {chr(10).join(cards)}
   </div>''']
-    body = f'''<title>Guías digitales UPDS</title>
+    body = f'''<title>Guías docentes UPDS</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400&family=Source+Sans+3:wght@400;600&display=swap">
 <style>{CSS}</style>
 <div class="wrap">
   <header class="head">
-    <p class="eyebrow">UPDS · Carrera de Medicina · Laboratorio de simulación</p>
+    <p class="eyebrow">UPDS · Carrera de Medicina · Guías para docentes</p>
     <h1>Guías digitales <span>por equipo</span></h1>
-    <p class="lede">Elige el muñeco o equipo con el que vas a practicar. Cada guía tiene la preparación, los pasos de cada procedimiento, puntos clínicos para el Revalida y el cuidado del equipo.</p>
+    <p class="lede">Guías para los docentes que operan cada muñeco o equipo en clase; los alumnos observan sin manipularlos. Cada guía tiene la preparación, los pasos de cada demostración, puntos clínicos para discutir y el cuidado del equipo.</p>
   </header>
 {chr(10).join(out)}
-  <footer>Material docente interno de la UPDS basado en los manuales de Anatomage y Gaumard Scientific. No sustituye al instructor.</footer>
+  <footer>Material para docentes de la UPDS basado en los manuales de Anatomage y Gaumard Scientific.</footer>
 </div>
 '''
     return body

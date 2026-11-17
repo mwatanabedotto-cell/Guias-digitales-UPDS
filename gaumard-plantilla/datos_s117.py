@@ -22,9 +22,10 @@ DATA = {
             'Conecta el cable de comunicación al puerto de comunicación cableada del simulador.',
             'Conecta el otro extremo al dispositivo de control OMNI.',
         ], 'note': 'El S117.250 usa la tableta OMNI 2 inalámbrica (ver sección OMNI 2).'},
-        {'t': 'Roles', 'ul': [
-            '<b>Facilitador:</b> conduce la simulación; es el instructor o el personal del laboratorio.',
-            '<b>Proveedor:</b> participa como profesional de salud y realiza los procedimientos.',
+        {'t': 'Organización de la demostración', 'ul': [
+            'El docente prepara, opera y limpia el simulador y la tableta; los alumnos observan sin manipular el equipo.',
+            'Ubica a los alumnos alrededor del simulador con buena vista y explica cada paso mientras lo ejecutas.',
+            'En los manuales, el <b>facilitador</b> es quien conduce la simulación y el <b>proveedor</b> quien realiza los procedimientos: en esta guía ambos roles son del docente.',
         ]},
         {'t': 'Contenido de la caja', 'ul': [
             'Línea de pulso con pera de presión',

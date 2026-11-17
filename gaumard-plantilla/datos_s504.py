@@ -9,7 +9,7 @@ DATA = {
     'source': 'Basada en la Guía del usuario del simulador ginecológico ZOE® S504.100 (versión 13.5.1) de Gaumard Scientific.',
     'start': [
         {'t': 'Antes de cada sesión', 'ol': [
-            'Los estudiantes se lavan las manos antes de ponerse los guantes; manipula siempre el simulador con manos limpias.',
+            'Lávate las manos antes de ponerte los guantes; manipula siempre el simulador con manos limpias. Los alumnos observan sin manipularlo.',
             'Humedece dedos e instrumentos con unas gotas de agua jabonosa diluida, o usa solo lubricante a base de agua (KY Jelly®).',
             'Palpa con las yemas de los dedos, nunca con las uñas: la piel del abdomen se desgarra.',
             'Trátalo con la misma delicadeza que a una paciente real.',
@@ -18,7 +18,7 @@ DATA = {
             'Cuello uterino normal, introito con vagina y recto, útero antevertido con ligamentos redondos, ligamentos ováricos, fimbrias y ovarios.',
             'Los úteros cuelgan en la pelvis con tubos de goma intercambiables que simulan los ligamentos redondos; acortarlos lleva el fondo uterino hacia adelante y facilita la palpación.',
             'La mitad superior transparente del útero deja ver el DIU o la sonda uterina.',
-            'La <b>ventana de visualización</b> del extremo posterior permite mirar la pelvis, comprobar qué palpa el alumno y cambiar úteros sin quitar la piel.',
+            'La <b>ventana de visualización</b> del extremo posterior permite mostrar a los alumnos el interior de la pelvis mientras palpas, y cambiar úteros sin quitar la piel.',
         ]},
         {'t': 'Contenido del equipo', 'ul': [
             'Úteros no gestantes antevertido y retrovertido (mitad transparente)',
@@ -71,7 +71,7 @@ DATA = {
              'clinic': ['Citología cervical: muestra de la zona de transformación (exocérvix con espátula y endocérvix con cepillo).', 'En Brasil, el tamizaje con Papanicolaou se hace de los 25 a los 64 años, cada 3 años tras dos resultados anuales normales.'],
              'warn': ['No uses povidona yodada ni soluciones con yodo: manchan el simulador.']},
             {'id': 'bimanual', 't': 'Examen bimanual', 'sub': 'Posición y tamaño de útero, trompas y ovarios', 'img': 'bimanual.jpg', 'alt': 'Examen bimanual en el simulador',
-             'blocks': [{'t': 'Técnica', 'ul': ['Palpa con las yemas de la mano abdominal, nunca con las uñas.', 'Practica con útero antevertido, retrovertido y gestante.', 'El instructor puede meter la mano por la ventana para comprobar qué palpa el alumno.']}],
+             'blocks': [{'t': 'Técnica', 'ul': ['Palpa con las yemas de la mano abdominal, nunca con las uñas.', 'Demuestra con útero antevertido, retrovertido y gestante, y muestra por la ventana lo que estás palpando.', 'Por la ventana los alumnos pueden ver el útero mientras lo palpas.']}],
              'clinic': ['Describe posición (anteversoflexión es la más frecuente), tamaño, consistencia, movilidad y dolor a la movilización cervical.', 'Dolor a la movilización del cuello y anexial sugiere enfermedad inflamatoria pélvica.']},
         ]},
         {'t': 'Anticoncepción y procedimientos', 'items': [
@@ -85,7 +85,7 @@ DATA = {
                  {'t': 'Laparoscopia', 'ul': ['Identifica la trompa y sujétala con el brazo del Laprocator® de punción única.', 'Atrapa un asa de 2–3 cm en forma de U y coloca el anillo de Falope.', 'Requiere práctica y coordinación ojo-mano.']}],
              'clinic': ['La ligadura tubárica es un método permanente: requiere consentimiento informado y asesoría sobre alternativas reversibles.']},
             {'id': 'amv', 't': 'Aspiración manual endouterina (AMV)', 'sub': 'Úteros de 6–8 y 10–12 semanas', 'img': 'uteros.jpg', 'alt': 'Úteros y cuellos del kit de AMV',
-             'blocks': [{'t': 'Uso', 'ul': ['Cada útero tiene 3 cuellos permeables.', 'Practica la medición del útero gestante y la AMV en el aborto incompleto.']}],
+             'blocks': [{'t': 'Uso', 'ul': ['Cada útero tiene 3 cuellos permeables.', 'Demuestra la medición del útero gestante y la AMV en el aborto incompleto.']}],
              'clinic': ['La AMV es el método recomendado por la OMS para la evacuación uterina en el primer trimestre (hasta 12–14 semanas).']},
         ]},
         {'t': 'Módulos opcionales', 'items': [
