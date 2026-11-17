@@ -285,6 +285,29 @@ section > h3 { margin-top: 8px; }
 .viewer figcaption { color: #E2EBEA; display: flex; gap: 12px; justify-content: space-between; align-items: center; font-size: var(--step--1); }
 .viewer button { font: 600 var(--step--1) var(--font-body); background: #E2EBEA; color: #132226; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
 
+
+/* Iconos */
+.icon-search { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.icon-search label { width: 100%; }
+.icon-groups { display: grid; gap: 4px; }
+.igroup { border-top: 1px solid var(--line); }
+.igroup > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; justify-content: space-between; padding: 14px 2px; }
+.igroup > summary::-webkit-details-marker { display: none; }
+.igroup > summary h3 { font-size: var(--step-1); display: flex; gap: 10px; align-items: baseline; }
+.igroup > summary h3::before { content: "+"; font-family: var(--font-mono); color: var(--accent); width: 1ch; }
+.igroup[open] > summary h3::before { content: "−"; }
+.igroup > summary .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.igroup .gdesc { font-size: var(--step--1); color: var(--muted); margin: -4px 0 12px; }
+.icon-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); padding-bottom: 18px; }
+.icon-item { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.icon-grid.wide .icon-item { grid-template-columns: 112px minmax(0, 1fr); }
+.icon-tile { width: 64px; height: 64px; border-radius: 10px; background: #FFFFFF; border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+.icon-grid.wide .icon-tile { width: 112px; height: 64px; background: #1E1E1E; }
+.icon-tile img { max-width: 56px; max-height: 56px; width: auto; height: auto; display: block; }
+.icon-grid.wide .icon-tile img { max-width: 104px; }
+.icon-item h4 { font-size: 0.98rem; margin-bottom: 2px; }
+.icon-item p { font-size: var(--step--1); color: var(--muted); }
+
 kbd { font-family: var(--font-mono); font-size: 0.82em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--surface-2); }
 footer { border-top: 1px solid var(--line); background: var(--surface); }
 footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
@@ -326,6 +349,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <li><a href="#sesion">La sesión</a></li>
         <li><a href="#gestos">Gestos táctiles</a></li>
         <li><a href="#herramientas">Herramientas</a></li>
+        <li><a href="#iconos">Iconos de la mesa</a></li>
         <li><a href="#planos">Planos y cortes</a></li>
         <li><a href="#tc">Ventanas de TC</a></li>
         <li><a href="#practicas">Clases guiadas</a></li>
@@ -340,7 +364,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
 
     <main>
       <nav class="mobile-toc" aria-label="Índice rápido">
-        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Clases</a><a href="#manuales">Manuales</a><a href="#funcional">Funcional</a><a href="#autoevaluacion">Preguntas</a><a href="#glosario">Glosario</a><a href="#problemas">Problemas</a><a href="#normas">Normas</a>
+        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#iconos">Iconos</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Clases</a><a href="#manuales">Manuales</a><a href="#funcional">Funcional</a><a href="#autoevaluacion">Preguntas</a><a href="#glosario">Glosario</a><a href="#problemas">Problemas</a><a href="#normas">Normas</a>
       </nav>
 
       <!-- 1. Sesión -->
@@ -378,7 +402,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
             <span class="time">Después · 5 min</span>
             <h3>Cerrar</h3>
             <ol>
-              <li>Haz las preguntas para la clase (sección 09) o un <b>Modo cuestionario</b> en la mesa.</li>
+              <li>Haz las preguntas para la clase (sección 10) o un <b>Modo cuestionario</b> en la mesa.</li>
               <li>Usa <b>Restablecer</b> y deshaz los recortes para dejar el cadáver completo.</li>
               <li>Cierra los cadáveres o simulaciones abiertos y deja la pantalla limpia.</li>
               <li>Anota cualquier falla del equipo para el encargado del laboratorio.</li>
@@ -455,13 +479,13 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <p class="eyebrow">03 · Software Table 12.0</p>
           <h2>Menú principal y herramientas</h2>
         </div>
-        <p class="prose">El icono <b>Inicio</b> abre el menú principal. Desde ahí eliges el tipo de contenido; las herramientas de la barra lateral cambian según el módulo abierto.</p>
+        <p class="prose">Cada icono se explica con su imagen en la sección <a href="#iconos">Iconos de la mesa</a>. El icono <b>Inicio</b> abre el menú principal. Desde ahí eliges el tipo de contenido; las herramientas de la barra lateral cambian según el módulo abierto.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Módulo</th><th>Qué contiene</th></tr></thead>
             <tbody>
               <tr><td><b>Cadáveres</b></td><td>Seis cadáveres reales de cuerpo completo, un cuerpo sintético y datos de anatomía topográfica de alta resolución. <b>Multi-cuerpo</b> compara la misma región en varios cuerpos.</td></tr>
-              <tr><td><b>Anatomía funcional</b></td><td>Corazón que late, movimiento articular, embarazo, parto y otras simulaciones (ver sección 08).</td></tr>
+              <tr><td><b>Anatomía funcional</b></td><td>Corazón que late, movimiento articular, embarazo, parto y otras simulaciones (ver sección 09).</td></tr>
               <tr><td><b>Biblioteca de casos</b></td><td>TC y RM de pacientes con patología real y notas de caso; también animales y primates segmentados.</td></tr>
               <tr><td><b>Histología</b></td><td>Cientos de láminas con varios aumentos y anotaciones interactivas.</td></tr>
               <tr><td><b>Prosección</b></td><td>Modelos 3D anotados de disecciones profesionales.</td></tr>
@@ -543,7 +567,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <div class="tool">
             <h4>Asistente de aprendizaje</h4>
             <p>Actívalo y toca una estructura para ver su origen, inserción, irrigación, inervación, acción y función.</p>
-            <p class="tip">Es la herramienta clave para estudiar los manuales de sistemas (sección 07).</p>
+            <p class="tip">Es la herramienta clave para estudiar los manuales de sistemas (sección 08).</p>
           </div>
           <div class="tool">
             <h4>Orígenes, inserciones y puntos óseos</h4>
@@ -616,7 +640,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <div class="tool">
             <h4>Preajustes</h4>
             <p>Vistas prediseñadas del cadáver por tema. Puedes guardar la vista actual como preajuste, ordenarlos en carpetas y exportarlos a USB (VPF).</p>
-            <p class="tip">Las capturas de la sección 07 son preajustes de la mesa.</p>
+            <p class="tip">Las capturas de la sección 08 son preajustes de la mesa.</p>
           </div>
           <div class="tool">
             <h4>Modo cuestionario</h4>
@@ -630,10 +654,25 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <p class="note">Para dejar la mesa como la encontraste usa <b>Restablecer</b>, que deshace colores, transparencias y marcas de todo el cuerpo.</p>
       </section>
 
+      <!-- Iconos -->
+      <section id="iconos">
+        <div class="section-head">
+          <p class="eyebrow">04 · Referencia</p>
+          <h2>Iconos de la mesa, uno por uno</h2>
+        </div>
+        <p class="prose">Cada icono del software Table 12.0 con lo que hace, según las guías de interfaz del fabricante. Busca por nombre o función, o abre cada grupo.</p>
+        <div class="icon-search">
+          <label for="icon-q" class="eyebrow">Buscar icono</label>
+          <input type="search" id="icon-q" class="search" placeholder="Ej.: transparencia, recorte, pines, ECG…" autocomplete="off">
+          <span id="icon-count" class="muted"></span>
+        </div>
+        <div id="icon-groups" class="icon-groups"></div>
+      </section>
+
       <!-- 4. Planos -->
       <section id="planos">
         <div class="section-head">
-          <p class="eyebrow">04 · Orientación</p>
+          <p class="eyebrow">05 · Orientación</p>
           <h2>Planos anatómicos y cortes</h2>
         </div>
         <p class="prose">La mesa presenta el cadáver en posición anatómica. El botón <b>Orientación del volumen</b> lo coloca en vista coronal, sagital o axial, y la <b>Herramienta de recorte</b> corta en el plano elegido; arrastra tres dedos para mover el corte. Elige un plano para ver qué separa y cómo se verá en pantalla.</p>
@@ -656,7 +695,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 5. TC -->
       <section id="tc">
         <div class="section-head">
-          <p class="eyebrow">05 · Imagen</p>
+          <p class="eyebrow">06 · Imagen</p>
           <h2>Ventanas de tomografía en la biblioteca de casos</h2>
         </div>
         <div class="prose">
@@ -693,7 +732,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 6. Prácticas -->
       <section id="practicas">
         <div class="section-head">
-          <p class="eyebrow">06 · Demostración guiada</p>
+          <p class="eyebrow">07 · Demostración guiada</p>
           <h2>Clases guiadas por región</h2>
         </div>
         <p class="prose">Cada clase tiene el objetivo docente, los pasos a ejecutar en la mesa, las estructuras a mostrar y dos bloques para discutir con los alumnos: la correlación quirúrgica y lo que más se pregunta en el Revalida. Lo que marcas se guarda en este navegador.</p>
@@ -703,7 +742,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 7. Manuales por sistema -->
       <section id="manuales">
         <div class="section-head">
-          <p class="eyebrow">07 · Manuales Anatomage</p>
+          <p class="eyebrow">08 · Manuales Anatomage</p>
           <h2>Manuales por sistema</h2>
         </div>
         <div class="prose">
@@ -717,7 +756,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 8. Anatomía funcional -->
       <section id="funcional">
         <div class="section-head">
-          <p class="eyebrow">08 · Simulaciones</p>
+          <p class="eyebrow">09 · Simulaciones</p>
           <h2>Anatomía funcional</h2>
         </div>
         <p class="prose">Se abre desde <b>Inicio › Anatomía funcional</b>. Son simulaciones de fisiología y procedimientos: úsalas después de identificar la anatomía estática.</p>
@@ -749,7 +788,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 9. Quiz -->
       <section id="autoevaluacion">
         <div class="section-head">
-          <p class="eyebrow">09 · Repaso</p>
+          <p class="eyebrow">10 · Repaso</p>
           <h2>Preguntas para la clase</h2>
         </div>
         <div class="quiz-top">
@@ -765,7 +804,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 10. Glosario -->
       <section id="glosario">
         <div class="section-head">
-          <p class="eyebrow">10 · Terminología</p>
+          <p class="eyebrow">11 · Terminología</p>
           <h2>Glosario español – português</h2>
         </div>
         <p class="prose">Términos que cambian entre los dos idiomas y que suelen confundirse en el laboratorio y en los exámenes.</p>
@@ -785,7 +824,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 11. Problemas -->
       <section id="problemas">
         <div class="section-head">
-          <p class="eyebrow">11 · Soporte</p>
+          <p class="eyebrow">12 · Soporte</p>
           <h2>Solución de problemas</h2>
         </div>
         <div class="table-wrap">
@@ -808,7 +847,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <!-- 12. Normas -->
       <section id="normas">
         <div class="section-head">
-          <p class="eyebrow">12 · Laboratorio</p>
+          <p class="eyebrow">13 · Laboratorio</p>
           <h2>Normas de uso y cuidado del equipo</h2>
         </div>
         <p class="prose">Explica estas normas a los alumnos al inicio de la clase. El docente es responsable de la mesa mientras la usa.</p>
@@ -856,6 +895,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
 </dialog>
 
 <script src="sistemas.js"></script>
+<script src="iconos.js"></script>
 <script>
 (function () {
   var store = {
@@ -1267,6 +1307,33 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
   });
   document.getElementById('viewer-close').addEventListener('click', closeViewer);
   viewer.addEventListener('click', function (e) { if (e.target === viewer) closeViewer(); });
+
+
+  /* ---------- Iconos ---------- */
+  (function () {
+    var IG = window.ICONOS || [], wrap = document.getElementById('icon-groups'), q = document.getElementById('icon-q'), cnt = document.getElementById('icon-count');
+    var total = 0;
+    IG.forEach(function (g, gi) {
+      var d = document.createElement('details'); d.className = 'igroup'; if (gi < 2) d.open = true;
+      total += g.items.length;
+      d.innerHTML = '<summary><h3>' + esc(g.g) + '</h3><span class="meta">' + g.items.length + ' iconos</span></summary>' +
+        (g.d ? '<p class="gdesc">' + esc(g.d) + '</p>' : '') +
+        '<div class="icon-grid' + (g.wide ? ' wide' : '') + '">' + g.items.map(function (it) {
+          return '<div class="icon-item" data-k="' + esc((it[1] + ' ' + it[2]).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')) + '"><span class="icon-tile"><img src="iconos/' + it[0] + '.png" alt="" loading="lazy"></span><div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p></div></div>';
+        }).join('') + '</div>';
+      wrap.appendChild(d);
+    });
+    function filter() {
+      var v = q.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''), shown = 0;
+      wrap.querySelectorAll('.igroup').forEach(function (d) {
+        var n = 0;
+        d.querySelectorAll('.icon-item').forEach(function (el) { var ok = !v || el.dataset.k.indexOf(v) !== -1; el.hidden = !ok; if (ok) n++; });
+        d.hidden = n === 0; if (v && n) d.open = true; shown += n;
+      });
+      cnt.textContent = v ? shown + ' de ' + total + ' iconos' : total + ' iconos';
+    }
+    q.addEventListener('input', filter); filter();
+  })();
 
   /* ---------- Quiz ---------- */
   var quiz = [

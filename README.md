@@ -30,6 +30,8 @@ guarda solo en el navegador de cada estudiante.
 - Manuales por sistema (cardiovascular, esquelético, nervioso, muscular, digestivo,
   respiratorio, urinario, reproductor, endocrino y linfático): 274 preajustes
   con su captura y 1244 estructuras para identificar
+- Iconos de la mesa, uno por uno: 210 iconos con su imagen y explicación
+  (datos en `anatomage/iconos.js`, imágenes en `anatomage/iconos/`)
 - Herramientas, cuerpos disponibles, controles con teclado, biblioteca de casos,
   anatomía funcional y solución de problemas según las guías de interfaz y el
   manual de usuario de la Table EDU 12.0
