@@ -303,6 +303,24 @@
       ]
     },
     {
+      id: 'ur', img: 'ur', color: 'var(--nerve)', name: 'Urinario', pt: 'Sistema urinário',
+      surg: [
+        'Los cálculos ureterales se impactan en tres estrechamientos: unión pieloureteral, cruce de los vasos ilíacos y unión ureterovesical.',
+        'Hilio renal, de anterior a posterior: vena renal, arteria renal y pelvis renal.',
+        'Sondaje vesical: la uretra femenina mide unos 4 cm; en el varón hay que sortear las curvaturas de la uretra prostática y membranosa.'
+      ],
+      rev: [
+        'El riñón derecho está más bajo que el izquierdo porque el hígado lo desplaza.',
+        'La vena renal izquierda pasa entre la aorta y la mesentérica superior (síndrome del cascanueces); la vena gonadal izquierda drena en ella, por eso el varicocele es más frecuente a la izquierda.',
+        'El riñón en herradura queda retenido en su ascenso por la arteria mesentérica inferior.'
+      ],
+      groups: [
+        { name: 'Sistema urinario', pt: 'Sistema urinário', views: [
+          { t: 'Sistema urinario: introducción', items: ['Glándula suprarrenal|Glândula suprarrenal', 'Riñón|Rim', 'Uréter|Ureter', 'Corteza renal|Córtex renal', 'Médula renal (pirámides)|Medula renal (pirâmides renais)', 'Pelvis renal|Pelve renal', 'Cálices mayores y menores|Cálices renais maiores e menores', 'Vejiga urinaria|Bexiga urinária', 'Uretra|Uretra'] }
+        ] }
+      ]
+    },
+    {
       id: 'rp', img: 'rp', color: 'var(--artery)', name: 'Reproductor', pt: 'Sistema genital feminino',
       surg: [
         'Histerectomía: el uréter pasa por debajo de la arteria uterina en la base del ligamento ancho («el agua pasa bajo el puente»).',

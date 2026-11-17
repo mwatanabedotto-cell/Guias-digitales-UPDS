@@ -17,8 +17,8 @@ guarda solo en el navegador de cada estudiante.
 - Planos anatómicos (diagrama interactivo) y ventanas de TC en unidades Hounsfield
 - Seis prácticas guiadas por región, con lista de cotejo ES/PT, correlación
   quirúrgica y temas de alto rendimiento para el Revalida
-- Manuales por sistema (cardiovascular, muscular, digestivo, respiratorio,
-  reproductor, endocrino y linfático): 147 preajustes con su captura y 818
+- Manuales por sistema (cardiovascular, muscular, digestivo, respiratorio, urinario,
+  reproductor, endocrino y linfático): 148 preajustes con su captura y 827
   estructuras para identificar
 - Herramientas y anatomía funcional según las guías de interfaz de la Table 12.0
 
