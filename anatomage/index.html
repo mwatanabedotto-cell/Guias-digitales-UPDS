@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía Mesa Anatomage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: guía de laboratorio — banda de cabecera, índice lateral fijo en escritorio, columna de lectura de ~70ch; los colores de sistemas siguen la convención de los atlas (arteria roja, vena azul, nervio amarillo, linfático verde). */
+:root {
+  --paper: #F1F5F4;
+  --surface: #FFFFFF;
+  --surface-2: #E6EDEC;
+  --ink: #132226;
+  --muted: #53656A;
+  --line: #D3DDDC;
+  --accent: #0A6A6E;
+  --accent-soft: #D5EAE9;
+  --on-accent: #FFFFFF;
+  --artery: #BF352E;
+  --vein: #2D5BB5;
+  --nerve: #A47C06;
+  --lymph: #2F8A4C;
+  --ok: #1F7A45;
+  --ok-soft: #DDF0E3;
+  --bad: #B3261E;
+  --bad-soft: #F8E0DE;
+  --plane: rgba(10, 106, 110, 0.22);
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.2rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1618; --surface: #142024; --surface-2: #1B2A2E; --ink: #E2EBEA; --muted: #95A8AA;
+    --line: #283A3E; --accent: #52C0C1; --accent-soft: #163A3C; --on-accent: #062022;
+    --artery: #E46A62; --vein: #7497E8; --nerve: #E2BD45; --lymph: #6CC487;
+    --ok: #6CC487; --ok-soft: #173325; --bad: #F08A82; --bad-soft: #3A1C1A; --plane: rgba(82, 192, 193, 0.26);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1618; --surface: #142024; --surface-2: #1B2A2E; --ink: #E2EBEA; --muted: #95A8AA;
+  --line: #283A3E; --accent: #52C0C1; --accent-soft: #163A3C; --on-accent: #062022;
+  --artery: #E46A62; --vein: #7497E8; --nerve: #E2BD45; --lymph: #6CC487;
+  --ok: #6CC487; --ok-soft: #173325; --bad: #F08A82; --bad-soft: #3A1C1A; --plane: rgba(82, 192, 193, 0.26);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 600; }
+h4 { font-size: var(--step-0); font-weight: 600; }
+p { margin: 0; }
+code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+}
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+.masthead { background: var(--surface); border-bottom: 1px solid var(--line); }
+.masthead-inner { max-width: 1180px; margin: 0 auto; padding-block: 32px 28px; display: grid; gap: 20px; }
+.masthead h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+.masthead h1 span { color: var(--accent); }
+.lede { max-width: 62ch; color: var(--muted); font-size: 1.125rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--step--1); color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 18px; height: 4px; border-radius: 2px; display: inline-block; }
+.switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: var(--step--1); font-weight: 600; user-select: none; }
+.switch input { appearance: none; width: 38px; height: 22px; border-radius: 11px; background: var(--line); position: relative; margin: 0; cursor: pointer; transition: background .15s; }
+.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); transition: transform .15s; }
+.switch input:checked { background: var(--accent); }
+.switch input:checked::after { transform: translateX(16px); }
+
+/* Shell */
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 28px 64px; }
+@media (min-width: 980px) { .shell { grid-template-columns: 220px minmax(0, 1fr); gap: 48px; } }
+.toc { display: none; }
+@media (min-width: 980px) {
+  .toc { display: block; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; }
+}
+.toc ol { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 2px; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; padding: 6px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: var(--step--1); }
+.toc a::before { counter-increment: toc; content: counter(toc, decimal-leading-zero); font-family: var(--font-mono); color: var(--muted); font-size: 0.75rem; padding-top: 2px; }
+.toc a:hover, .toc a.active { background: var(--accent-soft); }
+.toc a.active { color: var(--accent); font-weight: 600; }
+.mobile-toc { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+.mobile-toc a { flex: none; font-size: var(--step--1); padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--ink); background: var(--surface); }
+@media (min-width: 980px) { .mobile-toc { display: none; } }
+
+main { min-width: 0; display: grid; gap: 64px; }
+section { display: grid; gap: 20px; scroll-margin-top: 24px; }
+.section-head { display: grid; gap: 6px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.prose { max-width: 70ch; display: grid; gap: 12px; }
+.muted { color: var(--muted); }
+.note {
+  max-width: 70ch; font-size: var(--step--1); color: var(--muted); border-left: 3px solid var(--nerve); padding: 4px 0 4px 14px;
+}
+.pt { color: var(--accent); font-style: italic; font-weight: 400; }
+.pt::before { content: "PT · "; font-style: normal; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: .04em; opacity: .8; }
+.no-pt .pt { display: none; }
+
+/* Timeline (antes / durante / después) */
+.phases { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .phases { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.phase { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 10px; align-content: start; }
+.phase .time { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
+.phase ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: var(--step--1); }
+
+.roles { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.role { border-top: 3px solid var(--accent); padding-top: 10px; display: grid; gap: 4px; }
+.role p { font-size: var(--step--1); color: var(--muted); }
+
+/* Tables */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; background: var(--surface-2); }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gesture { display: inline-flex; gap: 4px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); display: inline-block; }
+
+/* Tools grid */
+.tools { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.tool { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.tool h4 { display: flex; gap: 10px; align-items: center; }
+.tool svg { width: 22px; height: 22px; flex: none; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tool p { font-size: var(--step--1); color: var(--muted); }
+.tool .tip { color: var(--ink); }
+
+/* Planes */
+.planes { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
+@media (min-width: 720px) { .planes { grid-template-columns: 300px minmax(0, 1fr); } }
+.planes svg { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+.planes svg text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex-wrap: wrap; }
+.seg button { font: 600 var(--step--1) var(--font-body); border: 0; background: transparent; color: var(--ink); padding: 8px 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.plane-info { display: grid; gap: 10px; min-width: 0; }
+.plane-info dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; font-size: var(--step--1); }
+.plane-info dt { color: var(--muted); }
+.plane-info dd { margin: 0; }
+
+/* Practices */
+.practice { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.practice > summary {
+  list-style: none; cursor: pointer; padding: 18px 20px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 16px; align-items: center;
+}
+.practice > summary::-webkit-details-marker { display: none; }
+.practice > summary .code { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; padding: 2px 8px; }
+.practice > summary .title { display: grid; gap: 2px; min-width: 0; }
+.practice > summary .title small { color: var(--muted); font-size: var(--step--1); }
+.practice > summary .prog { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+.practice > summary .prog.done { color: var(--ok); }
+.practice[open] > summary { border-bottom: 1px solid var(--line); }
+.practice-body { padding: 20px; display: grid; gap: 22px; }
+.p-grid { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .p-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.p-block { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.steps { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; font-size: var(--step--1); }
+.steps b { font-weight: 600; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.checklist label { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 5px 8px; border-radius: 6px; cursor: pointer; font-size: var(--step--1); }
+.checklist label:hover { background: var(--surface-2); }
+.checklist input { accent-color: var(--accent); width: 16px; height: 16px; transform: translateY(2px); }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.checklist .sys { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.s-art { background: var(--artery); } .s-ven { background: var(--vein); } .s-ner { background: var(--nerve); } .s-lin { background: var(--lymph); } .s-org { background: var(--muted); }
+.clinic { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .clinic { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.clinic > div { border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; font-size: var(--step--1); }
+.clinic .surg { background: var(--surface-2); }
+.clinic .rev { background: var(--accent-soft); }
+.clinic .label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+.clinic ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.reset-btn { justify-self: start; font: 600 var(--step--1) var(--font-body); background: none; border: 1px solid var(--line); color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.reset-btn:hover { color: var(--ink); border-color: var(--muted); }
+
+/* Quiz */
+.quiz-top { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+.score { font-family: var(--font-mono); font-size: 0.9rem; }
+.score b { font-size: 1.2rem; color: var(--accent); }
+.quiz { display: grid; gap: 14px; counter-reset: q; }
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; }
+.q legend { font-weight: 600; padding: 0; display: flex; gap: 10px; }
+.q legend::before { counter-increment: q; content: counter(q, decimal-leading-zero); font-family: var(--font-mono); font-weight: 400; color: var(--muted); font-size: 0.85rem; padding-top: 2px; }
+.q fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; min-width: 0; }
+.opts { display: grid; gap: 6px; }
+.opt { text-align: left; font: var(--step--1) var(--font-body); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; cursor: pointer; }
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt:disabled { cursor: default; }
+.opt.right { background: var(--ok-soft); border-color: var(--ok); color: var(--ink); }
+.opt.wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--ink); }
+.explain { font-size: var(--step--1); border-left: 3px solid var(--accent); padding-left: 12px; }
+.explain b.r { color: var(--ok); } .explain b.w { color: var(--bad); }
+
+/* Glossary */
+.search { width: 100%; max-width: 420px; font: var(--step-0) var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.search::placeholder { color: var(--muted); }
+#gloss-count { font-size: var(--step--1); }
+
+/* Rules */
+.rules { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .rules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.rules > div { display: grid; gap: 8px; align-content: start; }
+.rules ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: var(--step--1); }
+.do h3 { color: var(--ok); } .dont h3 { color: var(--bad); }
+
+footer { border-top: 1px solid var(--line); background: var(--surface); }
+footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<header class="masthead">
+  <div class="pad">
+    <div class="masthead-inner">
+      <p class="eyebrow">UPDS · Carrera de Medicina · Laboratorio de Anatomía Virtual</p>
+      <h1>Mesa de disección virtual <span>Anatomage</span></h1>
+      <p class="lede">Guía práctica para usar la mesa, orientarte en los planos anatómicos y completar seis prácticas guiadas con correlación quirúrgica y temas de alto rendimiento para el Revalida.</p>
+      <ul class="facts">
+        <li><span class="eyebrow">Sesión</span><b>50 minutos</b></li>
+        <li><span class="eyebrow">Grupo por mesa</span><b>4 a 6 estudiantes</b></li>
+        <li><span class="eyebrow">Prácticas</span><b>6 regiones</b></li>
+        <li><span class="eyebrow">Idiomas</span><b>Español · Português</b></li>
+      </ul>
+      <div class="toolbar">
+        <label class="switch" for="pt-toggle"><input type="checkbox" id="pt-toggle" checked> Mostrar términos en portugués</label>
+        <div class="legend" aria-label="Código de colores de sistemas">
+          <span><i style="background:var(--artery)"></i>Arteria</span>
+          <span><i style="background:var(--vein)"></i>Vena</span>
+          <span><i style="background:var(--nerve)"></i>Nervio</span>
+          <span><i style="background:var(--lymph)"></i>Linfático</span>
+          <span><i style="background:var(--muted)"></i>Órgano / estructura</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="pad">
+  <div class="shell">
+    <nav class="toc" aria-label="Índice">
+      <p class="eyebrow">Contenido</p>
+      <ol>
+        <li><a href="#sesion">La sesión</a></li>
+        <li><a href="#gestos">Gestos táctiles</a></li>
+        <li><a href="#herramientas">Herramientas</a></li>
+        <li><a href="#planos">Planos y cortes</a></li>
+        <li><a href="#tc">Ventanas de TC</a></li>
+        <li><a href="#practicas">Prácticas guiadas</a></li>
+        <li><a href="#autoevaluacion">Autoevaluación</a></li>
+        <li><a href="#glosario">Glosario ES–PT</a></li>
+        <li><a href="#normas">Normas y cuidado</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <nav class="mobile-toc" aria-label="Índice rápido">
+        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Prácticas</a><a href="#autoevaluacion">Quiz</a><a href="#glosario">Glosario</a><a href="#normas">Normas</a>
+      </nav>
+
+      <!-- 1. Sesión -->
+      <section id="sesion">
+        <div class="section-head">
+          <p class="eyebrow">01 · Organización</p>
+          <h2>Cómo se desarrolla una sesión</h2>
+        </div>
+        <div class="prose">
+          <p>La Anatomage es una mesa con pantalla táctil a tamaño real que muestra cadáveres digitales segmentados a partir de donantes reales, además de una biblioteca de casos con tomografías y resonancias. Permite cortar, ocultar y aislar estructuras sin dañar el material, y repetir la disección tantas veces como haga falta.</p>
+          <p>Para aprovechar los 50 minutos, llega con la práctica leída y el grupo organizado en roles que rotan cada 10 a 15 minutos.</p>
+        </div>
+        <div class="phases">
+          <div class="phase">
+            <span class="time">Antes · 5 min</span>
+            <h3>Preparar</h3>
+            <ol>
+              <li>Lávate o desinféctate las manos.</li>
+              <li>Lee los objetivos de la práctica asignada.</li>
+              <li>Repartan los roles del grupo.</li>
+              <li>Verifica que la mesa muestre la escena inicial (cadáver completo, sin cortes).</li>
+            </ol>
+          </div>
+          <div class="phase">
+            <span class="time">Durante · 40 min</span>
+            <h3>Disecar e identificar</h3>
+            <ol>
+              <li>Selecciona el cadáver y los sistemas indicados.</li>
+              <li>Sigue los pasos en la mesa; el guía los lee en voz alta.</li>
+              <li>Identifica cada estructura y márcala en la lista de cotejo.</li>
+              <li>Discute la correlación clínica antes de pasar a la siguiente.</li>
+            </ol>
+          </div>
+          <div class="phase">
+            <span class="time">Después · 5 min</span>
+            <h3>Cerrar</h3>
+            <ol>
+              <li>Guarda la escena si el docente lo pide.</li>
+              <li>Restaura el cadáver a su estado inicial.</li>
+              <li>Cierra la sesión de usuario y deja la pantalla limpia.</li>
+              <li>Responde la autoevaluación de esta guía.</li>
+            </ol>
+          </div>
+        </div>
+        <h3>Roles del grupo</h3>
+        <div class="roles">
+          <div class="role"><h4>Operador</h4><p>Es la única persona que toca la pantalla. Ejecuta los cortes y selecciones.</p></div>
+          <div class="role"><h4>Guía</h4><p>Lee los pasos de la práctica y dirige el orden de la disección.</p></div>
+          <div class="role"><h4>Verificador</h4><p>Marca la lista de cotejo y confirma cada nombre con la etiqueta de la mesa.</p></div>
+          <div class="role"><h4>Relator</h4><p>Anota dudas y hallazgos para presentarlos al docente al final.</p></div>
+        </div>
+      </section>
+
+      <!-- 2. Gestos -->
+      <section id="gestos">
+        <div class="section-head">
+          <p class="eyebrow">02 · Interacción</p>
+          <h2>Gestos táctiles básicos</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Gesto</th><th>Dedos</th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td>Toque corto sobre una estructura</td><td><span class="gesture"><span class="dot"></span></span></td><td>La selecciona y muestra su nombre.</td></tr>
+              <tr><td>Arrastrar</td><td><span class="gesture"><span class="dot"></span></span></td><td>Rota el modelo en 3D.</td></tr>
+              <tr><td>Pellizcar o separar</td><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Acerca o aleja (zoom).</td></tr>
+              <tr><td>Arrastrar en paralelo</td><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Desplaza el modelo sin rotarlo.</td></tr>
+              <tr><td>Girar dos dedos</td><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Rota el modelo sobre el eje perpendicular a la pantalla.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Los gestos y los nombres de los botones cambian según la versión del software instalado en la mesa. Si algo no responde como se describe aquí, pide al docente o al encargado del laboratorio que te muestre la variante de tu equipo. Toca con la yema del dedo: uñas, bolígrafos o anillos generan toques falsos.</p>
+      </section>
+
+      <!-- 3. Herramientas -->
+      <section id="herramientas">
+        <div class="section-head">
+          <p class="eyebrow">03 · Software</p>
+          <h2>Herramientas que vas a usar</h2>
+        </div>
+        <div class="tools">
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 2v20"/></svg>Corte por planos</h4>
+            <p>Corta el cadáver en plano sagital, coronal o axial. Arrastra el control para mover el corte capa por capa.</p>
+            <p class="tip">Úsalo para ver relaciones de profundidad, como un corte de TC.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 14 10"/><path d="M14 10l4-6 2 2-6 4"/></svg>Corte libre</h4>
+            <p>Dibuja una línea con el dedo y la mesa corta siguiendo ese trazo, como un bisturí.</p>
+            <p class="tip">Ideal para abrir una ventana en la pared torácica o abdominal.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><path d="M4 4l16 16"/></svg>Ocultar y mostrar</h4>
+            <p>Retira una estructura o un sistema completo para ver lo que está debajo.</p>
+            <p class="tip">Trabaja de superficial a profundo: piel, fascia, músculo, vísceras.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6" stroke-dasharray="2 2"/></svg>Transparencia</h4>
+            <p>Vuelve semitransparente un órgano para ver estructuras internas sin perder la referencia.</p>
+            <p class="tip">Útil para ver la vía biliar a través del hígado.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12 12 20 3 11V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Identificar y etiquetar</h4>
+            <p>Muestra el nombre de la estructura seleccionada; algunas versiones también dan su descripción.</p>
+            <p class="tip">Antes de tocar, di el nombre en voz alta y luego verifica.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg>Aislar</h4>
+            <p>Deja visible solo la estructura seleccionada para estudiarla desde todos los ángulos.</p>
+            <p class="tip">Rota el órgano aislado para reconocer sus caras y bordes.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg>Deshacer y restaurar</h4>
+            <p>Revierte el último paso o devuelve el cadáver a su estado completo.</p>
+            <p class="tip">Restaura siempre al terminar, para el siguiente grupo.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>Anotar</h4>
+            <p>Dibuja o escribe sobre la imagen para señalar una estructura al grupo.</p>
+            <p class="tip">Las anotaciones no reemplazan tus apuntes.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg>Medir</h4>
+            <p>Mide distancias y ángulos, sobre todo en los estudios de imagen de la biblioteca de casos.</p>
+            <p class="tip">Compara medidas reales, por ejemplo el diámetro de la aorta.</p>
+          </div>
+          <div class="tool">
+            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Biblioteca de casos</h4>
+            <p>Estudios de TC y RM con patología real, renderizados en 3D o por cortes.</p>
+            <p class="tip">Relaciona la anatomía normal con la imagen patológica.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Planos -->
+      <section id="planos">
+        <div class="section-head">
+          <p class="eyebrow">04 · Orientación</p>
+          <h2>Planos anatómicos y cortes</h2>
+        </div>
+        <p class="prose">La mesa siempre presenta el cadáver en posición anatómica. Elige un plano para ver qué parte del cuerpo separa y cómo se verá en pantalla.</p>
+        <div class="planes">
+          <svg id="plane-svg" viewBox="0 0 360 380" role="img" aria-labelledby="plane-title">
+            <title id="plane-title">Volumen del cuerpo con el plano de corte seleccionado</title>
+          </svg>
+          <div class="plane-info">
+            <div class="seg" role="group" aria-label="Plano">
+              <button type="button" data-plane="sagital" aria-pressed="true">Sagital</button>
+              <button type="button" data-plane="coronal" aria-pressed="false">Coronal</button>
+              <button type="button" data-plane="axial" aria-pressed="false">Axial</button>
+            </div>
+            <h3 id="plane-name">Plano sagital</h3>
+            <dl id="plane-dl"></dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. TC -->
+      <section id="tc">
+        <div class="section-head">
+          <p class="eyebrow">05 · Imagen</p>
+          <h2>Ventanas de tomografía en la biblioteca de casos</h2>
+        </div>
+        <div class="prose">
+          <p>Al abrir un estudio de TC puedes cambiar la ventana (ancho, W) y el nivel (centro, L), medidos en unidades Hounsfield (UH). Cambiar la ventana no altera la imagen: solo decide qué rango de densidades se ve en escala de grises.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ventana</th><th>W / L (UH)</th><th>Para ver</th></tr></thead>
+            <tbody>
+              <tr><td>Pulmón</td><td class="num">1500 / −600</td><td>Parénquima pulmonar, nódulos, neumotórax.</td></tr>
+              <tr><td>Mediastino / partes blandas</td><td class="num">400 / 40</td><td>Vasos, ganglios, vísceras abdominales.</td></tr>
+              <tr><td>Hueso</td><td class="num">1800 / 400</td><td>Fracturas, cortical y medular ósea.</td></tr>
+              <tr><td>Encéfalo</td><td class="num">80 / 40</td><td>Sustancia gris y blanca, hematomas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tejido</th><th>Densidad aproximada (UH)</th></tr></thead>
+            <tbody>
+              <tr><td>Aire</td><td class="num">−1000</td></tr>
+              <tr><td>Pulmón aireado</td><td class="num">−900 a −500</td></tr>
+              <tr><td>Grasa</td><td class="num">−100 a −50</td></tr>
+              <tr><td>Agua, LCR</td><td class="num">0 a 15</td></tr>
+              <tr><td>Tejidos blandos</td><td class="num">20 a 60</td></tr>
+              <tr><td>Sangre aguda (hematoma)</td><td class="num">50 a 80</td></tr>
+              <tr><td>Hueso cortical</td><td class="num">más de 700</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Valores de referencia aproximados; varían entre equipos y protocolos.</p>
+      </section>
+
+      <!-- 6. Prácticas -->
+      <section id="practicas">
+        <div class="section-head">
+          <p class="eyebrow">06 · Disección guiada</p>
+          <h2>Prácticas guiadas por región</h2>
+        </div>
+        <p class="prose">Cada práctica tiene objetivos, pasos en la mesa, una lista de cotejo de estructuras y dos bloques clínicos: la correlación quirúrgica y lo que más se pregunta en el Revalida. Tu avance se guarda en este navegador.</p>
+        <div id="practice-list" style="display:grid;gap:14px"></div>
+      </section>
+
+      <!-- 7. Quiz -->
+      <section id="autoevaluacion">
+        <div class="section-head">
+          <p class="eyebrow">07 · Repaso</p>
+          <h2>Autoevaluación</h2>
+        </div>
+        <div class="quiz-top">
+          <p class="muted">Doce preguntas tipo examen. Elige una respuesta para ver la explicación.</p>
+          <div style="display:flex;gap:14px;align-items:center">
+            <span class="score" id="score">Aciertos <b>0</b> / 12</span>
+            <button type="button" class="reset-btn" id="quiz-reset">Reiniciar</button>
+          </div>
+        </div>
+        <div class="quiz" id="quiz"></div>
+      </section>
+
+      <!-- 8. Glosario -->
+      <section id="glosario">
+        <div class="section-head">
+          <p class="eyebrow">08 · Terminología</p>
+          <h2>Glosario español – português</h2>
+        </div>
+        <p class="prose">Términos que cambian entre los dos idiomas y que suelen confundirse en el laboratorio y en los exámenes.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+          <label for="gloss-search" class="eyebrow" style="width:100%">Buscar término</label>
+          <input type="search" id="gloss-search" class="search" placeholder="Ej.: hígado, nervo ulnar, ducto…" autocomplete="off">
+          <span id="gloss-count" class="muted"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Español</th><th>Português</th><th>Región</th></tr></thead>
+            <tbody id="gloss-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 9. Normas -->
+      <section id="normas">
+        <div class="section-head">
+          <p class="eyebrow">09 · Laboratorio</p>
+          <h2>Normas de uso y cuidado del equipo</h2>
+        </div>
+        <div class="rules">
+          <div class="do">
+            <h3>Sí</h3>
+            <ul>
+              <li>Manos limpias y secas antes de tocar la pantalla.</li>
+              <li>Toca con la yema del dedo y con movimientos suaves.</li>
+              <li>Limpia solo con el paño y el producto que indique el encargado, aplicándolo sobre el paño.</li>
+              <li>Restaura el cadáver y cierra tu sesión al terminar.</li>
+              <li>Informa de inmediato cualquier falla, pantalla congelada o daño.</li>
+              <li>Trata los cadáveres digitales con el mismo respeto que a un donante: provienen de personas reales.</li>
+            </ul>
+          </div>
+          <div class="dont">
+            <h3>No</h3>
+            <ul>
+              <li>Comida, bebidas o botellas sobre o cerca de la mesa.</li>
+              <li>Apoyar mochilas, cuadernos, celulares o codos sobre la pantalla.</li>
+              <li>Usar bolígrafos, punteros u objetos punzantes para tocar.</li>
+              <li>Rociar líquidos directamente sobre la superficie.</li>
+              <li>Cambiar la configuración del sistema o instalar programas.</li>
+              <li>Fotografiar o grabar los cadáveres para redes sociales.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="pad"><div>
+    <p>Guía de apoyo para el Laboratorio de Anatomía Virtual · UPDS. Complementa, no reemplaza, las indicaciones del docente ni el manual del fabricante.</p>
+    <p>Anatomage es una marca de su respectivo titular. Esta guía es material docente independiente.</p>
+  </div></div>
+</footer>
+
+<script>
+(function () {
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  /* ---------- PT toggle ---------- */
+  var ptToggle = document.getElementById('pt-toggle');
+  var showPt = store.get('anat-pt', true);
+  ptToggle.checked = showPt;
+  document.documentElement.classList.toggle('no-pt', !showPt);
+  ptToggle.addEventListener('change', function () {
+    document.documentElement.classList.toggle('no-pt', !ptToggle.checked);
+    store.set('anat-pt', ptToggle.checked);
+  });
+
+  /* ---------- Planes diagram ---------- */
+  var svg = document.getElementById('plane-svg');
+  var NS = 'http://www.w3.org/2000/svg';
+  var CX = 180, CY = 190, X = 62, Y = 40, Z = 120;
+  function P(x, y, z) { return [CX + 0.866 * x - 0.866 * y, CY + 0.5 * x + 0.5 * y - z]; }
+  function pts(arr) { return arr.map(function (p) { var q = P(p[0], p[1], p[2]); return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); }
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text) e.textContent = text;
+    svg.appendChild(e); return e;
+  }
+  var planeEl = el('polygon', { fill: 'var(--plane)', stroke: 'var(--accent)', 'stroke-width': '1.8' });
+  // box edges: x = patient right(-)/left(+), y = anterior(-)/posterior(+), z = inferior(-)/superior(+)
+  var c = function (sx, sy, sz) { return [sx * X, sy * Y, sz * Z]; };
+  var edges = [
+    [c(-1,-1,1), c(1,-1,1)], [c(1,-1,1), c(1,1,1)], [c(1,1,1), c(-1,1,1)], [c(-1,1,1), c(-1,-1,1)],
+    [c(-1,-1,-1), c(1,-1,-1)], [c(1,-1,-1), c(1,1,-1)],
+    [c(-1,-1,1), c(-1,-1,-1)], [c(1,-1,1), c(1,-1,-1)], [c(1,1,1), c(1,1,-1)]
+  ];
+  var hidden = [[c(-1,1,-1), c(1,1,-1)], [c(-1,1,-1), c(-1,-1,-1)], [c(-1,1,1), c(-1,1,-1)]];
+  hidden.forEach(function (e) { var a = P.apply(null, e[0]), b = P.apply(null, e[1]); el('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: 'var(--muted)', 'stroke-width': '1', 'stroke-dasharray': '3 4', opacity: '.6' }); });
+  edges.forEach(function (e) { var a = P.apply(null, e[0]), b = P.apply(null, e[1]); el('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: 'var(--ink)', 'stroke-width': '1.3' }); });
+  // small head marker on top face center to show superior
+  var top = P(0, 0, Z); el('ellipse', { cx: top[0], cy: top[1] - 16, rx: 16, ry: 14, fill: 'none', stroke: 'var(--ink)', 'stroke-width': '1.3' });
+  el('line', { x1: top[0], y1: top[1] - 2, x2: top[0], y2: top[1], stroke: 'var(--ink)' });
+  var lab = function (p, t, anchor) { var q = P.apply(null, p); el('text', { x: q[0], y: q[1], 'text-anchor': anchor || 'middle' }, t); };
+  lab([0, 0, Z + 46], 'SUPERIOR'); lab([0, 0, -Z - 40], 'INFERIOR');
+  lab([0, -Y - 30, -Z + 10], 'ANTERIOR', 'end'); lab([X + 22, 0, -Z + 10], 'IZQ.', 'start');
+
+  var planes = {
+    sagital: {
+      name: 'Plano sagital', poly: [c(0,-1,1), c(0,1,1), c(0,1,-1), c(0,-1,-1)],
+      rows: [['Divide', 'Lado derecho e izquierdo'], ['Plano medio', 'Sagital medio (mediosagital), pasa por la línea media'], ['En la mesa', 'Ves el perfil del cuerpo: columna, tráquea, esófago y médula en un solo corte'], ['Úsalo para', 'Relaciones anteroposteriores del mediastino y de la pelvis']]
+    },
+    coronal: {
+      name: 'Plano coronal (frontal)', poly: [c(-1,0,1), c(1,0,1), c(1,0,-1), c(-1,0,-1)],
+      rows: [['Divide', 'Porción anterior y posterior'], ['En la mesa', 'Vista de frente, como una radiografía de tórax PA'], ['Úsalo para', 'Corazón y grandes vasos, riñones, articulación de la cadera']]
+    },
+    axial: {
+      name: 'Plano axial (transversal)', poly: [c(-1,-1,0), c(1,-1,0), c(1,1,0), c(-1,1,0)],
+      rows: [['Divide', 'Porción superior e inferior'], ['En la mesa', 'Igual que un corte de TC: se mira desde los pies del paciente'], ['Convención', 'La derecha del paciente aparece a la izquierda de la pantalla'], ['Úsalo para', 'Niveles vertebrales (T4, L1) y lectura de tomografías']]
+    }
+  };
+  var dl = document.getElementById('plane-dl'), pname = document.getElementById('plane-name');
+  function setPlane(k) {
+    var p = planes[k];
+    planeEl.setAttribute('points', pts(p.poly));
+    pname.textContent = p.name;
+    dl.innerHTML = p.rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
+    document.querySelectorAll('[data-plane]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.plane === k)); });
+  }
+  document.querySelectorAll('[data-plane]').forEach(function (b) { b.addEventListener('click', function () { setPlane(b.dataset.plane); }); });
+  setPlane('sagital');
+
+  /* ---------- Practices ---------- */
+  // sys: art, ven, ner, lin, org
+  var practices = [
+    {
+      id: 'p1', code: 'P1', region: 'Tórax', title: 'Mediastino y corazón',
+      objectives: 'Reconocer las estructuras del mediastino, la anatomía externa del corazón y los puntos de referencia para procedimientos torácicos.',
+      steps: [
+        'Selecciona un cadáver completo y activa los sistemas <b>cardiovascular</b>, <b>respiratorio</b> y <b>esquelético</b>.',
+        'Oculta piel, músculos pectorales y la parte anterior de las costillas con <b>corte libre</b>, abriendo una ventana desde las clavículas hasta el xifoides.',
+        'Haz un <b>corte axial</b> a nivel del ángulo esternal (T4–T5): busca el arco aórtico y la bifurcación traqueal.',
+        'Vuelve transparentes los pulmones para seguir los nervios frénico y vago a ambos lados del hilio.',
+        '<b>Aísla</b> el corazón y rótalo para ver las caras esternocostal y diafragmática y las arterias coronarias.'
+      ],
+      items: [
+        ['org', 'Pericardio fibroso', 'pericárdio fibroso'],
+        ['art', 'Arco aórtico', 'arco da aorta'],
+        ['art', 'Tronco pulmonar', 'tronco pulmonar'],
+        ['ven', 'Vena cava superior', 'veia cava superior'],
+        ['art', 'Arteria coronaria derecha', 'artéria coronária direita'],
+        ['art', 'Rama interventricular anterior (descendente anterior)', 'ramo interventricular anterior'],
+        ['ner', 'Nervio frénico (anterior al hilio)', 'nervo frênico'],
+        ['ner', 'Nervio vago (posterior al hilio)', 'nervo vago'],
+        ['org', 'Bifurcación traqueal (carina)', 'carina da traqueia'],
+        ['lin', 'Conducto torácico', 'ducto torácico']
+      ],
+      surg: [
+        'Drenaje pleural: 4.º–5.º espacio intercostal, línea axilar media, sobre el <b>borde superior de la costilla inferior</b>, porque el paquete vasculonervioso corre por el borde inferior de cada costilla.',
+        'Pericardiocentesis por vía subxifoidea, con la aguja dirigida hacia el hombro izquierdo.',
+        'Esternotomía media: ruta de acceso para la cirugía cardíaca y de grandes vasos.'
+      ],
+      rev: [
+        '<b>Triángulo de seguridad</b>: borde lateral del pectoral mayor, borde anterior del dorsal ancho y línea horizontal a nivel del pezón (5.º espacio).',
+        'La descendente anterior irriga la cara anterior del ventrículo izquierdo y los dos tercios anteriores del tabique: su oclusión da IAM anterior (V1–V4).',
+        'Ángulo de Louis = 2.º cartílago costal, referencia para contar espacios intercostales.'
+      ]
+    },
+    {
+      id: 'p2', code: 'P2', region: 'Abdomen superior', title: 'Hígado y vía biliar',
+      objectives: 'Identificar la vía biliar extrahepática, la irrigación de la vesícula y el contenido del ligamento hepatoduodenal.',
+      steps: [
+        'Activa los sistemas <b>digestivo</b> y <b>cardiovascular</b>. Retira la pared abdominal anterior con <b>corte libre</b>.',
+        'Oculta el colon transverso y el epiplón mayor para exponer el estómago y la cara inferior del hígado.',
+        'Aplica <b>transparencia</b> al hígado y sigue los conductos hepáticos hasta el colédoco.',
+        'Haz un <b>corte axial</b> en el plano transpilórico (L1) para ver páncreas, vena porta y riñones.',
+        'Localiza el agujero omental (de Winslow) por detrás del borde libre del ligamento hepatoduodenal.'
+      ],
+      items: [
+        ['org', 'Vesícula biliar', 'vesícula biliar'],
+        ['org', 'Conducto cístico', 'ducto cístico'],
+        ['org', 'Conducto hepático común', 'ducto hepático comum'],
+        ['org', 'Colédoco', 'ducto colédoco'],
+        ['art', 'Arteria cística', 'artéria cística'],
+        ['art', 'Arteria hepática propia', 'artéria hepática própria'],
+        ['ven', 'Vena porta', 'veia porta do fígado'],
+        ['art', 'Tronco celíaco', 'tronco celíaco'],
+        ['org', 'Cabeza del páncreas', 'cabeça do pâncreas'],
+        ['org', 'Duodeno (porción descendente)', 'parte descendente do duodeno']
+      ],
+      surg: [
+        'Colecistectomía: antes de clipar, lograr la <b>visión crítica de seguridad</b> (Strasberg): solo dos estructuras entran en la vesícula, el conducto y la arteria císticos.',
+        '<b>Maniobra de Pringle</b>: pinzar el ligamento hepatoduodenal para controlar el sangrado hepático; ocluye la arteria hepática propia y la vena porta.',
+        'En el ligamento hepatoduodenal: colédoco a la derecha y anterior, arteria hepática a la izquierda, vena porta posterior.'
+      ],
+      rev: [
+        '<b>Triángulo hepatocístico (Calot)</b>: conducto cístico, conducto hepático común y borde inferior del hígado. Contiene la arteria cística.',
+        'Lesión más temida de la colecistectomía: sección del colédoco confundido con el cístico.',
+        'Dolor biliar referido al hombro derecho por irritación del diafragma (nervio frénico, C3–C5).'
+      ]
+    },
+    {
+      id: 'p3', code: 'P3', region: 'Pared abdominal y muslo', title: 'Región inguinal y triángulo femoral',
+      objectives: 'Diferenciar los tipos de hernia según su relación con los vasos epigástricos y describir el contenido del triángulo femoral.',
+      steps: [
+        'Activa los sistemas <b>muscular</b>, <b>cardiovascular</b> y <b>nervioso</b>. Oculta la piel de la región inguinal.',
+        'Identifica la aponeurosis del oblicuo externo y el anillo inguinal superficial.',
+        'Oculta el oblicuo externo para ver el conducto inguinal y su contenido.',
+        'Desde la vista posterior (interna) de la pared, localiza los vasos epigástricos inferiores y el anillo inguinal profundo.',
+        'Pasa al muslo: retira la fascia lata y delimita el triángulo femoral.'
+      ],
+      items: [
+        ['org', 'Ligamento inguinal', 'ligamento inguinal'],
+        ['org', 'Anillo inguinal superficial', 'anel inguinal superficial'],
+        ['org', 'Anillo inguinal profundo', 'anel inguinal profundo'],
+        ['org', 'Cordón espermático / ligamento redondo', 'funículo espermático / ligamento redondo do útero'],
+        ['art', 'Arteria epigástrica inferior', 'artéria epigástrica inferior'],
+        ['ner', 'Nervio femoral', 'nervo femoral'],
+        ['art', 'Arteria femoral', 'artéria femoral'],
+        ['ven', 'Vena femoral', 'veia femoral'],
+        ['lin', 'Conducto femoral (ganglios linfáticos)', 'canal femoral (linfonodos)'],
+        ['org', 'Músculo sartorio', 'músculo sartório']
+      ],
+      surg: [
+        'Hernioplastia: el anillo profundo está lateral a los vasos epigástricos inferiores; el saco indirecto se busca en el cordón.',
+        'Acceso venoso femoral: palpar el pulso y puncionar <b>medial a la arteria</b>, por debajo del ligamento inguinal.',
+        'La hernia femoral pasa por debajo del ligamento inguinal y tiene alto riesgo de estrangulación.'
+      ],
+      rev: [
+        '<b>Triángulo de Hesselbach</b>: borde lateral del recto abdominal, vasos epigástricos inferiores y ligamento inguinal. La hernia <b>directa</b> sale por aquí (medial a los vasos).',
+        'Hernia <b>indirecta</b>: lateral a los vasos epigástricos, por el anillo profundo; la más frecuente en ambos sexos.',
+        'Contenido femoral de lateral a medial: <b>N</b>ervio, <b>A</b>rteria, <b>V</b>ena, espacio vacío, <b>L</b>infáticos. Hernia femoral: más frecuente en mujeres.'
+      ]
+    },
+    {
+      id: 'p4', code: 'P4', region: 'Cuello', title: 'Tiroides y nervios laríngeos',
+      objectives: 'Relacionar la glándula tiroides con su irrigación y con los nervios que están en riesgo en la tiroidectomía.',
+      steps: [
+        'Activa los sistemas <b>endocrino</b>, <b>cardiovascular</b> y <b>nervioso</b>. Oculta piel, platisma y músculos infrahioideos.',
+        'Identifica los cartílagos tiroides y cricoides y la membrana cricotiroidea.',
+        'Rota la vista hacia posterolateral y aplica <b>transparencia</b> a los lóbulos tiroideos.',
+        'Sigue el nervio laríngeo recurrente por el surco traqueoesofágico hasta la laringe.',
+        'Con un <b>corte axial</b> a nivel de C6, observa la relación tiroides, tráquea, esófago y vaina carotídea.'
+      ],
+      items: [
+        ['org', 'Lóbulos e istmo de la tiroides', 'lobos e istmo da tireoide'],
+        ['org', 'Glándulas paratiroides', 'glândulas paratireoides'],
+        ['org', 'Membrana cricotiroidea', 'membrana cricotireóidea'],
+        ['art', 'Arteria tiroidea superior', 'artéria tireóidea superior'],
+        ['art', 'Arteria tiroidea inferior', 'artéria tireóidea inferior'],
+        ['ner', 'Nervio laríngeo recurrente', 'nervo laríngeo recorrente'],
+        ['ner', 'Rama externa del laríngeo superior', 'ramo externo do nervo laríngeo superior'],
+        ['art', 'Bifurcación de la carótida común (C4)', 'bifurcação da carótida comum'],
+        ['ven', 'Vena yugular interna', 'veia jugular interna']
+      ],
+      surg: [
+        'Ligar la arteria tiroidea superior pegada a la glándula protege la rama externa del laríngeo superior.',
+        'La arteria tiroidea inferior cruza el nervio recurrente: identificar el nervio antes de ligarla.',
+        'Cricotiroidotomía de urgencia a través de la membrana cricotiroidea.'
+      ],
+      rev: [
+        'El recurrente <b>izquierdo</b> rodea el arco aórtico; el <b>derecho</b> rodea la arteria subclavia.',
+        'Lesión unilateral del recurrente: disfonía. Bilateral: cuerdas en posición paramediana, estridor e insuficiencia respiratoria.',
+        'Lesión de la rama externa del laríngeo superior: parálisis del cricotiroideo, voz monótona y pérdida de tonos agudos.',
+        'Hipocalcemia posoperatoria (signos de Chvostek y Trousseau) por lesión o extirpación de paratiroides.'
+      ]
+    },
+    {
+      id: 'p5', code: 'P5', region: 'Miembro superior', title: 'Plexo braquial y nervios periféricos',
+      objectives: 'Reconstruir la organización del plexo braquial y relacionar cada nervio terminal con su lesión clínica típica.',
+      steps: [
+        'Activa los sistemas <b>nervioso</b>, <b>muscular</b> y <b>esquelético</b>. Oculta piel, pectoral mayor y pectoral menor.',
+        'Localiza las raíces C5–T1 entre los escalenos anterior y medio.',
+        'Sigue troncos, divisiones y fascículos alrededor de la arteria axilar.',
+        'Rastrea los cinco ramos terminales hasta el brazo y el antebrazo.',
+        '<b>Aísla</b> el húmero junto con los nervios axilar y radial para ver su relación con el hueso.'
+      ],
+      items: [
+        ['ner', 'Raíces C5–T1', 'raízes C5–T1'],
+        ['ner', 'Troncos superior, medio e inferior', 'troncos superior, médio e inferior'],
+        ['ner', 'Fascículos lateral, posterior y medial', 'fascículos lateral, posterior e medial'],
+        ['art', 'Arteria axilar', 'artéria axilar'],
+        ['ner', 'Nervio musculocutáneo', 'nervo musculocutâneo'],
+        ['ner', 'Nervio axilar', 'nervo axilar'],
+        ['ner', 'Nervio radial', 'nervo radial'],
+        ['ner', 'Nervio mediano', 'nervo mediano'],
+        ['ner', 'Nervio cubital', 'nervo ulnar']
+      ],
+      surg: [
+        'Fractura del cuello quirúrgico del húmero o luxación de hombro: riesgo para el <b>nervio axilar</b> (deltoides, sensibilidad del hombro).',
+        'Fractura de la diáfisis humeral: el <b>nervio radial</b> corre por el surco del nervio radial; da mano caída.',
+        'Liberación del túnel carpiano: descompresión del <b>nervio mediano</b> bajo el retináculo flexor.'
+      ],
+      rev: [
+        'Organización del plexo: raíces, troncos, divisiones, fascículos, ramos.',
+        '<b>Erb-Duchenne</b> (C5–C6): brazo en aducción y rotación interna, “mano de camarero”. Típica del parto con distocia de hombro.',
+        '<b>Klumpke</b> (C8–T1): mano en garra; puede asociar síndrome de Horner.',
+        'Mano en garra cubital por lesión del nervio cubital en el codo (epicóndilo medial).'
+      ]
+    },
+    {
+      id: 'p6', code: 'P6', region: 'Cabeza', title: 'Encéfalo y polígono de Willis',
+      objectives: 'Reconocer la irrigación arterial del encéfalo y diferenciar los hematomas intracraneales en la biblioteca de casos.',
+      steps: [
+        'Activa los sistemas <b>nervioso</b> y <b>cardiovascular</b>. Oculta piel, calota y duramadre.',
+        'Retira los hemisferios con <b>ocultar</b> o haz un corte para ver la base del encéfalo.',
+        '<b>Aísla</b> las arterias cerebrales y reconstruye el polígono de Willis.',
+        'Haz <b>cortes axial y coronal</b> del encéfalo para ver ventrículos, cápsula interna y núcleos basales.',
+        'Si tu mesa tiene casos de TC de cráneo, abre uno con ventana de encéfalo (80 / 40) y compara.'
+      ],
+      items: [
+        ['art', 'Arterias carótidas internas', 'artérias carótidas internas'],
+        ['art', 'Arteria basilar', 'artéria basilar'],
+        ['art', 'Arteria cerebral media', 'artéria cerebral média'],
+        ['art', 'Arteria comunicante anterior', 'artéria comunicante anterior'],
+        ['art', 'Arteria comunicante posterior', 'artéria comunicante posterior'],
+        ['art', 'Arteria meníngea media', 'artéria meníngea média'],
+        ['org', 'Ventrículos laterales', 'ventrículos laterais'],
+        ['org', 'Cápsula interna', 'cápsula interna'],
+        ['org', 'Tronco encefálico', 'tronco encefálico'],
+        ['org', 'Cerebelo', 'cerebelo']
+      ],
+      surg: [
+        'Hematoma epidural: sangrado de la <b>arteria meníngea media</b> tras fractura en el pterión. Requiere drenaje urgente por craneotomía.',
+        'Hematoma subdural: rotura de las venas puente; frecuente en adultos mayores y alcohólicos.',
+        'Herniación uncal: compresión del III par craneal con midriasis ipsilateral.'
+      ],
+      rev: [
+        'Epidural: imagen <b>biconvexa</b> (lente) que no cruza suturas; intervalo lúcido clásico.',
+        'Subdural: imagen en <b>semiluna</b> que sí cruza suturas.',
+        'El aneurisma sacular más frecuente está en la <b>comunicante anterior</b>; su rotura da hemorragia subaracnoidea.',
+        'Oclusión de la cerebral media: hemiparesia y hemihipoestesia contralateral de predominio faciobraquial; afasia si es el hemisferio dominante.'
+      ]
+    }
+  ];
+
+  var checks = store.get('anat-checks', {});
+  var list = document.getElementById('practice-list');
+  var openState = store.get('anat-open', { p1: true });
+  practices.forEach(function (p) {
+    var d = document.createElement('details');
+    d.className = 'practice'; d.id = p.id; if (openState[p.id]) d.open = true;
+    var itemsHtml = p.items.map(function (it, i) {
+      var id = p.id + '-' + i;
+      return '<li><label for="' + id + '"><input type="checkbox" id="' + id + '"' + (checks[id] ? ' checked' : '') + '><span><i class="sys s-' + it[0] + '"></i>' + it[1] + ' <span class="pt">' + it[2] + '</span></span></label></li>';
+    }).join('');
+    d.innerHTML =
+      '<summary><span class="code">' + p.code + '</span><span class="title"><small>' + p.region + '</small><h3>' + p.title + '</h3></span><span class="prog" data-prog></span></summary>' +
+      '<div class="practice-body">' +
+        '<p class="prose"><b>Objetivo.</b> ' + p.objectives + '</p>' +
+        '<div class="p-grid">' +
+          '<div class="p-block"><p class="eyebrow">Pasos en la mesa</p><ol class="steps">' + p.steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol></div>' +
+          '<div class="p-block"><p class="eyebrow">Lista de cotejo</p><ul class="checklist">' + itemsHtml + '</ul><button type="button" class="reset-btn" data-reset>Desmarcar todo</button></div>' +
+        '</div>' +
+        '<div class="clinic">' +
+          '<div class="surg"><p class="label">Correlación quirúrgica</p><ul>' + p.surg.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ul></div>' +
+          '<div class="rev"><p class="label">Alto rendimiento · Revalida</p><ul>' + p.rev.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ul></div>' +
+        '</div>' +
+      '</div>';
+    list.appendChild(d);
+    var prog = d.querySelector('[data-prog]');
+    function update() {
+      var boxes = d.querySelectorAll('.checklist input');
+      var n = 0; boxes.forEach(function (b) { if (b.checked) n++; });
+      prog.textContent = n + ' / ' + boxes.length;
+      prog.classList.toggle('done', n === boxes.length);
+    }
+    d.addEventListener('change', function (e) {
+      if (e.target.type !== 'checkbox') return;
+      checks[e.target.id] = e.target.checked; store.set('anat-checks', checks); update();
+    });
+    d.querySelector('[data-reset]').addEventListener('click', function () {
+      d.querySelectorAll('.checklist input').forEach(function (b) { b.checked = false; delete checks[b.id]; });
+      store.set('anat-checks', checks); update();
+    });
+    d.addEventListener('toggle', function () { openState[p.id] = d.open; store.set('anat-open', openState); });
+    update();
+  });
+
+  /* ---------- Quiz ---------- */
+  var quiz = [
+    { q: '¿Qué plano divide el cuerpo en mitades derecha e izquierda?', o: ['Coronal', 'Sagital medio', 'Axial', 'Oblicuo'], a: 1, e: 'El plano sagital medio pasa por la línea media. El coronal separa anterior de posterior y el axial separa superior de inferior.' },
+    { q: 'En un corte axial de TC, la derecha del paciente aparece:', o: ['A la derecha de la pantalla', 'A la izquierda de la pantalla', 'Arriba', 'Depende del equipo'], a: 1, e: 'Por convención se mira desde los pies del paciente, así que su derecha queda a la izquierda del observador.' },
+    { q: 'Una hernia inguinal directa protruye:', o: ['Lateral a los vasos epigástricos inferiores', 'Por el anillo inguinal profundo', 'Medial a los vasos epigástricos inferiores', 'Por debajo del ligamento inguinal'], a: 2, e: 'La hernia directa atraviesa el triángulo de Hesselbach, medial a los vasos epigástricos inferiores. Por debajo del ligamento inguinal sale la hernia femoral.' },
+    { q: 'Orden del contenido del triángulo femoral, de lateral a medial:', o: ['Arteria, vena, nervio, linfáticos', 'Nervio, arteria, vena, linfáticos', 'Vena, arteria, nervio, linfáticos', 'Nervio, vena, arteria, linfáticos'], a: 1, e: 'Nervio, arteria, vena, espacio vacío y linfáticos (conducto femoral). El acceso venoso se hace medial al pulso femoral.' },
+    { q: 'En una fractura de la diáfisis del húmero, el nervio en mayor riesgo es:', o: ['Axilar', 'Mediano', 'Radial', 'Cubital (nervo ulnar)'], a: 2, e: 'El nervio radial corre por el surco del nervio radial en la diáfisis. Su lesión produce mano caída.' },
+    { q: 'El nervio laríngeo recurrente izquierdo rodea:', o: ['La arteria subclavia izquierda', 'El arco aórtico', 'La arteria carótida común', 'El tronco braquiocefálico'], a: 1, e: 'El izquierdo pasa bajo el arco aórtico, junto al ligamento arterioso; el derecho rodea la arteria subclavia derecha.' },
+    { q: 'Límites del triángulo hepatocístico (Calot):', o: ['Colédoco, vena porta y duodeno', 'Conducto cístico, conducto hepático común y borde inferior del hígado', 'Arteria hepática, colédoco y páncreas', 'Conducto cístico, colédoco y duodeno'], a: 1, e: 'El triángulo contiene la arteria cística. Su disección correcta permite la visión crítica de seguridad.' },
+    { q: 'En un drenaje pleural, la aguja o el trocar se introduce:', o: ['Por el borde inferior de la costilla superior', 'Por el centro del espacio intercostal sin referencia', 'Por el borde superior de la costilla inferior', 'A través del cartílago costal'], a: 2, e: 'El paquete vena, arteria y nervio intercostal corre por el surco del borde inferior de cada costilla.' },
+    { q: 'El hematoma epidural se produce típicamente por lesión de:', o: ['Venas puente', 'Arteria meníngea media', 'Arteria comunicante anterior', 'Seno sagital superior'], a: 1, e: 'Fractura temporal en el pterión con lesión de la meníngea media. En TC se ve biconvexo y no cruza suturas.' },
+    { q: 'Para evaluar el parénquima pulmonar en TC se usa la ventana:', o: ['W 80 / L 40', 'W 400 / L 40', 'W 1500 / L −600', 'W 1800 / L 400'], a: 2, e: 'La ventana pulmonar es ancha y centrada en densidades negativas. 400/40 es mediastino; 80/40, encéfalo; 1800/400, hueso.' },
+    { q: 'La parálisis de Erb-Duchenne compromete las raíces:', o: ['C5–C6', 'C7', 'C8–T1', 'C3–C5'], a: 0, e: 'Brazo en aducción y rotación interna (“mano de camarero”). C8–T1 corresponde a Klumpke.' },
+    { q: 'La maniobra de Pringle consiste en pinzar:', o: ['El ligamento falciforme', 'El ligamento hepatoduodenal', 'El ligamento gastroesplénico', 'La vena cava inferior suprahepática'], a: 1, e: 'Ocluye la arteria hepática propia y la vena porta para controlar el sangrado del parénquima hepático.' }
+  ];
+  var qWrap = document.getElementById('quiz'), scoreEl = document.getElementById('score');
+  var answers = store.get('anat-quiz', {});
+  function renderScore() {
+    var n = 0; Object.keys(answers).forEach(function (k) { if (quiz[k] && answers[k] === quiz[k].a) n++; });
+    scoreEl.innerHTML = 'Aciertos <b>' + n + '</b> / ' + quiz.length;
+  }
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    quiz.forEach(function (item, qi) {
+      var div = document.createElement('div'); div.className = 'q';
+      div.innerHTML = '<fieldset><legend>' + item.q + '</legend><div class="opts">' +
+        item.o.map(function (o, oi) { return '<button type="button" class="opt" id="q' + qi + 'o' + oi + '" data-o="' + oi + '">' + o + '</button>'; }).join('') +
+        '</div><p class="explain" hidden></p></fieldset>';
+      qWrap.appendChild(div);
+      var btns = div.querySelectorAll('.opt'), ex = div.querySelector('.explain');
+      function reveal(choice) {
+        btns.forEach(function (b, i) {
+          b.disabled = true;
+          if (i === item.a) b.classList.add('right');
+          else if (i === choice) b.classList.add('wrong');
+        });
+        ex.hidden = false;
+        ex.innerHTML = (choice === item.a ? '<b class="r">Correcto.</b> ' : '<b class="w">Incorrecto.</b> ') + item.e;
+      }
+      if (answers[qi] !== undefined) reveal(answers[qi]);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var choice = +b.dataset.o; answers[qi] = choice; store.set('anat-quiz', answers); reveal(choice); renderScore();
+        });
+      });
+    });
+    renderScore();
+  }
+  document.getElementById('quiz-reset').addEventListener('click', function () { answers = {}; store.set('anat-quiz', answers); renderQuiz(); });
+  renderQuiz();
+
+  /* ---------- Glossary ---------- */
+  var gloss = [
+    ['Hígado', 'Fígado', 'Abdomen'], ['Bazo', 'Baço', 'Abdomen'], ['Riñón', 'Rim', 'Abdomen'], ['Vejiga urinaria', 'Bexiga urinária', 'Pelvis'],
+    ['Conducto (biliar, torácico)', 'Ducto', 'General'], ['Epiplón', 'Omento', 'Abdomen'], ['Yeyuno', 'Jejuno', 'Abdomen'], ['Íleon', 'Íleo', 'Abdomen'],
+    ['Ciego', 'Ceco', 'Abdomen'], ['Recto', 'Reto', 'Pelvis'], ['Esófago', 'Esôfago', 'Tórax'], ['Estómago', 'Estômago', 'Abdomen'],
+    ['Peritoneo', 'Peritônio', 'Abdomen'], ['Ombligo', 'Umbigo', 'Abdomen'], ['Ingle', 'Virilha', 'Pared abdominal'], ['Cordón espermático', 'Funículo espermático', 'Pared abdominal'],
+    ['Corazón', 'Coração', 'Tórax'], ['Aurícula', 'Átrio', 'Tórax'], ['Válvula mitral', 'Valva mitral', 'Tórax'], ['Pulmón', 'Pulmão', 'Tórax'],
+    ['Costilla', 'Costela', 'Tórax'], ['Esternón', 'Esterno', 'Tórax'], ['Tráquea', 'Traqueia', 'Cuello'], ['Tiroides', 'Tireoide', 'Cuello'],
+    ['Ganglio linfático', 'Linfonodo', 'General'], ['Vena', 'Veia', 'General'], ['Arteria', 'Artéria', 'General'], ['Nervio', 'Nervo', 'General'],
+    ['Nervio cubital', 'Nervo ulnar', 'Miembro superior'], ['Hueso cúbito', 'Ulna', 'Miembro superior'], ['Omóplato / escápula', 'Escápula', 'Miembro superior'], ['Hombro', 'Ombro', 'Miembro superior'],
+    ['Codo', 'Cotovelo', 'Miembro superior'], ['Muñeca', 'Punho', 'Miembro superior'], ['Mano', 'Mão', 'Miembro superior'], ['Axila', 'Axila', 'Miembro superior'],
+    ['Cadera', 'Quadril', 'Miembro inferior'], ['Rodilla', 'Joelho', 'Miembro inferior'], ['Rótula', 'Patela', 'Miembro inferior'], ['Peroné', 'Fíbula', 'Miembro inferior'],
+    ['Pantorrilla', 'Panturrilha', 'Miembro inferior'], ['Tobillo', 'Tornozelo', 'Miembro inferior'], ['Pie', 'Pé', 'Miembro inferior'], ['Pierna', 'Perna', 'Miembro inferior'],
+    ['Cráneo', 'Crânio', 'Cabeza'], ['Encéfalo', 'Encéfalo', 'Cabeza'], ['Médula espinal', 'Medula espinal', 'Columna'], ['Duramadre', 'Dura-máter', 'Cabeza'],
+    ['Ojo', 'Olho', 'Cabeza'], ['Oído', 'Orelha', 'Cabeza'], ['Lengua', 'Língua', 'Cabeza'], ['Diente', 'Dente', 'Cabeza'],
+    ['Piel', 'Pele', 'General'], ['Tendón', 'Tendão', 'General'], ['Cartílago', 'Cartilagem', 'General'], ['Hueso', 'Osso', 'General'],
+    ['Glándula', 'Glândula', 'General'], ['Suprarrenal', 'Glândula suprarrenal (adrenal)', 'Abdomen'], ['Mano en garra', 'Mão em garra', 'Clínica'], ['Mano caída', 'Mão caída (punho caído)', 'Clínica']
+  ];
+  var gBody = document.getElementById('gloss-body'), gSearch = document.getElementById('gloss-search'), gCount = document.getElementById('gloss-count');
+  function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function renderGloss() {
+    var q = norm(gSearch.value.trim());
+    var rows = gloss.filter(function (g) { return !q || norm(g.join(' ')).indexOf(q) !== -1; });
+    gBody.innerHTML = rows.length ? rows.map(function (g) { return '<tr><td>' + g[0] + '</td><td><b>' + g[1] + '</b></td><td class="muted">' + g[2] + '</td></tr>'; }).join('')
+      : '<tr><td colspan="3" class="muted">Sin resultados. Prueba con otra palabra, en español o en portugués.</td></tr>';
+    gCount.textContent = rows.length + ' de ' + gloss.length + ' términos';
+  }
+  gSearch.addEventListener('input', renderGloss);
+  renderGloss();
+
+  /* ---------- TOC highlight ---------- */
+  var links = document.querySelectorAll('.toc a');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main > section').forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+
+</html>
