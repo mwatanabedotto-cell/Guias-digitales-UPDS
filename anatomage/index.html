@@ -755,7 +755,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <div class="quiz-top">
           <p class="muted">Preguntas tipo examen de las prácticas y los manuales. Elige una respuesta para ver la explicación.</p>
           <div style="display:flex;gap:14px;align-items:center">
-            <span class="score" id="score">Aciertos <b>0</b> / 22</span>
+            <span class="score" id="score">Aciertos <b>0</b> / 24</span>
             <button type="button" class="reset-btn" id="quiz-reset">Reiniciar</button>
           </div>
         </div>
@@ -1290,7 +1290,9 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     { q: 'La lesión del nervio peroneo común en el cuello del peroné produce:', o: ['Pérdida de la flexión plantar', 'Pie caído', 'Signo de Trendelenburg', 'Pérdida de la extensión de la rodilla'], a: 1, e: 'Se paralizan los dorsiflexores (tibial anterior, extensores largos). Manual Muscular, Miembro inferior: acción 9.' },
     { q: 'Músculo del manguito rotador que más se lesiona:', o: ['Subescapular', 'Redondo menor', 'Supraespinoso', 'Infraespinoso'], a: 2, e: 'El tendón del supraespinoso pasa bajo el acromion; se evalúa con la prueba de Jobe. Manual Muscular, Miembro superior: ubicación 1–2.' },
     { q: 'Dolor en la tabaquera anatómica tras una caída sobre la mano extendida sugiere fractura del:', o: ['Semilunar', 'Escafoides', 'Ganchoso', 'Pisiforme'], a: 1, e: 'El escafoides forma el piso de la tabaquera; su irrigación entra por distal, por eso el polo proximal puede necrosarse. Manual Esquelético, Miembro superior 6.' },
-    { q: 'El ligamento del tobillo que más se lesiona en un esguince por inversión es el:', o: ['Deltoideo', 'Calcaneofibular', 'Talofibular anterior', 'Talofibular posterior'], a: 2, e: 'El talofibular anterior es el más débil del complejo lateral. Manual Esquelético, Miembro inferior 12.' }
+    { q: 'El ligamento del tobillo que más se lesiona en un esguince por inversión es el:', o: ['Deltoideo', 'Calcaneofibular', 'Talofibular anterior', 'Talofibular posterior'], a: 2, e: 'El talofibular anterior es el más débil del complejo lateral. Manual Esquelético, Miembro inferior 12.' },
+    { q: 'Ptosis, midriasis y ojo desviado hacia abajo y afuera indican lesión del nervio:', o: ['Troclear (IV)', 'Abducens (VI)', 'Oculomotor (III)', 'Facial (VII)'], a: 2, e: 'El III par inerva el elevador del párpado, el esfínter de la pupila y casi todos los músculos extraoculares; quedan sin oposición el recto lateral (VI) y el oblicuo superior (IV). Manual Nervioso, Nervios craneales 4.' },
+    { q: 'En el adulto, la médula espinal termina a nivel de:', o: ['T10–T11', 'L1–L2', 'L4–L5', 'S2'], a: 1, e: 'Por debajo de L2 solo hay cola de caballo, por eso la punción lumbar se hace en L3–L4 o L4–L5. Manual Nervioso, Médula espinal 3.' }
   ];
   var qWrap = document.getElementById('quiz'), scoreEl = document.getElementById('score');
   var answers = store.get('anat-quiz', {});

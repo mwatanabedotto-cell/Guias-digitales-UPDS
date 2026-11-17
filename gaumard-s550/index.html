@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NOELLE S550.100</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: ficha de simulador — cabecera con foto del maniquí y datos rápidos, índice lateral en escritorio, tarjetas de procedimiento con foto, pasos y nota clínica. Acento azul de tableta de control. */
+:root {
+  --paper: #F2F4F7;
+  --surface: #FFFFFF;
+  --surface-2: #E7EBF1;
+  --ink: #141C27;
+  --muted: #566070;
+  --line: #D4DAE3;
+  --accent: #1D5DA8;
+  --accent-soft: #DCE7F5;
+  --on-accent: #FFFFFF;
+  --warn: #9A5B00;
+  --warn-soft: #FBEBD3;
+  --ok: #1F7A45;
+  --ok-soft: #DDF0E3;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.2rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E131A; --surface: #151C26; --surface-2: #1C2531; --ink: #E3E8EF; --muted: #98A3B3; --line: #2A3442;
+    --accent: #7FB0EC; --accent-soft: #1A2C44; --on-accent: #0B1624; --warn: #F0B866; --warn-soft: #3A2A12; --ok: #6CC487; --ok-soft: #173325;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E131A; --surface: #151C26; --surface-2: #1C2531; --ink: #E3E8EF; --muted: #98A3B3; --line: #2A3442;
+  --accent: #7FB0EC; --accent-soft: #1A2C44; --on-accent: #0B1624; --warn: #F0B866; --warn-soft: #3A2A12; --ok: #6CC487; --ok-soft: #173325;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 600; }
+h4 { font-size: var(--step-0); font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.muted { color: var(--muted); }
+.prose { max-width: 70ch; display: grid; gap: 12px; }
+
+.masthead { background: var(--surface); border-bottom: 1px solid var(--line); }
+.masthead-inner { max-width: 1180px; margin: 0 auto; padding-block: 28px; display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+@media (min-width: 860px) { .masthead-inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+.masthead h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+.masthead h1 span { color: var(--accent); }
+.lede { max-width: 60ch; color: var(--muted); font-size: 1.1rem; }
+.head-text { display: grid; gap: 16px; min-width: 0; }
+.hero-img { width: 100%; max-width: 100%; border-radius: 12px; border: 1px solid var(--line); background: #fff; display: block; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 28px 64px; }
+@media (min-width: 980px) { .shell { grid-template-columns: 220px minmax(0, 1fr); gap: 48px; } }
+.toc { display: none; }
+@media (min-width: 980px) { .toc { display: block; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; } }
+.toc ol { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 2px; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; padding: 6px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: var(--step--1); }
+.toc a::before { counter-increment: toc; content: counter(toc, decimal-leading-zero); font-family: var(--font-mono); color: var(--muted); font-size: 0.75rem; padding-top: 2px; }
+.toc a:hover { background: var(--accent-soft); }
+.toc .prog { margin-top: 16px; display: grid; gap: 6px; font-size: var(--step--1); }
+.mobile-toc { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.mobile-toc a { flex: none; font-size: var(--step--1); padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--ink); background: var(--surface); }
+@media (min-width: 980px) { .mobile-toc { display: none; } }
+
+main { min-width: 0; display: grid; gap: 60px; }
+section { display: grid; gap: 20px; scroll-margin-top: 24px; }
+.section-head { display: grid; gap: 6px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.bar { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--accent); transition: width .2s; }
+
+.quick { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .quick { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+caption { text-align: left; padding: 12px 14px 4px; font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; background: var(--surface-2); }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.cat { display: grid; gap: 14px; }
+.cat > h3 { display: flex; gap: 10px; align-items: baseline; }
+.cat > h3 small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+.proc { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.proc > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 16px 12px 12px; }
+.proc > summary::-webkit-details-marker { display: none; }
+.proc > summary img { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; background: var(--surface-2); }
+.proc > summary .thumb-empty { width: 72px; height: 54px; border-radius: 6px; background: var(--surface-2); }
+.proc > summary .t { display: grid; gap: 2px; min-width: 0; }
+.proc > summary .t small { color: var(--muted); font-size: var(--step--1); }
+.badge { font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.badge.done { border-color: var(--ok); color: var(--ok); background: var(--ok-soft); }
+.proc[open] > summary { border-bottom: 1px solid var(--line); }
+.pbody { padding: 18px; display: grid; gap: 18px; }
+.pgrid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .pgrid.has-img { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); } }
+.pgrid img { width: 100%; max-width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+.pgrid figure { margin: 0; display: grid; gap: 6px; align-content: start; }
+.pgrid figcaption { font-size: 0.8rem; color: var(--muted); }
+.block { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.block ol, .block ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; font-size: var(--step--1); }
+.specs { display: flex; flex-wrap: wrap; gap: 8px; }
+.spec { font-size: var(--step--1); background: var(--surface-2); border-radius: 8px; padding: 6px 10px; display: grid; }
+.spec span { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.spec b { font-family: var(--font-mono); font-weight: 500; }
+.warn { font-size: var(--step--1); background: var(--warn-soft); border-left: 3px solid var(--warn); padding: 10px 14px; border-radius: 0 8px 8px 0; display: grid; gap: 4px; }
+.warn b { color: var(--warn); }
+.clinic { font-size: var(--step--1); background: var(--accent-soft); border-radius: 10px; padding: 12px 16px; display: grid; gap: 6px; }
+.clinic .label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+.clinic ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.done-toggle { display: inline-flex; gap: 10px; align-items: center; font-weight: 600; font-size: var(--step--1); cursor: pointer; justify-self: start; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+.done-toggle input { accent-color: var(--ok); width: 16px; height: 16px; margin: 0; }
+
+.reset-btn { justify-self: start; font: 600 var(--step--1) var(--font-body); background: none; border: 1px solid var(--line); color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.cols { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.card ul, .card ol { margin: 0; padding-left: 1.2em; display: grid; gap: 5px; font-size: var(--step--1); }
+
+footer { border-top: 1px solid var(--line); background: var(--surface); }
+footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<header class="masthead">
+  <div class="pad"><div class="masthead-inner">
+    <div class="head-text">
+      <p class="eyebrow" id="h-eyebrow"></p>
+      <h1 id="h-title"></h1>
+      <p class="lede" id="h-lede"></p>
+      <ul class="facts" id="h-facts"></ul>
+    </div>
+    <img class="hero-img" id="h-img" alt="" width="900" height="520">
+  </div></div>
+</header>
+
+<div class="pad"><div class="shell">
+  <nav class="toc" aria-label="Índice">
+    <p class="eyebrow">Contenido</p>
+    <ol id="toc"></ol>
+    <div class="prog"><span id="prog-txt"></span><div class="bar"><span id="prog-bar" style="width:0"></span></div></div>
+  </nav>
+  <main>
+    <nav class="mobile-toc" id="mtoc" aria-label="Índice rápido"></nav>
+
+    <section id="inicio">
+      <div class="section-head"><p class="eyebrow">01 · Preparación</p><h2>Antes de empezar</h2></div>
+      <div class="cols" id="inicio-cols"></div>
+    </section>
+
+    <section id="referencia">
+      <div class="section-head"><p class="eyebrow">02 · Referencia rápida</p><h2 id="quick-title">Tamaños, capacidades y pulsos</h2></div>
+      <div class="quick" id="quick"></div>
+    </section>
+
+    <section id="procedimientos">
+      <div class="section-head"><p class="eyebrow">03 · Práctica</p><h2>Procedimientos</h2></div>
+      <div class="prose"><p>Cada tarjeta resume qué permite el simulador, cómo prepararlo y cómo dejarlo limpio, con los puntos clínicos que se evalúan. Marca cada procedimiento al practicarlo: el avance se guarda en este navegador.</p></div>
+      <div id="procs" style="display:grid;gap:28px"></div>
+      <button type="button" class="reset-btn" id="reset">Desmarcar todo</button>
+    </section>
+
+    <section id="omni">
+      <div class="section-head"><p class="eyebrow">04 · Control</p><h2 id="omni-title">Tableta OMNI® 2</h2></div>
+      <div class="cols" id="omni-cols"></div>
+    </section>
+
+    <section id="problemas">
+      <div class="section-head"><p class="eyebrow">05 · Soporte</p><h2>Solución de problemas</h2></div>
+      <div class="table-wrap"><table><thead><tr><th>Problema</th><th>Causa probable</th><th>Qué hacer</th></tr></thead><tbody id="trouble"></tbody></table></div>
+    </section>
+
+    <section id="cuidado">
+      <div class="section-head"><p class="eyebrow">06 · Laboratorio</p><h2>Cuidado, limpieza y almacenamiento</h2></div>
+      <div class="cols" id="care"></div>
+    </section>
+  </main>
+</div></div>
+
+<footer><div class="pad"><div>
+  <p id="f-src"></p>
+  <p>Gaumard®, OMNI® y los nombres de los simuladores son marcas de Gaumard Scientific. Esta guía es material docente interno de la UPDS; no sustituye al instructor ni está destinada a decisiones clínicas.</p>
+</div></div></footer>
+
+<script>
+window.SIM = {"key": "gaumard-s550", "title": "NOELLE S550.100", "eyebrow": "UPDS · Simulación clínica · Gaumard S550.100", "titleHtml": "Simulador de parto materno <span>NOELLE®</span> con neonato PEDI® Blue", "lede": "Sistema materno-neonatal para el parto completo: maniobras de Leopold, parto vaginal automático, ventosa, distocia de hombros, cesárea, nalgas, alumbramiento, hemorragia posparto, episiotomía y reanimación materna y neonatal, controlado con el Omni™ por cable.", "facts": [["Control", "Omni™ por cable"], ["Duración del parto", "1 a 30 min"], ["Neonato", "PEDI® Blue S320.100"], ["Procedimientos", "17"]], "hero": "portada.jpg", "heroAlt": "NOELLE con el neonato PEDI Blue y el controlador Omni", "source": "Basada en la Guía del usuario NOELLE® S550.100 (versión N.3.1.12) de Gaumard Scientific.", "quickTitle": "Tamaños, ajustes y referencias", "omniTitle": "Controlador Omni™", "start": [{"t": "Primer armado", "ol": ["Coloca a NOELLE sobre una superficie plana; retira la cubierta abdominal y el material embalado dentro del abdomen.", "Piernas: quita las tuercas de mariposa, arandelas y resortes de los pernos de la cadera; retira el sitio IM de cada pierna y pasa el perno por el orificio.", "Por el sitio IM, coloca arandela, resorte, segunda arandela y tuerca; aprieta hasta comprimir un poco el resorte.", "Conecta el cable del altavoz de frecuencia cardíaca fetal (sale de la cubierta abdominal) al lado izquierdo del mecanismo de parto.", "Conecta la fuente de alimentación al lado derecho de NOELLE y a la pared. Úsalo siempre con la fuente conectada.", "Conecta el cable de comunicación entre NOELLE y el Omni: tras la pantalla de inicio aparece la pantalla principal."]}, {"t": "Seguridad del mecanismo de parto", "ul": ["Mantente alejado del mecanismo mientras el sistema está encendido.", "Nunca lo hagas funcionar sin la cubierta abdominal puesta.", "Lubrica siempre el feto y el canal del parto antes de cada parto: la mala lubricación daña canal, feto y mecanismo.", "Al terminar, no dejes al recién nacido en contacto con el canal del parto.", "No conectes NOELLE ni el Omni a una computadora, red LAN o equipo de diagnóstico no autorizado."]}, {"t": "Contenido del paquete de parto", "ul": ["Mecanismo de parto automático, adaptadores mecánicos y feto articulado", "Cubierta abdominal con altavoz y cojín inflable para Leopold", "Dos cuellos dilatadores, dos vulvas totalmente dilatadas y tres insertos de vulva para episiotomía", "Dos placentas con fragmentos, dos cordones umbilicales y pinza umbilical", "Útero posparto de 48 h y kit de hemorragia posparto", "Neonato PEDI® Blue S320.100 con cianosis, vía aérea y cordón umbilical", "Omni™ Code Blue, lubricante de silicona, talco y fuente de alimentación"]}, {"t": "Repuestos (código de pieza)", "ul": ["Controlador Omni: S550.180 · cable de comunicación: S550.180.1 · cable USB: S550.180.2", "Cubierta abdominal: S550.008.L · cubierta para cesárea: S550.007.L", "Mecanismo de parto: S550.013 · canal del parto: S550.016.L", "Almohada de elevación: S550.018.L · placenta: S550.019 · cordones: S550.020", "Útero blando (hemorragia posparto): S550.031 · fuente de alimentación: S550.011", "Piel del antebrazo izquierdo / derecho: S550.004L.L / S550.004R.L"]}], "quick": [{"t": "Vía aérea materna", "h": ["Procedimiento", "Tamaño"], "rows": [["Laringoscopio (hoja)", "Miller 4 o MAC 3.5"], ["Mascarilla laríngea", "Tamaño 4"], ["Intubación oral", "TET 7 o 7.5"], ["Intubación nasal", "Diámetro externo máx. 8 mm"], ["Agujas IV, IM, SC", "22 G o más finas"]]}, {"t": "Neonato PEDI Blue", "h": ["Procedimiento", "Tamaño"], "rows": [["Laringoscopio (hoja)", "Miller 1"], ["Tubo endotraqueal", "2.5 mm sin balón"], ["Aguja intraósea", "17–16 G"], ["Brazo de inyección (opcional)", "23–25 G"], ["Cordón umbilical", "2–3 cc de agua"]]}, {"t": "Ajustes del Omni al encender", "h": ["Parámetro", "Valor"], "rows": [["Frecuencia cardíaca fetal", "140 lpm"], ["Duración del parto", "2 min (rango 1–30)"], ["Distocia", "Apagada"], ["Relación compresión:ventilación", "30:2"], ["Frecuencia de compresión", "100/min"], ["Luz de pantalla", "2 min"]]}, {"t": "Tubos del PEDI Blue de NOELLE", "h": ["Tubo", "Función"], "rows": [["1", "Llenar el cordón umbilical"], ["2", "Drenar el cordón"], ["3", "Drenar el contenido gástrico"], ["4", "Llenar la tibia"], ["5", "Drenar la tibia (pie izquierdo)"]]}], "cats": [{"t": "Cuidado materno general", "items": [{"id": "via-aerea", "t": "Vía aérea y ventilación materna", "sub": "BVM, intubación oral y nasal, Sellick y aspiración", "img": "intubacion.jpg", "alt": "Intubación de NOELLE", "specs": [["Hoja", "Miller 4 / MAC 3.5"], ["TET", "7–7.5"], ["ML", "4"]], "blocks": [{"t": "Qué permite", "ul": ["Bolsa-válvula-mascarilla de adulto, intubación oral y nasal, sondas nasogástricas y mascarilla laríngea.", "Maniobra de Sellick para ver las cuerdas; aspiración.", "Tráquea hasta bronquios y pulmones con elevación torácica real; ventilaciones y compresiones medidas y registradas.", "Prótesis dentales fijas; la lengua se mueve de lado a lado."]}, {"t": "Preparación", "ol": ["Lubrica tubo, vía aérea y narina con el lubricante de silicona provisto.", "Para simular fármacos por el tubo endotraqueal, usa una jeringa vacía."]}], "warn": ["No introduzcas líquidos durante la intubación: puede dañar el sistema de forma permanente.", "No hagas ventilación boca a boca."], "clinic": ["Vía aérea difícil en la embarazada: edema, aumento de mamas y riesgo de aspiración; usa un tubo medio número menor y preoxigena bien.", "RCP materna: desplazamiento manual del útero hacia la izquierda; si no hay retorno de la circulación a los 4 minutos con útero de 20 semanas o más, cesárea perimortem."]}, {"id": "materno-cuidado", "t": "Circulación, inyecciones y cuidados", "sub": "Pulsos bilaterales, brazo IV, IM, oído, ojos e higiene", "blocks": [{"t": "Qué permite", "ul": ["Pulsos carotídeo, braquial, radial y femoral con la pera bajo el brazo izquierdo.", "Brazo de entrenamiento IV con red venosa extensa; IM en brazos y muslos superiores de ambos lados.", "Oído con cavidad de unos 10 ml; ojos desmontables para gotas, cuerpos extraños e irrigación.", "Cabello lavable, baño en cama, vendajes (dedos separados) y movilidad articular."]}], "warn": ["Usa siempre agua limpia en las venas y drénalas después de usar."]}]}, {"t": "Trabajo de parto y parto", "items": [{"id": "leopold", "t": "Maniobras de Leopold", "sub": "Feto sobre el cojín inflable", "img": "leopold.jpg", "alt": "Maniobras de Leopold sobre el abdomen", "blocks": [{"t": "Preparación", "ol": ["Retira el mecanismo de parto y el feto.", "Coloca la almohada de elevación dentro del simulador; pasa la pera por el lado izquierdo.", "Pon el feto en posición cefálica, podálica o transversa sobre la almohada y elévalo con la pera.", "Coloca la cubierta abdominal y realiza las cuatro maniobras."]}], "clinic": ["1.ª: qué polo ocupa el fondo · 2.ª: dónde está el dorso · 3.ª: presentación (polo inferior) · 4.ª: grado de encajamiento.", "La frecuencia cardíaca fetal se ausculta mejor sobre el dorso fetal; normal: 110–160 lpm."]}, {"id": "parto-normal", "t": "Trabajo de parto y parto normal", "sub": "Mecanismo automático con rotación interna y externa", "img": "parto.jpg", "alt": "Coronación de la cabeza fetal", "blocks": [{"t": "Preparación", "ol": ["Retira la cubierta abdominal.", "Lubrica cabeza y hombros del feto, y la vulva y el cuello por dentro y por fuera con lubricante de silicona.", "Conecta el cordón al bebé (puede dar una vuelta al cuello) y a la placenta; fija la placenta con velcro en uno de los tres sitios de la pared.", "Conecta los adaptadores al mecanismo con los marcadores azules alineados, y el feto al mecanismo.", "Posición ROA: cabeza del bebé hacia el lado izquierdo del simulador."]}, {"t": "Con el Omni", "ol": ["Ajusta la FCF con + / − y OK (se puede cambiar durante el parto para simular bradicardia o taquicardia).", "Ajusta la duración en el menú SPEED (1–30 min).", "Pulsa RESUME para iniciar; PAUSE detiene y RESET devuelve el mecanismo al inicio.", "Ausculta la FCF con un estetoscopio sobre el abdomen.", "Asiste la salida de cabeza y hombros, aspira boca y nariz, y completa el parto."]}], "warn": ["ROA da una coronación «nariz abajo»; LOP da «nariz arriba» y puede necesitar ayuda.", "Los hombros deben quedar alineados con el eje largo de la vulva; si se traba, el mecanismo retrocede y reintenta. Pausa, retira la cubierta y lubrica."], "clinic": ["Mecanismo del parto: encajamiento, descenso, flexión, rotación interna, extensión, rotación externa (restitución) y expulsión.", "El cuello dilatador permite medir dilatación y descenso para el partograma."]}, {"id": "vacio", "t": "Parto asistido con ventosa", "sub": "Copa en el punto de flexión", "img": "vacio.jpg", "alt": "Aplicación de ventosa obstétrica", "blocks": [{"t": "Pasos", "ol": ["Coloca el cuero cabelludo blando sobre el cráneo fetal (mejora el sellado).", "Lubrica el feto y colócalo en ROA; conecta el Omni y pulsa RESUME.", "Pulsa PAUSE cuando el cuello esté totalmente dilatado.", "Inserta la copa lubricada en el punto de flexión, entre las fontanelas, y haz vacío con la bomba manual; espera unos minutos.", "En la siguiente contracción, tracciona de forma constante y perpendicular a la copa; para cuando cese la contracción.", "Pulsa RESUME y luego PAUSE para avanzar un poco el feto con cada tracción."]}], "warn": ["Tracciona solo si el feto desciende con cada contracción; si no progresa, deriva a cesárea."], "clinic": ["Requisitos: dilatación completa, membranas rotas, cabeza encajada, posición conocida y edad gestacional de 34 semanas o más.", "Punto de flexión: sobre la sutura sagital, unos 3 cm por delante de la fontanela posterior."]}, {"id": "distocia", "t": "Distocia de hombros", "sub": "Signo de la tortuga con la bolsa inflable", "img": "distocia.jpg", "alt": "Simulación de distocia de hombros", "blocks": [{"t": "Pasos", "ol": ["Coloca el feto en ROA.", "Ubica la pera pequeña del lado izquierdo, unida a una bolsa junto al cuello dilatador.", "Infla la bolsa: cabeza y hombros suben hacia la sínfisis y el hombro queda trabado tras el pubis.", "Conecta el Omni, ajusta SPEED y activa DYSTOCIA.", "Resuelve con las maniobras; si no sale, el instructor pulsa RESUME para que avance."]}], "warn": ["No coloques el feto en LOA: intentaría nacer con los hombros en ángulo recto con la vulva y forzaría el mecanismo."], "clinic": ["Pide ayuda y anota la hora. Primero McRoberts y presión suprapúbica (resuelven cerca de la mitad de los casos).", "Luego maniobras internas (Rubin II, Woods), extracción del brazo posterior y posición en cuatro apoyos (Gaskin). Nunca presión en el fondo uterino."]}, {"id": "cesarea", "t": "Parto por cesárea", "sub": "Nacimiento entre la cubierta y el pubis", "blocks": [{"t": "Pasos", "ol": ["Retrae el mecanismo de parto e inserta el cojín inflable.", "Fija la cubierta abdominal con los broches, excepto los de encima del pubis.", "Extrae al recién nacido entre la cubierta y el pubis."]}], "warn": ["Para incisiones media o «bikini» se usa la cubierta opcional de cesárea (P/N 560.029)."]}, {"id": "cordon", "t": "Prolapso de cordón y placenta previa", "sub": "Colocación del cordón o de la placenta", "img": "cordon.jpg", "alt": "Recién nacido con el cordón umbilical", "blocks": [{"t": "Prolapso de cordón", "ul": ["Coloca el cordón en posición crítica y baja la FCF desde el Omni."]}, {"t": "Placenta previa", "ul": ["Coloca la placenta en la posición deseada con el lado materno contra la pared uterina o el cuello.", "Pon el feto con la presentación más cercana a la placenta."]}], "clinic": ["Prolapso de cordón: eleva la presentación con la mano, posición genupectoral o Trendelenburg y cesárea urgente; no manipules el cordón.", "Placenta previa: sangrado rojo brillante e indoloro en el tercer trimestre; el tacto vaginal está contraindicado."]}, {"id": "version", "t": "Versión cefálica externa", "sub": "De nalgas a cefálica por manipulación abdominal", "blocks": [{"t": "Pasos", "ol": ["Retira la cubierta, el feto y el mecanismo de parto.", "Inserta el cojín inflable y retira la espuma de la cubierta abdominal.", "Lubrica la cara interna de la cubierta, el feto y el cojín.", "Coloca el feto sobre el cojín, cierra la cubierta e infla el cojín para posicionarlo.", "Confirma la presentación podálica e intenta girar el feto por vía transabdominal."]}], "clinic": ["Se ofrece desde las 36–37 semanas si no hay contraindicaciones (placenta previa, cesárea previa con contraindicación, oligoamnios grave)."]}, {"id": "nalgas", "t": "Parto en presentación de nalgas", "sub": "Nalgas completas, francas o de pies", "blocks": [{"t": "Pasos", "ol": ["Retrae por completo el mecanismo de parto.", "Quita el cuero cabelludo blando de la cabeza fetal.", "Inserta el mecanismo en la cabeza fetal con uno o dos adaptadores (el feto tiene receptáculos en el recto y la fontanela anterior).", "Extiende las piernas para nalgas de pies o recógelas para nalgas francas; lubrica torso inferior y piernas."]}], "clinic": ["La maniobra de Pinard libera una pierna y luego la otra; los brazos se liberan de forma similar.", "Cabeza última: maniobra de Mauriceau (flexión con dedos en el maxilar y tracción en los hombros)."]}, {"id": "placenta", "t": "Alumbramiento", "sub": "Placenta con dos fragmentos removibles", "img": "placenta.jpg", "alt": "Placenta con fragmentos removibles", "blocks": [{"t": "Uso", "ul": ["La placenta puede salir sola, con tracción moderada del cordón o requerir extracción manual.", "Velcro paralelo: la placenta queda retenida; en ángulo recto: se suelta con tracción moderada.", "Invierte uno o ambos fragmentos para que queden adheridos a la pared uterina.", "Inspecciona la placenta; si faltan fragmentos, extráelos con mano enguantada y técnica aséptica."]}], "clinic": ["Manejo activo del alumbramiento: oxitocina 10 UI IM, tracción controlada del cordón y masaje uterino."]}]}, {"t": "Posparto", "items": [{"id": "hpp", "t": "Masaje uterino y hemorragia posparto", "sub": "Útero blando que se contrae con el masaje", "img": "postparto.jpg", "alt": "Útero posparto inflado para simular atonía", "blocks": [{"t": "Pasos", "ol": ["Retira la vulva totalmente dilatada y coloca el inserto de periné posparto.", "Une el útero posparto grande al extremo de la vagina con el anillo de bloqueo.", "Infla el espacio entre los dos úteros con la pera: útero blando («atónico»).", "Inyecta sangre simulada con la jeringa: sale por la vulva.", "Eleva el útero con el cojín inflable; el velcro del fondo permite orientarlo.", "Con el masaje bimanual el aire sale por el tornillo de la pera y se palpa el útero interno duro, como un útero contraído."]}], "warn": ["Usa solo sangre simulada de Gaumard y lava el sistema con agua destilada al final de cada sesión."], "clinic": ["Causas de HPP, las 4 T: tono (atonía, la más frecuente), trauma, tejido (restos) y trombina.", "Tratamiento inicial: masaje uterino bimanual, oxitocina y ácido tranexámico 1 g IV dentro de las primeras 3 horas."]}, {"id": "episiotomia", "t": "Reparación de episiotomía", "sub": "Tres módulos de reparación intercambiables", "img": "episiotomia.jpg", "alt": "Insertos de vulva para reparación de episiotomía", "specs": [["Sutura", "000"]], "blocks": [{"t": "Pasos", "ol": ["Retira la vulva dilatada usada en el parto.", "Encaja uno de los tres módulos de reparación.", "Sutura con hilo 000 y aguja curva pequeña."]}], "clinic": ["Desgarros perineales: grado I piel y mucosa; II músculos del periné; III esfínter anal; IV mucosa rectal.", "Reparación por planos: mucosa vaginal, músculos perineales y piel."]}]}, {"t": "Neonato PEDI Blue", "items": [{"id": "neo-via", "t": "Vía aérea y ventilación neonatal", "sub": "Mascarilla infantil, Miller 1 y TET 2.5", "img": "neonato.jpg", "alt": "Neonato PEDI Blue", "specs": [["Hoja", "Miller 1"], ["TET", "2.5 mm"]], "blocks": [{"t": "Qué permite", "ul": ["Intubación oral y nasal con aspiración; Sellick por la prominencia cricoidea.", "Expansión pulmonar bilateral; ventilación medida y registrada.", "Sonda nasogástrica al estómago; drena con el tubo 3.", "Cianosis central y periférica (SmartSkin) que responde a la RCP."]}], "warn": ["Lubrica el extremo de tubos ET, NP u OP antes de insertarlos.", "El manual del PEDI Blue S320 recomienda TET 3.0–3.5; este manual indica 2.5. Usa el que corresponda a tu escenario."], "clinic": ["Ventilación a presión positiva a 40–60 por minuto; compresiones si la FC sigue menor de 60/min tras 30 s de ventilación efectiva, con relación 3:1."]}, {"id": "neo-rcp", "t": "RCP neonatal con Code Blue", "sub": "Cianosis de 0 a 100 % y estado que mejora o empeora", "img": "rcp-neonato.jpg", "alt": "Compresiones en el neonato", "blocks": [{"t": "Menús del Omni para el neonato", "ul": ["<b>MODE:</b> COACH (pitido agudo = compresión, grave = ventilación) o TEST (sin pitidos).", "<b>CIANOSIS:</b> intensidad de 0 a 100 %.", "<b>C:V RATIO</b> y <b>CMP/VNT RATE:</b> ajusta a la guía neonatal (3:1).", "<b>ESTADO:</b> MEJORAR (tiende a sano), EMPEORAR (tiende a cianosis grave; una RCP correcta la revierte) o PAUSA."]}], "warn": ["Por defecto el Omni viene en 30:2 y 100/min: cámbialo a 3:1 para la reanimación neonatal."]}, {"id": "neo-umbilical", "t": "Cateterismo umbilical", "sub": "Cordón permeable con pulso", "blocks": [{"t": "Pasos", "ol": ["Pon el tubo 2 en un recipiente y abre la abrazadera.", "Llena la jeringa con agua, conéctala al tubo 1 y deja fluir hasta el drenaje.", "Lubrica la punta del catéter umbilical e insértalo.", "El pulso umbilical se genera con la pera."]}], "clinic": ["El cordón tiene una vena y dos arterias; en la reanimación, el catéter venoso se introduce 2–4 cm hasta obtener sangre."]}, {"id": "neo-io", "t": "Acceso intraóseo neonatal (opcional)", "sub": "Tibia; llena por el tubo 4 y drena por el 5", "img": "intraoseo.jpg", "alt": "Pierna del neonato para acceso intraóseo", "specs": [["Aguja", "17–16 G"]], "blocks": [{"t": "Uso", "ol": ["Pon el tubo 5 en un recipiente y abre la abrazadera.", "Conecta la jeringa al tubo 4 y deja fluir hasta el drenaje; cierra el tubo 5.", "Cada 10–20 punciones, vuelve a llenar.", "Al terminar, drena por el tubo 5 y expulsa el resto con aire; si usaste sangre, enjuaga con 2–3 jeringas de agua."]}, {"t": "Cambiar la tibia", "ol": ["Drena el sistema y calienta la piel de la pierna.", "Retira piel y cubierta; saca el hueso con destornillador plano.", "Coloca uno nuevo o gíralo; lubrica la pierna y recoloca la piel."]}]}]}], "omni": [{"t": "Pantalla principal del Omni", "p": "Tiene tres zonas: gráficos de retroalimentación de RCP, configuración actual al centro y menús en las teclas de la derecha. Con + / − cambias valores (mantener pulsado los cambia rápido); OK acepta y CANCEL vuelve sin cambios.", "img": "omni.jpg", "alt": "Controlador Omni conectado a NOELLE"}, {"t": "Menús del parto", "ul": ["<b>FHR:</b> frecuencia cardíaca fetal.", "<b>SPEED:</b> duración del parto, de 1 a 30 minutos.", "<b>DYSTOCIA:</b> activa o desactiva el signo de la tortuga.", "<b>PAUSE / RESUME:</b> detiene o continúa el parto.", "<b>RESET:</b> devuelve el mecanismo a la posición inicial.", "<b>MORE:</b> menús de RCP (Code Blue)."]}, {"t": "Code Blue (RCP materna)", "ul": ["<b>MODE:</b> COACH con pitidos guía o TEST sin ellos.", "<b>C:V RATIO:</b> por defecto 30:2.", "<b>CMP/VNT RATE:</b> por defecto 100 compresiones por minuto.", "<b>CALIB:</b> calibración de compresiones (C CAL) y ventilaciones (V CAL)."]}, {"t": "Calibrar compresiones y ventilaciones", "ol": ["MORE › CALIB › C CAL.", "START: cuando aparezca COMPRESS, haz una compresión correcta y sigue las indicaciones para las cuatro restantes.", "Al ver DONE, pulsa SAVE.", "Repite con V CAL para las ventilaciones."]}, {"t": "Altitud: reiniciar el sensor de presión", "p": "El fabricante recomienda reiniciar el sensor de presión del Omni por encima de 1000 pies (unos 300 m) para evitar lecturas inexactas. <b>Es el caso de La Paz y de casi toda Bolivia.</b>", "ol": ["En el menú de calibración, selecciona RESET.", "Al ver DONE, pulsa SAVE.", "Hazlo solo como parte de la calibración inicial."]}, {"t": "Menú HELP", "ul": ["<b>INIT MTR:</b> ayuda al mecanismo a volver a su posición tras un apagado anormal (por ejemplo, un corte de luz durante un parto). Solo para resolver problemas.", "<b>BACKLIGHT:</b> temporizador de la luz de pantalla (2 min por defecto).", "<b>SERIAL:</b> número de serie del Omni y del simulador."]}, {"t": "CPRLink™ (opcional)", "p": "Aplicación de PC para monitorear, entrenar y evaluar la RCP: registra proveedores, muestra las curvas de compresión y ventilación en tiempo real y genera un informe de cada sesión."}], "trouble": [["El bebé se traba en el canal", "Falta de lubricación o hombros desalineados con la vulva", "El mecanismo pausa y reintenta solo. Si persiste: PAUSE en el Omni, retira la cubierta y lubrica feto, cuello y vulva."], ["El mecanismo no vuelve a su posición", "Apagado anormal o corte de luz durante un parto", "HELP › INIT MTR, luego RESET."], ["Lecturas de RCP inexactas", "Altitud mayor de 1000 pies o sensor sin calibrar", "Reinicia el sensor de presión y calibra compresiones y ventilaciones."], ["La sangre simulada no fluye", "Sangre de otra marca o sistema sin lavar", "Usa solo sangre Gaumard y lava con agua destilada al final de cada sesión."]], "care": [{"t": "Reglas generales", "ul": ["Bolígrafos, tinta y marcadores manchan la piel de forma permanente: no escribas sobre el simulador.", "No lo envuelvas ni lo apoyes sobre papel de diario u otro material impreso.", "Trátalo con las mismas precauciones que a un paciente real.", "Los lubricantes y accesorios son solo para el simulador; nunca para uso humano.", "No hagas ventilación boca a boca: contamina la vía aérea, que no se puede limpiar ni desinfectar.", "Los tubos de las venas contienen <b>látex</b>: las personas alérgicas deben evitar el contacto."]}, {"t": "Limpieza al terminar", "ul": ["Paño humedecido con detergente lavavajillas diluido; retira todo el lubricante y seca bien.", "El canal del parto se limpia con agua y jabón suave y luego se espolvorea con talco.", "Lava el sistema de hemorragia con agua destilada al final de cada simulación.", "Es resistente a salpicaduras, no impermeable: no lo sumerjas.", "No uses abrasivos fuertes."]}, {"t": "Condiciones de uso y almacenamiento", "ul": ["Uso: 10 a 35 °C, humedad 5 a 95 % sin condensación.", "Almacenamiento prolongado: 0 a 29 °C, humedad 40 a 60 %; fuera de ese rango el material se ablanda y se deforma.", "Guárdalo y transpórtalo en la bolsa de polietileno transparente provista.", "No apiles objetos pesados sobre la caja.", "Solo enciende con la fuente de alimentación conectada."]}]};
+</script>
+<script>
+(function () {
+  var S = window.SIM;
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  function $(id) { return document.getElementById(id); }
+  function li(arr) { return arr.map(function (x) { return '<li>' + x + '</li>'; }).join(''); }
+
+  $('h-eyebrow').textContent = S.eyebrow;
+  $('h-title').innerHTML = S.titleHtml;
+  $('h-lede').textContent = S.lede;
+  $('h-facts').innerHTML = S.facts.map(function (f) { return '<li><span class="eyebrow">' + f[0] + '</span><b>' + f[1] + '</b></li>'; }).join('');
+  $('h-img').src = 'img/' + S.hero; $('h-img').alt = S.heroAlt;
+  $('f-src').textContent = S.source;
+
+  var toc = [['inicio', 'Antes de empezar', 'Inicio'], ['referencia', 'Referencia rápida', 'Referencia'], ['procedimientos', 'Procedimientos', 'Procedimientos'], ['omni', 'Tableta OMNI 2', 'OMNI 2'], ['problemas', 'Solución de problemas', 'Problemas'], ['cuidado', 'Cuidado y limpieza', 'Cuidado']];
+  if (S.omniTitle) { $('omni-title').textContent = S.omniTitle; toc[3][1] = S.omniTitle; toc[3][2] = 'Omni'; }
+  if (!S.omni || !S.omni.length) { $('omni').hidden = true; S.omni = []; }
+  if (!S.trouble || !S.trouble.length) { $('problemas').hidden = true; S.trouble = []; }
+  toc = toc.filter(function (t) { return !$(t[0]).hidden; });
+  var nums = document.querySelectorAll('main > section:not([hidden]) .section-head .eyebrow');
+  nums.forEach(function (e, i) { e.textContent = String(i + 1).padStart(2, '0') + ' · ' + e.textContent.split(' · ')[1]; });
+  $('toc').innerHTML = toc.map(function (t) { return '<li><a href="#' + t[0] + '">' + t[1] + '</a></li>'; }).join('');
+  $('mtoc').innerHTML = toc.map(function (t) { return '<a href="#' + t[0] + '">' + t[2] + '</a>'; }).join('');
+
+  $('inicio-cols').innerHTML = S.start.map(function (c) { return '<div class="card"><h3>' + c.t + '</h3>' + (c.ol ? '<ol>' + li(c.ol) + '</ol>' : '<ul>' + li(c.ul) + '</ul>') + (c.note ? '<p class="muted" style="font-size:var(--step--1)">' + c.note + '</p>' : '') + '</div>'; }).join('');
+
+  if (S.quickTitle) $('quick-title').textContent = S.quickTitle;
+  $('quick').innerHTML = S.quick.map(function (q) {
+    return '<div class="table-wrap"><table><caption>' + q.t + '</caption><thead><tr>' + q.h.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      q.rows.map(function (r) { return '<tr><td>' + r[0] + '</td>' + r.slice(1).map(function (c) { return '<td' + (String(c).length <= 18 ? ' class="num"' : '') + '>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  }).join('');
+
+  var done = store.get(S.key + '-done', {});
+  var procsEl = $('procs'), total = 0;
+  S.cats.forEach(function (cat) {
+    var wrap = document.createElement('div'); wrap.className = 'cat';
+    var h = '<h3>' + cat.t + ' <small>' + cat.items.length + ' procedimiento' + (cat.items.length > 1 ? 's' : '') + '</small></h3>';
+    cat.items.forEach(function (p) {
+      total++;
+      var thumb = p.img ? '<img src="img/' + p.img + '" alt="" loading="lazy" width="72" height="54">' : '<span class="thumb-empty"></span>';
+      h += '<details class="proc" id="p-' + p.id + '"><summary>' + thumb + '<span class="t"><h4>' + p.t + '</h4><small>' + p.sub + '</small></span><span class="badge" data-badge></span></summary><div class="pbody">';
+      if (p.specs) h += '<div class="specs">' + p.specs.map(function (s) { return '<div class="spec"><span>' + s[0] + '</span><b>' + s[1] + '</b></div>'; }).join('') + '</div>';
+      h += '<div class="pgrid' + (p.img ? ' has-img' : '') + '"><div class="block" style="gap:16px">';
+      (p.blocks || []).forEach(function (b) { h += '<div class="block"><p class="eyebrow">' + b.t + '</p>' + (b.ol ? '<ol>' + li(b.ol) + '</ol>' : '<ul>' + li(b.ul) + '</ul>') + '</div>'; });
+      h += '</div>' + (p.img ? '<figure><img src="img/' + p.img + '" alt="' + p.alt + '" loading="lazy"><figcaption>Foto del manual del fabricante.</figcaption></figure>' : '') + '</div>';
+      if (p.warn) h += '<div class="warn"><b>Atención</b>' + p.warn.map(function (w) { return '<span>' + w + '</span>'; }).join('') + '</div>';
+      if (p.clinic) h += '<div class="clinic"><p class="label">Punto clínico · Revalida</p><ul>' + li(p.clinic) + '</ul></div>';
+      h += '<label class="done-toggle" for="d-' + p.id + '"><input type="checkbox" id="d-' + p.id + '"' + (done[p.id] ? ' checked' : '') + '> Practicado</label></div></details>';
+    });
+    wrap.innerHTML = h; procsEl.appendChild(wrap);
+  });
+  function update() {
+    var n = 0;
+    document.querySelectorAll('.proc').forEach(function (d) {
+      var id = d.id.slice(2), on = !!done[id]; if (on) n++;
+      var b = d.querySelector('[data-badge]'); b.textContent = on ? 'Practicado' : 'Pendiente'; b.classList.toggle('done', on);
+    });
+    $('prog-txt').textContent = n + ' de ' + total + ' procedimientos practicados';
+    $('prog-bar').style.width = (total ? Math.round(n * 100 / total) : 0) + '%';
+  }
+  procsEl.addEventListener('change', function (e) {
+    if (e.target.type !== 'checkbox') return;
+    var id = e.target.id.slice(2);
+    if (e.target.checked) done[id] = true; else delete done[id];
+    store.set(S.key + '-done', done); update();
+  });
+  $('reset').addEventListener('click', function () {
+    done = {}; store.set(S.key + '-done', done);
+    procsEl.querySelectorAll('input[type=checkbox]').forEach(function (c) { c.checked = false; }); update();
+  });
+  update();
+
+  $('omni-cols').innerHTML = S.omni.map(function (c) { return '<div class="card"><h3>' + c.t + '</h3>' + (c.p ? '<p style="font-size:var(--step--1)">' + c.p + '</p>' : '') + (c.ol ? '<ol>' + li(c.ol) + '</ol>' : '') + (c.ul ? '<ul>' + li(c.ul) + '</ul>' : '') + (c.img ? '<img src="img/' + c.img + '" alt="' + c.alt + '" loading="lazy" style="max-width:100%;border-radius:8px;border:1px solid var(--line)">' : '') + '</div>'; }).join('');
+  $('trouble').innerHTML = S.trouble.map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>'; }).join('');
+  $('care').innerHTML = S.care.map(function (c) { return '<div class="card"><h3>' + c.t + '</h3><ul>' + li(c.ul) + '</ul></div>'; }).join('');
+})();
+</script>
+
+</html>

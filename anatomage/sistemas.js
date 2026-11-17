@@ -215,6 +215,126 @@
       ]
     },
     {
+      id: 'ne', img: 'ne', color: 'var(--nerve)', name: 'Nervioso', pt: 'Sistema nervoso',
+      surg: [
+        'Parotidectomía: el nervio facial se divide dentro de la parótida (pata de ganso); se identifica el tronco antes de resecar.',
+        'Hernioplastia inguinal: los nervios ilioinguinal, iliohipogástrico y la rama genital del genitofemoral son la causa del dolor crónico posoperatorio si se atrapan.',
+        'Punción lumbar: la médula termina en L1–L2 en el adulto; por debajo solo está la cola de caballo.',
+        'Inyección glútea en el cuadrante superolateral para no lesionar el nervio ciático.'
+      ],
+      rev: [
+        'Parálisis del III par: ojo hacia abajo y afuera, ptosis y midriasis (compresiva, por ejemplo aneurisma de la comunicante posterior o herniación uncal).',
+        'Parálisis facial periférica: compromete toda la hemicara; la central respeta la frente.',
+        'Síndrome de cola de caballo: anestesia en silla de montar, retención urinaria y debilidad de miembros inferiores; es una urgencia quirúrgica.',
+        'El dolor de vesícula se refiere al hombro derecho por el nervio frénico (C3–C5): «C3, 4 y 5 mantienen vivo el diafragma».'
+      ],
+      groups: [
+        { name: 'Encéfalo y ojo', pt: 'Encéfalo e olho', views: [
+          { t: 'Sistema nervioso central', items: ['Sistema nervioso central|Sistema nervoso central'] },
+          { t: 'Sistema nervioso periférico', items: ['Sistema nervioso periférico|Sistema nervoso periférico'] },
+          { t: 'Encéfalo', side: 'izq', items: ['Lóbulo frontal|Lobo frontal', 'Lóbulo parietal|Lobo parietal', 'Lóbulo temporal|Lobo temporal', 'Lóbulo occipital|Lobo occipital', 'Puente (protuberancia)|Ponte', 'Bulbo raquídeo|Bulbo (medula oblonga)', 'Cerebelo|Cerebelo', 'Médula espinal|Medula espinal'] },
+          { t: 'Ojo: capa externa', side: 'der', items: ['Pupila|Pupila', 'Esclerótica|Esclera', 'Iris|Íris'] },
+          { t: 'Ojo: coroides y cámaras', side: 'der', items: ['Cámara anterior|Câmara anterior', 'Cámara posterior|Câmara posterior', 'Coroides|Corioide'] },
+          { t: 'Ojo: cristalino y cuerpo ciliar', side: 'der', items: ['Cristalino|Lente (cristalino)', 'Músculo del cuerpo ciliar|Músculo ciliar'] },
+          { t: 'Ojo: retina y cuerpo vítreo', side: 'der', items: ['Cuerpo vítreo|Corpo vítreo', 'Retina|Retina'] }
+        ] },
+        { name: 'Médula espinal', pt: 'Medula espinal', views: [
+          { t: 'Médula espinal', items: ['Médula espinal|Medula espinal'] },
+          { t: 'Raíces y ganglios espinales', items: ['Raíz posterior (dorsal)|Raiz posterior', 'Ganglio de la raíz posterior|Gânglio sensitivo do nervo espinal', 'Raíz anterior (ventral)|Raiz anterior'] },
+          { t: 'Raíces espinales por región', items: ['Raíces cervicales|Raízes cervicais', 'Raíces torácicas|Raízes torácicas', 'Raíces lumbares|Raízes lombares', 'Raíces sacras|Raízes sacrais', 'Cola de caballo|Cauda equina'] }
+        ] },
+        { name: 'Nervios craneales', pt: 'Nervos cranianos', views: [
+          { t: 'Visión general de los nervios craneales', items: ['Nervios craneales|Nervos cranianos'] },
+          { t: 'Nervio olfatorio', side: 'der', items: ['Nervio olfatorio (NC I)|Nervo olfatório (NC I)'] },
+          { t: 'Nervio óptico', side: 'der', items: ['Nervio óptico (NC II)|Nervo óptico (NC II)'] },
+          { t: 'Nervio oculomotor', side: 'der', items: ['Nervio oculomotor (NC III)|Nervo oculomotor (NC III)'] },
+          { t: 'Nervio troclear', side: 'der', items: ['Nervio troclear (NC IV)|Nervo troclear (NC IV)'] },
+          { t: 'Nervio trigémino', side: 'der', items: ['Nervio trigémino (NC V)|Nervo trigêmeo (NC V)', 'Rama oftálmica (V1)|Nervo oftálmico (V1)', 'Rama maxilar (V2)|Nervo maxilar (V2)', 'Rama mandibular (V3)|Nervo mandibular (V3)'] },
+          { t: 'Nervio abducens', side: 'der', items: ['Nervio abducens (NC VI)|Nervo abducente (NC VI)'] },
+          { t: 'Nervio facial', side: 'der', items: ['Nervio facial (NC VII)|Nervo facial (NC VII)'] },
+          { t: 'Nervio vestibulococlear', items: ['Nervio vestibulococlear (NC VIII)|Nervo vestibulococlear (NC VIII)'] },
+          { t: 'Nervio glosofaríngeo', side: 'der', items: ['Nervio glosofaríngeo (NC IX)|Nervo glossofaríngeo (NC IX)'] },
+          { t: 'Nervio vago', side: 'der', items: ['Nervio vago (NC X)|Nervo vago (NC X)'] },
+          { t: 'Nervio accesorio', side: 'der', items: ['Nervio accesorio (NC XI)|Nervo acessório (NC XI)'] },
+          { t: 'Nervio hipogloso', side: 'der', items: ['Nervio hipogloso (NC XII)|Nervo hipoglosso (NC XII)'] },
+          { t: 'Los doce pares craneales', items: ['Nervios craneales I a XII|Nervos cranianos I a XII'] }
+        ] },
+        { name: 'Nervios de la cara', pt: 'Nervos da face', views: [
+          { t: 'Nervio trigémino y sus ramas', side: 'der', items: ['Ganglio trigeminal (semilunar)|Gânglio trigeminal', 'Rama oftálmica (V1)|Nervo oftálmico (V1)', 'Nervio frontal (V1)|Nervo frontal (V1)', 'Nervio lagrimal (V1)|Nervo lacrimal (V1)', 'Nervio nasociliar (V1)|Nervo nasociliar (V1)', 'Rama maxilar (V2)|Nervo maxilar (V2)', 'Nervio infraorbitario|Nervo infraorbital', 'Nervios alveolares superiores|Nervos alveolares superiores', 'Rama mandibular (V3)|Nervo mandibular (V3)', 'Nervio auriculotemporal|Nervo auriculotemporal', 'Nervio lingual|Nervo lingual', 'Nervio sublingual|Nervo sublingual', 'Nervio alveolar inferior|Nervo alveolar inferior', 'Cuerda del tímpano|Corda do tímpano'] },
+          { t: 'Nervio facial y sus ramas', side: 'der', items: ['Nervio facial (NC VII)|Nervo facial (NC VII)', 'Pata de ganso (plexo intraparotídeo)|Plexo intraparotídeo', 'Rama temporal|Ramos temporais', 'Rama cigomática|Ramos zigomáticos', 'Rama bucal|Ramos bucais', 'Rama marginal de la mandíbula|Ramo marginal da mandíbula', 'Rama cervical|Ramo cervical'] }
+        ] },
+        { name: 'Plexo braquial', pt: 'Plexo braquial', views: [
+          { t: 'Plexo braquial completo', items: ['Plexo braquial|Plexo braquial'] },
+          { t: 'Nervios supraclaviculares', side: 'izq', items: ['Nervios supraclaviculares (C3–C4)|Nervos supraclaviculares (C3–C4)'] },
+          { t: 'Nervio mediano', side: 'izq', items: ['Nervio mediano|Nervo mediano'] },
+          { t: 'Nervio musculocutáneo', side: 'izq', items: ['Nervio musculocutáneo|Nervo musculocutâneo'] },
+          { t: 'Nervio cubital', side: 'izq', items: ['Nervio cubital|Nervo ulnar'] },
+          { t: 'Nervio radial', side: 'izq', items: ['Nervio radial|Nervo radial'] },
+          { t: 'Nervios cutáneos mediales', side: 'izq', items: ['Nervio cutáneo medial del brazo|Nervo cutâneo medial do braço', 'Nervio cutáneo medial del antebrazo|Nervo cutâneo medial do antebraço'] },
+          { t: 'Nervios cutáneos posteriores', side: 'izq', items: ['Nervio cutáneo posterior del brazo|Nervo cutâneo posterior do braço', 'Nervio cutáneo posterior del antebrazo|Nervo cutâneo posterior do antebraço'] },
+          { t: 'Nervios cutáneos laterales', side: 'izq', items: ['Nervio cutáneo lateral superior del brazo|Nervo cutâneo lateral superior do braço', 'Nervio cutáneo lateral inferior del brazo|Nervo cutâneo lateral inferior do braço'] }
+        ] },
+        { name: 'Nervios del tórax', pt: 'Nervos do tórax', views: [
+          { t: 'Ramas ventral y dorsal de un nervio espinal', items: ['Rama ventral del 3.er nervio intercostal|Ramo anterior do 3.º nervo intercostal', 'Rama dorsal del 3.er nervio torácico|Ramo posterior do 3.º nervo torácico'] },
+          { t: 'Tronco simpático', side: 'izq', items: ['Tronco simpático torácico|Tronco simpático torácico'] },
+          { t: 'Nervio vago en el mediastino', side: 'izq', items: ['Nervio vago (NC X)|Nervo vago (NC X)'] },
+          { t: 'Plexo cardíaco', items: ['Plexo cardíaco|Plexo cardíaco'] },
+          { t: 'Pulmones', side: 'izq', items: ['Ramas pulmonares del vago|Ramos pulmonares do vago'] },
+          { t: 'Tráquea y bronquios', items: ['Nervio laríngeo superior|Nervo laríngeo superior', 'Nervio laríngeo recurrente izquierdo|Nervo laríngeo recorrente esquerdo', 'Ramas pulmonares derechas del vago|Ramos pulmonares direitos do vago'] },
+          { t: 'Nervio frénico', side: 'izq', items: ['Nervio frénico (C3–C5)|Nervo frênico (C3–C5)'] }
+        ] },
+        { name: 'Plexo lumbar', pt: 'Plexo lombar', views: [
+          { t: 'Plexo lumbar completo', items: ['Plexo lumbar|Plexo lombar'] },
+          { t: 'Nervio iliohipogástrico', side: 'der', items: ['Nervio iliohipogástrico|Nervo ílio-hipogástrico'] },
+          { t: 'Nervio ilioinguinal', side: 'der', items: ['Nervio ilioinguinal|Nervo ilioinguinal'] },
+          { t: 'Nervio genitofemoral', side: 'der', items: ['Nervio genitofemoral|Nervo genitofemoral'] },
+          { t: 'Nervio cutáneo femoral lateral', side: 'der', items: ['Nervio cutáneo femoral lateral|Nervo cutâneo femoral lateral'] },
+          { t: 'Nervio obturador', side: 'der', items: ['Nervio obturador|Nervo obturatório'] },
+          { t: 'Nervio femoral', side: 'der', items: ['Nervio femoral|Nervo femoral'] },
+          { t: 'Nervio safeno', side: 'der', items: ['Nervio safeno|Nervo safeno'] },
+          { t: 'Nervios cluneales superiores', side: 'der', items: ['Nervios cluneales superiores|Nervos clúnios superiores'] }
+        ] },
+        { name: 'Inervación autónoma', pt: 'Inervação autônoma', views: [
+          { t: 'Estómago', items: ['Tronco vagal anterior|Tronco vagal anterior', 'Tronco vagal posterior|Tronco vagal posterior', 'Ramas gástricas anteriores y posteriores|Ramos gástricos anteriores e posteriores', 'Rama celíaca del vago|Ramo celíaco do vago', 'Plexo y ganglios celíacos|Plexo e gânglios celíacos', 'Nervio esplácnico mayor|Nervo esplâncnico maior', 'Nervio esplácnico menor|Nervo esplâncnico menor'] },
+          { t: 'Intestinos', items: ['Nervios esplácnicos lumbares|Nervos esplâncnicos lombares', 'Ganglio y plexo mesentérico superior|Gânglio e plexo mesentérico superior', 'Ganglio y plexo mesentérico inferior|Gânglio e plexo mesentérico inferior', 'Plexo hipogástrico inferior|Plexo hipogástrico inferior', 'Plexo rectal|Plexo retal'] },
+          { t: 'Hígado y vesícula', items: ['Plexo hepático|Plexo hepático', 'Rama hepática del vago|Ramo hepático do vago'] },
+          { t: 'Páncreas y bazo', items: ['Plexo esplénico|Plexo esplênico'] },
+          { t: 'Sistema urinario', items: ['Plexo renal y suprarrenal|Plexo renal e suprarrenal', 'Rama renal del vago|Ramo renal do vago', 'Ganglios aorticorrenales|Gânglios aorticorrenais', 'Plexo hipogástrico superior|Plexo hipogástrico superior', 'Nervios hipogástricos|Nervos hipogástricos', 'Plexo hipogástrico inferior|Plexo hipogástrico inferior', 'Nervios esplácnicos pélvicos|Nervos esplâncnicos pélvicos'] },
+          { t: 'Sistema reproductor', items: ['Plexo ovárico|Plexo ovárico', 'Plexo uterovaginal|Plexo uterovaginal', 'Ganglios lumbares y sacros del simpático|Gânglios lombares e sacrais', 'Nervio pudendo|Nervo pudendo', 'Nervio perineal|Nervos perineais', 'Nervio dorsal del clítoris|Nervo dorsal do clitóris', 'Nervios labiales anteriores y posteriores|Nervos labiais anteriores e posteriores', 'Nervio del elevador del ano|Nervo do levantador do ânus', 'Nervio ilioinguinal|Nervo ilioinguinal', 'Nervio genitofemoral|Nervo genitofemoral'] }
+        ] },
+        { name: 'Plexo sacro y miembro inferior', pt: 'Plexo sacral e membro inferior', views: [
+          { t: 'Plexo sacro completo', items: ['Plexo sacro|Plexo sacral'] },
+          { t: 'Nervio glúteo superior', side: 'izq', items: ['Nervio glúteo superior|Nervo glúteo superior'] },
+          { t: 'Nervio glúteo inferior', side: 'izq', items: ['Nervio glúteo inferior|Nervo glúteo inferior'] },
+          { t: 'Nervio cutáneo femoral posterior', side: 'izq', items: ['Nervio cutáneo femoral posterior|Nervo cutâneo femoral posterior'] },
+          { t: 'Nervio del piriforme', side: 'izq', items: ['Nervio del músculo piriforme|Nervo do músculo piriforme'] },
+          { t: 'Nervio del obturador interno', side: 'izq', items: ['Nervio del obturador interno|Nervo do músculo obturador interno'] },
+          { t: 'Nervio del cuadrado femoral', side: 'izq', items: ['Nervio del cuadrado femoral|Nervo do músculo quadrado femoral'] },
+          { t: 'Nervio ciático', side: 'izq', items: ['Nervio ciático|Nervo isquiático'] },
+          { t: 'Nervio peroneo común', side: 'izq', items: ['Nervio peroneo común|Nervo fibular comum'] },
+          { t: 'Nervio tibial', side: 'izq', items: ['Nervio tibial|Nervo tibial'] },
+          { t: 'Nervio coccígeo', side: 'izq', items: ['Nervio coccígeo|Nervo coccígeo'] },
+          { t: 'Nervios peroneos superficial y profundo', side: 'izq', items: ['Nervio peroneo superficial|Nervo fibular superficial', 'Nervio peroneo profundo|Nervo fibular profundo'] },
+          { t: 'Nervio sural', side: 'izq', items: ['Nervio sural|Nervo sural'] },
+          { t: 'Nervio obturador y sus ramas', side: 'izq', items: ['Nervio obturador|Nervo obturatório', 'Rama articular para la cadera|Ramo articular para o quadril', 'Rama anterior|Ramo anterior', 'Rama posterior|Ramo posterior'] },
+          { t: 'Nervio femoral y sus ramas', side: 'izq', items: ['Nervio femoral|Nervo femoral', 'Rama articular|Ramo articular', 'Ramas cutáneas anteriores|Ramos cutâneos anteriores', 'Nervio del vasto medial|Nervo do vasto medial'] },
+          { t: 'Nervios glúteos superior e inferior', side: 'izq', items: ['Nervio glúteo superior|Nervo glúteo superior', 'Nervio glúteo inferior|Nervo glúteo inferior'] },
+          { t: 'Nervios del pie', side: 'izq', items: ['Nervio plantar medial|Nervo plantar medial', 'Nervio plantar lateral|Nervo plantar lateral', 'Ramas calcáneas mediales del tibial|Ramos calcâneos mediais', 'Ramas calcáneas laterales del tibial|Ramos calcâneos laterais', 'Nervio del abductor del meñique|Nervo do abdutor do dedo mínimo', 'Nervios digitales plantares|Nervos digitais plantares', 'Ramas digitales dorsales del peroneo superficial|Nervos digitais dorsais do fibular superficial', 'Rama digital dorsal del peroneo profundo|Nervo digital dorsal do fibular profundo'] }
+        ] },
+        { name: 'Cerebro', pt: 'Cérebro', views: [
+          { t: 'Visión general', items: ['Corteza cerebral|Córtex cerebral', 'Cerebelo|Cerebelo', 'Tronco encefálico|Tronco encefálico'] },
+          { t: 'Lóbulos', side: 'izq', items: ['Lóbulo frontal|Lobo frontal', 'Lóbulo parietal|Lobo parietal', 'Lóbulo temporal|Lobo temporal', 'Lóbulo occipital|Lobo occipital'] },
+          { t: 'Giros y surcos', items: ['Surco central (de Rolando)|Sulco central', 'Giro precentral|Giro pré-central', 'Surco precentral|Sulco pré-central', 'Surco poscentral|Sulco pós-central', 'Giro frontal superior|Giro frontal superior', 'Giro frontal medio|Giro frontal médio', 'Giro frontal inferior|Giro frontal inferior', 'Fisura lateral (de Silvio)|Sulco lateral', 'Giro temporal superior|Giro temporal superior', 'Giro temporal medio|Giro temporal médio', 'Giro temporal inferior|Giro temporal inferior', 'Surco intraparietal|Sulco intraparietal', 'Giro supramarginal|Giro supramarginal', 'Giro angular|Giro angular'] },
+          { t: 'Tronco encefálico', items: ['Mesencéfalo|Mesencéfalo', 'Puente (protuberancia)|Ponte', 'Bulbo raquídeo|Bulbo (medula oblonga)'] },
+          { t: 'Tálamo e hipotálamo', items: ['Tálamo|Tálamo', 'Hipotálamo|Hipotálamo'] },
+          { t: 'Sistema ventricular', items: ['Ventrículo lateral|Ventrículo lateral', 'Tercer ventrículo|Terceiro ventrículo', 'Acueducto cerebral (de Silvio)|Aqueduto do mesencéfalo', 'Cuarto ventrículo|Quarto ventrículo'] },
+          { t: 'Quiasma óptico y estructuras vecinas', items: ['Quiasma óptico|Quiasma óptico', 'Cuerpo mamilar|Corpo mamilar', 'Fórnix|Fórnice'] },
+          { t: 'Estructuras internas (1)', side: 'izq', items: ['Núcleo caudado|Núcleo caudado', 'Cápsula interna|Cápsula interna', 'Amígdala|Corpo amigdaloide', 'Hipocampo|Hipocampo', 'Cuerpo calloso|Corpo caloso', 'Giro cingulado|Giro do cíngulo'] },
+          { t: 'Estructuras internas (2)', side: 'izq', items: ['Núcleo accumbens|Núcleo accumbens', 'Comisura anterior|Comissura anterior', 'Claustro|Claustro', 'Putamen|Putame', 'Globo pálido|Globo pálido'] }
+        ] }
+      ]
+    },
+    {
       id: 'mu', img: 'mu', color: 'var(--artery)', name: 'Muscular', pt: 'Sistema muscular',
       surg: [
         'Inyección intramuscular glútea en el cuadrante superolateral, para no lesionar el nervio ciático.',

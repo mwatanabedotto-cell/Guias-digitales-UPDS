@@ -181,7 +181,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     </section>
 
     <section id="omni">
-      <div class="section-head"><p class="eyebrow">04 · Control</p><h2>Tableta OMNI® 2</h2></div>
+      <div class="section-head"><p class="eyebrow">04 · Control</p><h2 id="omni-title">Tableta OMNI® 2</h2></div>
       <div class="cols" id="omni-cols"></div>
     </section>
 
@@ -223,6 +223,7 @@ window.SIM = __DATA__;
   $('f-src').textContent = S.source;
 
   var toc = [['inicio', 'Antes de empezar', 'Inicio'], ['referencia', 'Referencia rápida', 'Referencia'], ['procedimientos', 'Procedimientos', 'Procedimientos'], ['omni', 'Tableta OMNI 2', 'OMNI 2'], ['problemas', 'Solución de problemas', 'Problemas'], ['cuidado', 'Cuidado y limpieza', 'Cuidado']];
+  if (S.omniTitle) { $('omni-title').textContent = S.omniTitle; toc[3][1] = S.omniTitle; toc[3][2] = 'Omni'; }
   if (!S.omni || !S.omni.length) { $('omni').hidden = true; S.omni = []; }
   if (!S.trouble || !S.trouble.length) { $('problemas').hidden = true; S.trouble = []; }
   toc = toc.filter(function (t) { return !$(t[0]).hidden; });

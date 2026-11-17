@@ -3,7 +3,7 @@ import json, os, sys, importlib
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 TPL = open(os.path.join(HERE, 'plantilla.html'), encoding='utf-8').read()
 FRAG_DIR = os.environ.get('FRAG_DIR')
-for mod in sys.argv[1:] or ['s117', 's157', 's320', 's504']:
+for mod in sys.argv[1:] or ['s117', 's157', 's320', 's504', 's550']:
     try: d = importlib.import_module('datos_' + mod).DATA
     except ModuleNotFoundError: continue
     frag = TPL.replace('__TITLE__', d['title']).replace('__DATA__', json.dumps(d, ensure_ascii=False))

@@ -11,6 +11,7 @@ Abre [`index.html`](index.html) para ver todas las guías.
 | Gaumard Mike y Michelle S157.250 | [`gaumard-s157/index.html`](gaumard-s157/index.html) |
 | Simulador neonatal Gaumard PEDI Blue S320 | [`gaumard-s320/index.html`](gaumard-s320/index.html) |
 | Simulador ginecológico Gaumard ZOE S504.100 | [`gaumard-s504/index.html`](gaumard-s504/index.html) |
+| Simulador de parto Gaumard NOELLE S550.100 | [`gaumard-s550/index.html`](gaumard-s550/index.html) |
 
 Cada guía es una página HTML con sus recursos al lado (datos e imágenes): se abre
 directamente en el navegador o se publica con GitHub Pages. El avance de las listas de cotejo y del quiz se
@@ -23,9 +24,9 @@ guarda solo en el navegador de cada estudiante.
 - Planos anatómicos (diagrama interactivo) y ventanas de TC en unidades Hounsfield
 - Seis prácticas guiadas por región, con lista de cotejo ES/PT, correlación
   quirúrgica y temas de alto rendimiento para el Revalida
-- Manuales por sistema (cardiovascular, esquelético, muscular, digestivo,
-  respiratorio, urinario, reproductor, endocrino y linfático): 191 preajustes
-  con su captura y 1038 estructuras para identificar
+- Manuales por sistema (cardiovascular, esquelético, nervioso, muscular, digestivo,
+  respiratorio, urinario, reproductor, endocrino y linfático): 274 preajustes
+  con su captura y 1244 estructuras para identificar
 - Herramientas, cuerpos disponibles, controles con teclado, biblioteca de casos,
   anatomía funcional y solución de problemas según las guías de interfaz y el
   manual de usuario de la Table EDU 12.0
@@ -39,7 +40,7 @@ guarda solo en el navegador de cada estudiante.
 
 ## Guías Gaumard
 
-Las cuatro guías de simuladores Gaumard se generan desde `gaumard-plantilla/`:
+Las guías de simuladores Gaumard se generan desde `gaumard-plantilla/`:
 
 - `plantilla.html`: diseño y lógica comunes (preparación, referencia rápida,
   procedimientos con avance guardado, OMNI 2, solución de problemas, cuidado).
