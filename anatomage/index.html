@@ -122,6 +122,7 @@ main { min-width: 0; display: grid; gap: 64px; }
 section { display: grid; gap: 20px; scroll-margin-top: 24px; }
 .section-head { display: grid; gap: 6px; border-top: 2px solid var(--ink); padding-top: 14px; }
 .prose { max-width: 70ch; display: grid; gap: 12px; }
+p.prose { display: block; }
 .muted { color: var(--muted); }
 .note {
   max-width: 70ch; font-size: var(--step--1); color: var(--muted); border-left: 3px solid var(--nerve); padding: 4px 0 4px 14px;
@@ -284,6 +285,7 @@ section > h3 { margin-top: 8px; }
 .viewer figcaption { color: #E2EBEA; display: flex; gap: 12px; justify-content: space-between; align-items: center; font-size: var(--step--1); }
 .viewer button { font: 600 var(--step--1) var(--font-body); background: #E2EBEA; color: #132226; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
 
+kbd { font-family: var(--font-mono); font-size: 0.82em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--surface-2); }
 footer { border-top: 1px solid var(--line); background: var(--surface); }
 footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
 </style>
@@ -331,13 +333,14 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <li><a href="#funcional">Anatomía funcional</a></li>
         <li><a href="#autoevaluacion">Autoevaluación</a></li>
         <li><a href="#glosario">Glosario ES–PT</a></li>
+        <li><a href="#problemas">Solución de problemas</a></li>
         <li><a href="#normas">Normas y cuidado</a></li>
       </ol>
     </nav>
 
     <main>
       <nav class="mobile-toc" aria-label="Índice rápido">
-        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Prácticas</a><a href="#manuales">Manuales</a><a href="#funcional">Funcional</a><a href="#autoevaluacion">Quiz</a><a href="#glosario">Glosario</a><a href="#normas">Normas</a>
+        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Prácticas</a><a href="#manuales">Manuales</a><a href="#funcional">Funcional</a><a href="#autoevaluacion">Quiz</a><a href="#glosario">Glosario</a><a href="#problemas">Problemas</a><a href="#normas">Normas</a>
       </nav>
 
       <!-- 1. Sesión -->
@@ -347,7 +350,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <h2>Cómo se desarrolla una sesión</h2>
         </div>
         <div class="prose">
-          <p>La Anatomage Table es una mesa con pantalla táctil a tamaño real. Con el software 12.0 incluye seis cadáveres digitales de cuerpo completo obtenidos de donantes reales, un cuerpo sintético, una biblioteca de casos con TC y RM, histología, prosecciones y simulaciones de anatomía funcional. Permite cortar, eliminar y aislar estructuras sin dañar el material, y repetir la disección tantas veces como haga falta.</p>
+          <p>La Anatomage Table es una mesa con pantalla táctil a tamaño real. Con el software 12.0 incluye seis cadáveres digitales de cuerpo completo obtenidos de donantes reales (Hans, Hanna, Victor, Vicky, Carl y Carla), un cuerpo sintético, una biblioteca de casos con TC y RM, histología, prosecciones y simulaciones de anatomía funcional. Permite cortar, eliminar y aislar estructuras sin dañar el material, y repetir la disección tantas veces como haga falta.</p>
           <p>Para aprovechar los 50 minutos, llega con la práctica leída y el grupo organizado en roles que rotan cada 10 a 15 minutos.</p>
         </div>
         <div class="phases">
@@ -420,7 +423,30 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
             </tbody>
           </table>
         </div>
-        <p class="note">Según la guía de interfaz de la Anatomage Table 12.0. Toca con la yema del dedo: uñas, bolígrafos o anillos generan toques falsos.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>En modo corte (2D)</th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td>Un dedo</td><td>Desactivado</td></tr>
+              <tr><td>Dos dedos: arrastrar o pellizcar</td><td>Desplazar o hacer zoom sobre el corte</td></tr>
+              <tr><td>Tres dedos hacia arriba o abajo</td><td>Recorrer las secciones transversales</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Con teclado y ratón</th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Clic izquierdo</kbd> + arrastrar</td><td>Rotar</td></tr>
+              <tr><td><kbd>Mayús</kbd> + clic + arrastrar</td><td>Desplazar</td></tr>
+              <tr><td><kbd>Ctrl</kbd> + clic + arrastrar arriba o abajo</td><td>Zoom</td></tr>
+              <tr><td><kbd>Espacio</kbd> + clic + arrastrar arriba o abajo</td><td>Girar en sentido horario o antihorario</td></tr>
+              <tr><td>Rueda del ratón</td><td>Mover el plano de recorte; en modo corte, recorrer las secciones</td></tr>
+              <tr><td><kbd>F11</kbd> y luego <kbd>Windows</kbd> + flecha</td><td>Salir de pantalla completa y ajustar la aplicación a un monitor</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Según la guía de interfaz y el manual de usuario de la Table EDU 12.0. Toca con la yema del dedo: uñas, bolígrafos o anillos generan toques falsos. El teclado en pantalla se abre con el icono junto al botón de Windows.</p>
       </section>
 
       <!-- 3. Herramientas -->
@@ -445,6 +471,33 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
               <tr><td><b>Anatomage Share · Ayuda</b></td><td>Transferencia de archivos con la cuenta de Anatomage, y documentos de instrucciones y soporte.</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <h3>Cuerpos disponibles</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nombre en la mesa</th><th>Qué es</th><th>Origen de los cortes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Hans · Hanna</b></td><td>Cadáveres de cuerpo completo, hombre y mujer</td><td>Universidades de Dongguk y Ajou (Corea)</td></tr>
+              <tr><td><b>Victor · Vicky</b></td><td>Cadáveres de cuerpo completo, hombre y mujer</td><td>Visible Korean</td></tr>
+              <tr><td><b>Carl · Carla</b></td><td>Cadáveres de cuerpo completo, hombre y mujer</td><td>Visible Human Project (Biblioteca Nacional de Medicina de EE. UU.)</td></tr>
+              <tr><td><b>Aria</b></td><td>Cuerpo sintético estandarizado</td><td>Modelado a partir de los conjuntos de cortes</td></tr>
+              <tr><td><b>Penny · Connie</b></td><td>Pelvis femenina y cabeza femenina de alta resolución</td><td>Universidades de Dongguk y Ajou</td></tr>
+              <tr><td><b>Animales y embriones</b></td><td>Mono rhesus, perro y gato segmentados; embriones (biblioteca de casos)</td><td>Varias instituciones</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">En <b>Inicio › Cadáveres</b> el diálogo muestra cada cuerpo con su resolución, tamaño y sexo; toca el nombre y luego <b>Abrir</b>, o tócalo dos veces. Abre como máximo 2 o 3 cadáveres o simulaciones a la vez: ocupan mucha memoria.</p>
+
+        <h3>Navegación por temas</h3>
+        <p class="prose">Agrupa contenido de toda la mesa en diez temas: cardiología, medicina deportiva, patología interesante, optometría, sistema nervioso, odontología, oncología, dispositivos quirúrgicos, anatomía del desarrollo y respiratorio. El borde de cada miniatura indica de qué módulo viene:</p>
+        <div class="legend" style="font-size:var(--step--1)">
+          <span><i style="background:#7B4BB7"></i>Cadáveres</span>
+          <span><i style="background:#D33A2C"></i>Anatomía funcional</span>
+          <span><i style="background:#1BA6B5"></i>Biblioteca de casos</span>
+          <span><i style="background:#2D5BB5"></i>Histología</span>
+          <span><i style="background:#E07B1F"></i>Prosección</span>
+          <span><i style="background:#2E9E4F"></i>Currículo</span>
         </div>
 
         <h3>Explorar y disecar</h3>
@@ -475,7 +528,8 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           </div>
           <div class="tool">
             <h4>Visibilidad y complejidad</h4>
-            <p>Activa o desactiva sistemas, estructuras y anotaciones; separa mitades derecha e izquierda. <b>Niveles de complejidad:</b> básico, intermedio y avanzado.</p>
+            <p>Activa o desactiva sistemas, categorías o estructuras con sus casillas; los botones <b>L</b> y <b>R</b> muestran u ocultan las mitades izquierda y derecha. <b>Niveles de complejidad:</b> básico, intermedio y avanzado.</p>
+            <p class="tip">La barra de búsqueda (abajo a la derecha) encuentra una estructura por nombre. La rueda gris junto a cada nombre ajusta opacidad, color y «Sin cortar».</p>
           </div>
           <div class="tool">
             <h4>Barras deslizantes</h4>
@@ -510,6 +564,38 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <div class="tool">
             <h4>Preferencias</h4>
             <p><b>Pronunciación</b> del nombre al tocar la estructura, <b>Dual Res</b> (más resolución al hacer zoom) y <b>Modesty</b>, que oculta los órganos reproductivos.</p>
+          </div>
+        </div>
+
+        <h3>Biblioteca de casos e histología</h3>
+        <div class="tools">
+          <div class="tool">
+            <h4>Biblioteca de casos</h4>
+            <p>Estudios por categoría: cabeza y cuello, tórax, abdomen y pelvis, miembros, cuerpo completo, animal, arqueología, embrión y 4D. Al tocar el nombre se ven información, historia, hallazgos e impresión.</p>
+            <p class="tip">Busca por texto, filtra por TC o RM y guarda casos en carpetas o favoritos.</p>
+          </div>
+          <div class="tool">
+            <h4>Filtros de casos</h4>
+            <p><b>Patología</b>, <b>Radiología</b> (vistas anotadas), <b>Segmentación</b> (estructuras 3D delineadas) y <b>Comparación</b>: tres estudios con movimiento, corte y brillo sincronizados.</p>
+          </div>
+          <div class="tool">
+            <h4>Estudios 4D</h4>
+            <p>Abre el secuenciador para reproducir, pausar, repetir o avanzar cuadro a cuadro (por ejemplo, un corazón latiendo).</p>
+            <p class="tip">Pausa la reproducción cuando no la mires para ahorrar memoria.</p>
+          </div>
+          <div class="tool">
+            <h4>Histología</h4>
+            <p>Láminas por tipo de tejido (epitelial, conectivo, muscular, nervioso) o por sistema, con selecciones anotadas y patológicas.</p>
+            <p class="tip">Compara hasta 4 láminas lado a lado.</p>
+          </div>
+          <div class="tool">
+            <h4>Ventanas de TC y RM</h4>
+            <p>En estudios DICOM, el diálogo de visibilidad ofrece representaciones de volumen: escala de grises, rayos X, tejido blando o duro transparente y combinaciones. Ajústalas con las barras de brillo y contraste.</p>
+          </div>
+          <div class="tool">
+            <h4>Anotaciones propias</h4>
+            <p>Con el botón <b>A</b> del diálogo de visibilidad, toca «Nueva anotación», escribe el texto y toca el punto del volumen. Las guías aparecen cerca del plano de recorte.</p>
+            <p class="tip">Guardar nuevas coordenadas sobrescribe el archivo .csv cargado; hay una copia de respaldo en el escritorio.</p>
           </div>
         </div>
 
@@ -669,7 +755,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <div class="quiz-top">
           <p class="muted">Preguntas tipo examen de las prácticas y los manuales. Elige una respuesta para ver la explicación.</p>
           <div style="display:flex;gap:14px;align-items:center">
-            <span class="score" id="score">Aciertos <b>0</b> / 20</span>
+            <span class="score" id="score">Aciertos <b>0</b> / 22</span>
             <button type="button" class="reset-btn" id="quiz-reset">Reiniciar</button>
           </div>
         </div>
@@ -696,10 +782,33 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         </div>
       </section>
 
-      <!-- 11. Normas -->
+      <!-- 11. Problemas -->
+      <section id="problemas">
+        <div class="section-head">
+          <p class="eyebrow">11 · Soporte</p>
+          <h2>Solución de problemas</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Problema</th><th>Qué hacer</th></tr></thead>
+            <tbody>
+              <tr><td>La mesa va lenta o se traba</td><td>Deja abiertos solo 2 o 3 cadáveres o simulaciones; cierra los demás. Si persiste, reinicia el sistema.</td></tr>
+              <tr><td>La imagen se ve distorsionada</td><td>Cambia a otra vista y vuelve a la original.</td></tr>
+              <tr><td>Todos los preajustes se ven en escala de grises, o «no se detecta aceleración de hardware OpenGL»</td><td>Avisa al encargado: hay que verificar la tarjeta gráfica y actualizar su controlador.</td></tr>
+              <tr><td>«No se puede leer este archivo» o «No se pudo leer el archivo DICOM»</td><td>Comprueba que el archivo sea compatible con Table EDU 12.0.</td></tr>
+              <tr><td>«La reconstrucción 3D puede no funcionar»</td><td>Verifica que la serie DICOM esté completa y en una sola carpeta; si continúas, revisa la imagen con cautela.</td></tr>
+              <tr><td>«Ejecute como administrador», «Código de autorización no válido» o «El servidor no responde»</td><td>Problemas de licencia o instalación: los resuelve el encargado del laboratorio.</td></tr>
+              <tr><td>Pantalla azul de Windows</td><td>Anota el código de error y avisa al encargado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Soporte técnico local de la mesa: Global Educación, La Paz. Teléfono 2241034, celular 77291250.</p>
+      </section>
+
+      <!-- 12. Normas -->
       <section id="normas">
         <div class="section-head">
-          <p class="eyebrow">11 · Laboratorio</p>
+          <p class="eyebrow">12 · Laboratorio</p>
           <h2>Normas de uso y cuidado del equipo</h2>
         </div>
         <div class="rules">
@@ -733,7 +842,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
 
 <footer>
   <div class="pad"><div>
-    <p>Guía de apoyo para el Laboratorio de Anatomía Virtual · UPDS. Basada en las guías de interfaz de la Anatomage Table 12.0 y en los manuales de sistemas del fabricante; complementa, no reemplaza, las indicaciones del docente.</p>
+    <p>Guía de apoyo para el Laboratorio de Anatomía Virtual · UPDS. Basada en las guías de interfaz y el manual de usuario de la Anatomage Table EDU 12.0 y en los manuales de sistemas del fabricante; complementa, no reemplaza, las indicaciones del docente.</p>
     <p>Anatomage es una marca de su respectivo titular. Las capturas de los preajustes provienen de los manuales del fabricante y se usan como material interno del laboratorio.</p>
   </div></div>
 </footer>
@@ -1179,7 +1288,9 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     { q: 'Un adenoma hipofisario que comprime el quiasma óptico produce:', o: ['Hemianopsia homónima derecha', 'Hemianopsia bitemporal', 'Ceguera monocular', 'Cuadrantanopsia superior'], a: 1, e: 'Se comprimen las fibras nasales que se cruzan en el quiasma, que llevan los campos temporales.' },
     { q: 'La vena suprarrenal derecha drena en:', o: ['La vena renal derecha', 'La vena cava inferior', 'La vena porta', 'La vena ácigos'], a: 1, e: 'Es corta y drena directo en la cava inferior; la izquierda drena en la vena renal izquierda.' },
     { q: 'La lesión del nervio peroneo común en el cuello del peroné produce:', o: ['Pérdida de la flexión plantar', 'Pie caído', 'Signo de Trendelenburg', 'Pérdida de la extensión de la rodilla'], a: 1, e: 'Se paralizan los dorsiflexores (tibial anterior, extensores largos). Manual Muscular, Miembro inferior: acción 9.' },
-    { q: 'Músculo del manguito rotador que más se lesiona:', o: ['Subescapular', 'Redondo menor', 'Supraespinoso', 'Infraespinoso'], a: 2, e: 'El tendón del supraespinoso pasa bajo el acromion; se evalúa con la prueba de Jobe. Manual Muscular, Miembro superior: ubicación 1–2.' }
+    { q: 'Músculo del manguito rotador que más se lesiona:', o: ['Subescapular', 'Redondo menor', 'Supraespinoso', 'Infraespinoso'], a: 2, e: 'El tendón del supraespinoso pasa bajo el acromion; se evalúa con la prueba de Jobe. Manual Muscular, Miembro superior: ubicación 1–2.' },
+    { q: 'Dolor en la tabaquera anatómica tras una caída sobre la mano extendida sugiere fractura del:', o: ['Semilunar', 'Escafoides', 'Ganchoso', 'Pisiforme'], a: 1, e: 'El escafoides forma el piso de la tabaquera; su irrigación entra por distal, por eso el polo proximal puede necrosarse. Manual Esquelético, Miembro superior 6.' },
+    { q: 'El ligamento del tobillo que más se lesiona en un esguince por inversión es el:', o: ['Deltoideo', 'Calcaneofibular', 'Talofibular anterior', 'Talofibular posterior'], a: 2, e: 'El talofibular anterior es el más débil del complejo lateral. Manual Esquelético, Miembro inferior 12.' }
   ];
   var qWrap = document.getElementById('quiz'), scoreEl = document.getElementById('score');
   var answers = store.get('anat-quiz', {});

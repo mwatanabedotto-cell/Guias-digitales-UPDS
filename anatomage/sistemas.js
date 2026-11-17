@@ -145,6 +145,76 @@
       ]
     },
     {
+      id: 'sk', img: 'sk', color: 'var(--muted)', name: 'Esquelético', pt: 'Sistema esquelético',
+      surg: [
+        'Fractura del cuello del fémur: riesgo de necrosis avascular de la cabeza femoral, que se irriga sobre todo por las arterias circunflejas femorales.',
+        'Fractura del escafoides (dolor en la tabaquera anatómica): riesgo de necrosis del polo proximal y seudoartrosis.',
+        'Punción lumbar entre L3–L4 o L4–L5: la línea que une las crestas ilíacas (línea de Tuffier) cruza L4.',
+        'Esguince de tobillo por inversión: el ligamento talofibular anterior es el primero en romperse.'
+      ],
+      rev: [
+        'Tríada de O’Donoghue: ligamento cruzado anterior, colateral medial y menisco medial. El LCA se explora con las pruebas de Lachman y del cajón anterior.',
+        'Luxación anterior del hombro: el nervio axilar es el más expuesto.',
+        'El semilunar es el hueso del carpo que más se luxa y puede comprimir el nervio mediano.',
+        'C7 es la vértebra prominente; el ángulo esternal (de Louis) marca la 2.ª costilla y el nivel T4–T5.'
+      ],
+      groups: [
+        { name: 'Cabeza y cuello', pt: 'Cabeça e pescoço', views: [
+          { t: 'Huesos craneales y huesos faciales', items: ['Huesos del neurocráneo|Ossos do neurocrânio', 'Huesos de la cara|Ossos da face'] },
+          { t: 'Huesos del cráneo', items: ['Hueso frontal|Osso frontal', 'Hueso parietal|Osso parietal', 'Hueso temporal|Osso temporal', 'Hueso occipital|Osso occipital', 'Hueso esfenoides|Osso esfenoide', 'Hueso etmoides|Osso etmoide'] },
+          { t: 'Huesos de la cara', items: ['Hueso nasal|Osso nasal', 'Maxilar|Maxila', 'Cornete nasal inferior|Concha nasal inferior', 'Hueso lagrimal|Osso lacrimal', 'Hueso cigomático|Osso zigomático', 'Vómer|Vômer', 'Mandíbula|Mandíbula'] },
+          { t: 'Hueso hioides', items: ['Hueso hioides|Osso hioide', 'Ligamento estilohioideo|Ligamento estilo-hióideo', 'Membrana tirohioidea|Membrana tíreo-hióidea', 'Cartílago tiroides|Cartilagem tireóidea', 'Cartílago cricoides|Cartilagem cricóidea'] },
+          { t: 'Arco dental maxilar', side: 'izq', items: ['Incisivo central superior|Incisivo central superior', 'Incisivo lateral superior|Incisivo lateral superior', 'Canino superior|Canino superior', 'Primer premolar superior|Primeiro pré-molar superior', 'Segundo premolar superior|Segundo pré-molar superior', 'Primer molar superior|Primeiro molar superior', 'Segundo molar superior|Segundo molar superior', 'Tercer molar superior|Terceiro molar superior'] },
+          { t: 'Arco dental mandibular', side: 'izq', items: ['Incisivo central inferior|Incisivo central inferior', 'Incisivo lateral inferior|Incisivo lateral inferior', 'Canino inferior|Canino inferior', 'Primer premolar inferior|Primeiro pré-molar inferior', 'Segundo premolar inferior|Segundo pré-molar inferior', 'Primer molar inferior|Primeiro molar inferior', 'Segundo molar inferior|Segundo molar inferior', 'Tercer molar inferior|Terceiro molar inferior'] },
+          { t: 'Articulación temporomandibular', side: 'izq', items: ['Disco articular de la ATM|Disco articular da ATM', 'Cápsula de la ATM|Cápsula da ATM', 'Ligamento temporomandibular (lateral)|Ligamento lateral da ATM', 'Ligamento esfenomandibular|Ligamento esfenomandibular', 'Ligamento estilomandibular|Ligamento estilomandibular'] },
+          { t: 'Huesos y cartílagos de la nariz', items: ['Hueso nasal|Osso nasal', 'Cartílago septal|Cartilagem do septo nasal', 'Cartílago lateral (proceso lateral del septal)|Processo lateral da cartilagem do septo', 'Cartílago alar mayor|Cartilagem alar maior', 'Cartílagos alares menores|Cartilagens alares menores', 'Cartílagos nasales accesorios|Cartilagens nasais acessórias', 'Tejido fibroadiposo del ala|Tecido fibroadiposo da asa do nariz'] },
+          { t: 'Esqueleto de la laringe', items: ['Hueso hioides|Osso hioide', 'Membrana tirohioidea|Membrana tíreo-hióidea', 'Cartílago tiroides|Cartilagem tireóidea', 'Cartílago aritenoides|Cartilagem aritenóidea', 'Ligamento cricotiroideo medio|Ligamento cricotireóideo mediano', 'Ligamento cricotiroideo lateral|Ligamento cricotireóideo lateral'] },
+          { t: 'Oído externo', side: 'der', items: ['Cartílago de la oreja|Cartilagem da orelha', 'Meato acústico externo|Meato acústico externo', 'Membrana timpánica|Membrana timpânica'] },
+          { t: 'Oído medio', items: ['Martillo|Martelo', 'Yunque|Bigorna', 'Cavidad timpánica|Cavidade timpânica', 'Membrana timpánica|Membrana timpânica'] },
+          { t: 'Oído interno', side: 'der', items: ['Conductos semicirculares|Canais semicirculares', 'Vestíbulo|Vestíbulo', 'Cóclea|Cóclea', 'Trompa auditiva (de Eustaquio)|Tuba auditiva', 'Cartílago de la trompa auditiva|Cartilagem da tuba auditiva'] }
+        ] },
+        { name: 'Columna vertebral', pt: 'Coluna vertebral', views: [
+          { t: 'Regiones de la columna', items: ['Vértebras cervicales|Vértebras cervicais', 'Vértebras torácicas|Vértebras torácicas', 'Vértebras lumbares|Vértebras lombares', 'Sacro|Sacro', 'Cóccix|Cóccix'] },
+          { t: 'Columna cervical', items: ['Atlas (C1)|Atlas (C1)', 'Vértebra prominente (C7)|Vértebra proeminente (C7)'] },
+          { t: 'Columna torácica', items: ['Primera vértebra torácica (T1)|Primeira vértebra torácica (T1)', 'Duodécima vértebra torácica (T12)|Décima segunda vértebra torácica (T12)'] },
+          { t: 'Columna lumbar', items: ['Primera vértebra lumbar (L1)|Primeira vértebra lombar (L1)', 'Quinta vértebra lumbar (L5)|Quinta vértebra lombar (L5)'] },
+          { t: 'Sacro y cóccix', items: ['Sacro|Sacro', 'Cóccix|Cóccix'] },
+          { t: 'Ligamentos de la columna', items: ['Ligamento longitudinal anterior|Ligamento longitudinal anterior', 'Ligamento longitudinal posterior|Ligamento longitudinal posterior', 'Ligamento amarillo|Ligamento amarelo', 'Ligamentos interespinosos|Ligamentos interespinais', 'Ligamento supraespinoso|Ligamento supraespinal', 'Ligamento nucal|Ligamento nucal'] }
+        ] },
+        { name: 'Caja torácica', pt: 'Caixa torácica', views: [
+          { t: 'Costillas y esternón', items: ['Manubrio del esternón|Manúbrio do esterno', 'Apófisis xifoides|Processo xifoide', 'Costillas verdaderas (1.ª–7.ª)|Costelas verdadeiras', 'Costillas flotantes (11.ª–12.ª)|Costelas flutuantes'] },
+          { t: 'Articulaciones de las costillas', items: ['Clavícula|Clavícula', 'Articulación esternoclavicular|Articulação esternoclavicular', 'Ligamento esternoclavicular anterior|Ligamento esternoclavicular anterior', 'Ligamento interclavicular|Ligamento interclavicular', 'Articulación manubrioesternal|Sínfise manubriesternal', 'Articulación xifoesternal|Sínfise xifosternal', 'Articulaciones esternocostales|Articulações esternocostais', 'Ligamentos esternocostales radiados|Ligamentos esternocostais radiados', 'Cartílago costal|Cartilagem costal', 'Articulaciones intercondrales|Articulações intercondrais'] },
+          { t: 'Articulaciones costovertebrales', items: ['Articulación costotransversa|Articulação costotransversária', 'Articulación de la cabeza de la costilla (costovertebral)|Articulação da cabeça da costela'] }
+        ] },
+        { name: 'Miembro superior', pt: 'Membro superior', views: [
+          { t: 'Cintura escapular', side: 'der', items: ['Escápula|Escápula', 'Clavícula|Clavícula', 'Ligamento acromioclavicular|Ligamento acromioclavicular', 'Ligamento coracoclavicular (trapezoide y conoide)|Ligamento coracoclavicular (trapezoide e conoide)', 'Ligamento coracoacromial|Ligamento coracoacromial', 'Ligamento transverso superior de la escápula|Ligamento transverso superior da escápula'] },
+          { t: 'Articulación acromioclavicular', items: ['Articulación acromioclavicular|Articulação acromioclavicular'] },
+          { t: 'Articulación glenohumeral', side: 'der', items: ['Húmero|Úmero', 'Escápula|Escápula', 'Ligamento coracohumeral|Ligamento coracoumeral', 'Ligamento glenohumeral superior|Ligamento glenoumeral superior', 'Ligamento glenohumeral medio|Ligamento glenoumeral médio', 'Ligamento glenohumeral inferior|Ligamento glenoumeral inferior', 'Ligamento humeral transverso|Ligamento transverso do úmero'] },
+          { t: 'Articulación del codo', side: 'izq', items: ['Húmero|Úmero', 'Cúbito|Ulna', 'Radio|Rádio', 'Ligamento colateral cubital|Ligamento colateral ulnar', 'Ligamento colateral radial|Ligamento colateral radial'] },
+          { t: 'Articulación radiocubital proximal', side: 'izq', items: ['Ligamento anular del radio|Ligamento anular do rádio', 'Ligamento cuadrado|Ligamento quadrado', 'Membrana interósea del antebrazo|Membrana interóssea do antebraço'] },
+          { t: 'Huesos del carpo', side: 'izq', items: ['Escafoides|Escafoide', 'Semilunar|Semilunar', 'Piramidal|Piramidal', 'Pisiforme|Pisiforme', 'Trapecio|Trapézio', 'Trapezoide|Trapezoide', 'Grande|Capitato', 'Ganchoso|Hamato'] },
+          { t: 'Metacarpianos', side: 'izq', items: ['Primer metacarpiano|Primeiro metacarpal', 'Quinto metacarpiano|Quinto metacarpal'] },
+          { t: 'Falanges de la mano', side: 'izq', items: ['Falange proximal del pulgar|Falange proximal do polegar', 'Falange distal del pulgar|Falange distal do polegar', 'Falange proximal del 2.º dedo|Falange proximal do 2.º dedo', 'Falange media del 2.º dedo|Falange média do 2.º dedo', 'Falange distal del 2.º dedo|Falange distal do 2.º dedo'] }
+        ] },
+        { name: 'Miembro inferior', pt: 'Membro inferior', views: [
+          { t: 'Cintura pélvica y articulaciones', items: ['Ilion|Ílio', 'Isquion|Ísquio', 'Pubis|Púbis', 'Sacro|Sacro', 'Cóccix|Cóccix', 'Articulación sacroilíaca|Articulação sacroilíaca', 'Ligamentos sacroilíacos anteriores|Ligamentos sacroilíacos anteriores', 'Ligamentos sacroilíacos posteriores|Ligamentos sacroilíacos posteriores', 'Ligamento de la sínfisis púbica|Ligamento da sínfise púbica'] },
+          { t: 'Ligamentos de la cadera', side: 'der', items: ['Ligamento iliofemoral|Ligamento iliofemoral', 'Ligamento pubofemoral|Ligamento pubofemoral', 'Ligamento isquiofemoral|Ligamento isquiofemoral', 'Ligamento transverso del acetábulo|Ligamento transverso do acetábulo'] },
+          { t: 'Huesos de la rodilla', side: 'der', items: ['Fémur|Fêmur', 'Rótula|Patela', 'Tibia|Tíbia', 'Peroné|Fíbula'] },
+          { t: 'Articulaciones de la rodilla', side: 'der', items: ['Articulación femorotibial|Articulação femorotibial', 'Articulación femororrotuliana|Articulação femoropatelar', 'Articulación tibioperonea superior|Articulação tibiofibular'] },
+          { t: 'Meniscos y ligamentos cruzados', side: 'der', items: ['Menisco medial|Menisco medial', 'Menisco lateral|Menisco lateral', 'Ligamento cruzado anterior|Ligamento cruzado anterior', 'Ligamento cruzado posterior|Ligamento cruzado posterior', 'Ligamento meniscofemoral posterior|Ligamento meniscofemoral posterior'] },
+          { t: 'Otros ligamentos de la rodilla', side: 'der', items: ['Ligamento rotuliano|Ligamento da patela', 'Ligamento colateral medial (tibial)|Ligamento colateral tibial', 'Ligamento colateral lateral (peroneo)|Ligamento colateral fibular', 'Retináculo rotuliano medial|Retináculo medial da patela', 'Retináculo rotuliano lateral|Retináculo lateral da patela', 'Ligamento anterior de la cabeza del peroné|Ligamento anterior da cabeça da fíbula', 'Ligamento posterior de la cabeza del peroné|Ligamento posterior da cabeça da fíbula'] },
+          { t: 'Cápsula y bolsas de la rodilla', side: 'der', items: ['Cápsula articular de la rodilla|Cápsula articular do joelho'] },
+          { t: 'Huesos del tarso', side: 'der', items: ['Astrágalo|Tálus', 'Calcáneo|Calcâneo', 'Navicular|Navicular', 'Cuboides|Cuboide', 'Cuneiforme medial|Cuneiforme medial', 'Cuneiforme intermedio|Cuneiforme intermédio', 'Cuneiforme lateral|Cuneiforme lateral', 'Huesos sesamoideos del pie|Ossos sesamoides do pé'] },
+          { t: 'Metatarsianos', side: 'der', items: ['Primer metatarsiano|Primeiro metatarsal', 'Quinto metatarsiano|Quinto metatarsal'] },
+          { t: 'Falanges del pie', side: 'der', items: ['Falange proximal del dedo gordo|Falange proximal do hálux', 'Falange distal del dedo gordo|Falange distal do hálux', 'Falange proximal del 5.º dedo|Falange proximal do 5.º dedo', 'Falange distal del 5.º dedo|Falange distal do 5.º dedo'] },
+          { t: 'Retináculos del tobillo', side: 'der', items: ['Retináculo de los flexores|Retináculo dos músculos flexores', 'Retináculo superior de los extensores|Retináculo superior dos músculos extensores', 'Retináculo inferior de los extensores|Retináculo inferior dos músculos extensores'] },
+          { t: 'Articulación del tobillo (talocrural)', side: 'der', items: ['Ligamento talofibular anterior|Ligamento talofibular anterior', 'Ligamento talofibular posterior|Ligamento talofibular posterior', 'Ligamento calcaneofibular|Ligamento calcaneofibular', 'Ligamento deltoideo: porción tibiotalar anterior|Ligamento colateral medial: parte tibiotalar anterior', 'Ligamento deltoideo: porción tibiotalar posterior|Ligamento colateral medial: parte tibiotalar posterior', 'Ligamento deltoideo: porción tibiocalcánea|Ligamento colateral medial: parte tibiocalcânea', 'Ligamento deltoideo: porción tibionavicular|Ligamento colateral medial: parte tibionavicular'] },
+          { t: 'Otros ligamentos del pie, vista anterior', side: 'der', items: ['Ligamento talofibular anterior|Ligamento talofibular anterior', 'Ligamento talocalcáneo interóseo|Ligamento talocalcâneo interósseo', 'Ligamento bifurcado (calcaneonavicular y calcaneocuboideo)|Ligamento bifurcado', 'Ligamento calcaneocuboideo dorsal|Ligamento calcaneocubóideo dorsal', 'Ligamento talonavicular dorsal|Ligamento talonavicular', 'Ligamento cuboideonavicular dorsal|Ligamento cuboideonavicular dorsal', 'Ligamentos cuneonaviculares dorsales|Ligamentos cuneonaviculares dorsais', 'Ligamento cuneonavicular plantar|Ligamento cuneonavicular plantar'] },
+          { t: 'Otros ligamentos del pie, vista posterior', side: 'der', items: ['Ligamento talofibular posterior|Ligamento talofibular posterior', 'Ligamento talocalcáneo posterior|Ligamento talocalcâneo posterior', 'Ligamento talocalcáneo medial|Ligamento talocalcâneo medial', 'Ligamento talocalcáneo lateral|Ligamento talocalcâneo lateral', 'Ligamento calcaneonavicular plantar (en resorte)|Ligamento calcaneonavicular plantar', 'Ligamento cuboideonavicular plantar|Ligamento cuboideonavicular plantar', 'Ligamento plantar largo|Ligamento plantar longo', 'Ligamento plantar corto (calcaneocuboideo plantar)|Ligamento calcaneocubóideo plantar'] }
+        ] }
+      ]
+    },
+    {
       id: 'mu', img: 'mu', color: 'var(--artery)', name: 'Muscular', pt: 'Sistema muscular',
       surg: [
         'Inyección intramuscular glútea en el cuadrante superolateral, para no lesionar el nervio ciático.',
