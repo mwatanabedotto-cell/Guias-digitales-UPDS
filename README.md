@@ -2,9 +2,15 @@
 
 Guías de laboratorio interactivas para la carrera de Medicina (UPDS).
 
+Abre [`index.html`](index.html) para ver todas las guías.
+
 | Guía | Archivo |
 |------|---------|
 | Mesa de disección virtual Anatomage | [`anatomage/index.html`](anatomage/index.html) |
+| Simulador pediátrico Gaumard S117 / S117.250 | [`gaumard-s117/index.html`](gaumard-s117/index.html) |
+| Gaumard Mike y Michelle S157.250 | [`gaumard-s157/index.html`](gaumard-s157/index.html) |
+| Simulador neonatal Gaumard PEDI Blue S320 | [`gaumard-s320/index.html`](gaumard-s320/index.html) |
+| Simulador ginecológico Gaumard ZOE S504.100 | [`gaumard-s504/index.html`](gaumard-s504/index.html) |
 
 Cada guía es una página HTML con sus recursos al lado (datos e imágenes): se abre
 directamente en el navegador o se publica con GitHub Pages. El avance de las listas de cotejo y del quiz se
@@ -28,3 +34,14 @@ guarda solo en el navegador de cada estudiante.
 2. Agrega el sistema a `anatomage/sistemas.js` con el mismo prefijo en `img`.
    Cada estructura es `"Nombre en español|Nome em português"`.
 - Autoevaluación de 12 preguntas, glosario español–português y normas del laboratorio
+
+## Guías Gaumard
+
+Las cuatro guías de simuladores Gaumard se generan desde `gaumard-plantilla/`:
+
+- `plantilla.html`: diseño y lógica comunes (preparación, referencia rápida,
+  procedimientos con avance guardado, OMNI 2, solución de problemas, cuidado).
+- `datos_<modelo>.py`: contenido de cada simulador; `comun.py` reúne los bloques
+  compartidos (OMNI 2, limpieza, RCP pediátrica).
+- Para regenerar después de editar los datos: `python3 gaumard-plantilla/build.py`.
+- Las fotos de cada guía están en `gaumard-<modelo>/img/`.

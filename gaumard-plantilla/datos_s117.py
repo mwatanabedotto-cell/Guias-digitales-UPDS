@@ -1,0 +1,136 @@
+from comun import *
+
+DATA = {
+    'key': 'gaumard-s117',
+    'title': 'Simulador pediátrico S117',
+    'eyebrow': 'UPDS · Simulación clínica · Gaumard S117 / S117.250',
+    'titleHtml': 'Simulador pediátrico de cuidados y RCP <span>S117</span>',
+    'lede': 'Simulador pediátrico multipropósito: vía aérea, ventilación, RCP, acceso IV, intraóseo y femoral, ostomías, gastrostomía, sondaje y auscultación. El S117 se conecta por cable a OMNI®; el S117.250 se controla de forma inalámbrica con OMNI® 2.',
+    'facts': [['Control', 'OMNI® (cable) · OMNI® 2'], ['Tubo endotraqueal', '3.5'], ['Procedimientos', '16'], ['Auscultación', '13 puntos']],
+    'hero': 'portada.jpg', 'heroAlt': 'Simulador pediátrico S117 acostado',
+    'source': 'Basada en el Manual de usuario S117 y S117.250 (versión 18.7.1) de Gaumard Scientific.',
+    'start': [
+        {'t': 'Preparar el simulador', 'ol': [
+            'Saca el simulador del maletín azul y de la bolsa transparente; apóyalo en una superficie plana sosteniendo cabeza y torso.',
+            'Conecta la fuente de alimentación: usa siempre el simulador con la fuente conectada.',
+            'Conecta el control: OMNI por cable o la tableta OMNI 2 (S117.250).',
+            'Llena los circuitos que vayas a usar: brazo IV, piernas (IO y femoral), estómago, ostomías y vejiga.',
+            'Ten a mano aceite mineral para lubricar los dispositivos.',
+        ]},
+        {'t': 'Conexión por cable OMNI® (S117)', 'img': None, 'ol': [
+            'Conecta la fuente de alimentación al simulador.',
+            'Conecta el cable de comunicación al puerto de comunicación cableada del simulador.',
+            'Conecta el otro extremo al dispositivo de control OMNI.',
+        ], 'note': 'El S117.250 usa la tableta OMNI 2 inalámbrica (ver sección OMNI 2).'},
+        {'t': 'Roles', 'ul': [
+            '<b>Facilitador:</b> conduce la simulación; es el instructor o el personal del laboratorio.',
+            '<b>Proveedor:</b> participa como profesional de salud y realiza los procedimientos.',
+        ]},
+        {'t': 'Contenido de la caja', 'ul': [
+            'Línea de pulso con pera de presión',
+            'Genitales masculinos (instalados) y 3 estomas (instalados)',
+            'Piel de repuesto para el brazo derecho',
+            '8 huesos de tibia IO (1 instalado y 7 de repuesto)',
+            'Kit de llenado de puertos, 2 jeringas de llenado y 4 tapones',
+            'Lubricante mineral, concentrado de sangre, cinta y fuente de alimentación',
+        ]},
+    ],
+    'quick': [
+        {'t': 'Tamaños de dispositivos', 'h': ['Procedimiento', 'Tamaño'], 'rows': [
+            ['Laringoscopio (hoja)', 'Miller 1 o MAC 2'], ['Mascarilla laríngea', '1.5 / 2'], ['Intubación oral', 'TET 3.5'],
+            ['Intubación nasal', 'Catéter 10 Fr'], ['Sonda nasogástrica', 'Catéter 10 Fr'], ['Sonda vesical', '8 Fr'],
+            ['Acceso IV', '22 G'], ['Acceso intraóseo', '17–16 G']]},
+        {'t': 'Capacidad de los depósitos', 'h': ['Depósito', 'Capacidad'], 'rows': [
+            ['Estómago', '100 ml'], ['Ostomías derechas', '50 ml'], ['Recto (ostomía izquierda)', '250 ml'], ['Vejiga', '125 ml']]},
+        {'t': 'Pulsos palpables', 'h': ['Pulso', 'Lado'], 'rows': [
+            ['Radial', 'Derecho'], ['Braquial', 'Derecho'], ['Femoral', 'Derecho'], ['Poplíteo', 'Izquierdo']]},
+    ],
+    'cats': [
+        {'t': 'Vía aérea y ventilación', 'items': [
+            {'id': 'intubacion', 't': 'Intubación oral y nasal', 'sub': 'Laringoscopia, TET, mascarilla laríngea', 'img': 'laringoscopia.jpg', 'alt': 'Laringoscopia en el simulador pediátrico',
+             'specs': [['Hoja', 'Miller 1 / MAC 2'], ['TET', '3.5'], ['ML', '1.5 / 2'], ['Nasal', '10 Fr']],
+             'blocks': [
+                 {'t': 'Qué permite', 'ul': ['Protrusión mandibular, inclinación de la cabeza y elevación del mentón realistas.', 'Vía aérea con referencias anatómicas, lengua y cuerdas vocales.', 'Intubación oral, o nasal por la <b>fosa nasal izquierda</b>, con TET o mascarilla laríngea.', 'Inclinar la cabeza hacia adelante (flexión) obstruye la vía aérea, como en un niño real.']},
+                 {'t': 'Preparación', 'ol': ['Lubrica a mano el tubo y la narina con aceite mineral.', 'Elige el tamaño de dispositivo de la tabla.', 'Alinea la vía aérea antes de la laringoscopia (en lactantes, un rollo bajo los hombros).']}],
+             'warn': ['No rocíes aceite mineral directamente en la boca ni en la vía aérea.', 'Intubar sin lubricar es muy difícil y daña el simulador.'],
+             'clinic': ['En lactantes y niños pequeños se prefiere la hoja recta (Miller), que levanta directamente la epiglotis.', 'Confirma la posición con capnografía (EtCO₂), expansión torácica simétrica y auscultación bilateral.']},
+            {'id': 'ventilacion', 't': 'Ventilación con bolsa-válvula-mascarilla', 'sub': 'Elevación torácica visible; ventilación medida y registrada', 'img': 'bvm.jpg', 'alt': 'Ventilación con bolsa-válvula-mascarilla en el simulador pediátrico',
+             'blocks': [{'t': 'Qué permite', 'ul': ['Elevación torácica realista con bolsa-válvula-mascarilla o con TET y ventilación manual.', 'La ventilación se mide y registra con OMNI.']}],
+             'warn': ['No hagas ventilación boca a boca: deforma y contamina la vía aérea, que no se puede limpiar ni desinfectar.'],
+             'clinic': ['Usa la mascarilla que cubra boca y nariz sin tocar los ojos; ventila solo hasta ver elevar el tórax.', 'Con vía aérea avanzada: 1 ventilación cada 2–3 s (20–30 por minuto).']},
+            {'id': 'traqueostomia', 't': 'Cuidados de la traqueostomía', 'sub': 'Abertura con cinta traqueal reemplazable', 'img': 'traqueostomia.jpg', 'alt': 'Abertura de traqueostomía en el cuello del simulador',
+             'blocks': [
+                 {'t': 'Uso', 'ol': ['Lubrica la cánula con aceite mineral.', 'Inserta la cánula de traqueostomía perforando la cinta de la tráquea.']},
+                 {'t': 'Reparar la tráquea', 'ol': ['Levanta la piel del pecho hasta exponer la tráquea.', 'Retira la cinta perforada y coloca una nueva.', 'Vuelve a colocar la piel del pecho sobre el torso.']}],
+             'clinic': ['Aspiración por traqueostomía: técnica estéril, sonda de no más de la mitad del diámetro interno de la cánula y no más de 10 s por intento.']},
+            {'id': 'sng', 't': 'Sonda nasogástrica y orogástrica', 'sub': 'Alimentación por sonda y aspiración gástrica',
+             'specs': [['Sonda', '10 Fr'], ['Estómago', '100 ml']],
+             'blocks': [{'t': 'Uso', 'ul': ['Las aberturas nasal y oral están conectadas al depósito gástrico.', 'Inserta una sonda de tamaño adecuado para demostrar la alimentación y la aspiración.', 'Vacía el estómago como se indica en Gastrostomía.']}],
+             'clinic': ['Longitud a introducir: nariz–lóbulo de la oreja–punto medio entre xifoides y ombligo.', 'Confirma la posición con radiografía o pH del aspirado antes de alimentar.']},
+        ]},
+        {'t': 'Circulación y RCP', 'items': [
+            {'id': 'compresiones', 't': 'Compresiones torácicas', 'sub': 'Referencias anatómicas para colocar las manos', 'img': 'omni2-rcp.jpg', 'alt': 'Gráficos de RCP en OMNI 2',
+             'blocks': [{'t': 'Qué permite', 'ul': ['Cavidad torácica con referencias realistas para colocar bien las manos.', 'Con OMNI 2 (S117.250) se evalúan profundidad, frecuencia y ventilaciones en tiempo real.']}],
+             'clinic': CLIN_RCP_PED + ['En lactantes con dos reanimadores: técnica de dos pulgares rodeando el tórax; con uno solo, dos dedos o talón de una mano.']},
+            {'id': 'pulsos', 't': 'Pulsos palpables', 'sub': 'Radial, braquial y femoral derechos; poplíteo izquierdo',
+             'blocks': [{'t': 'Uso', 'ul': ['Los pulsos se generan con una pera de goma ubicada en el lado izquierdo del maniquí.', 'Palpa: radial derecho, braquial derecho, femoral derecho y poplíteo izquierdo.']}],
+             'clinic': ['En lactantes se palpa el pulso braquial; en niños, carotídeo o femoral. No más de 10 s.', 'Bradicardia menor de 60/min con mala perfusión pese a oxigenar y ventilar: iniciar compresiones.']},
+            {'id': 'auscultacion', 't': 'Sonidos cardíacos y pulmonares (opcional)', 'sub': 'Estetoscopio virtual con 13 puntos de auscultación', 'img': 'auscultacion.jpg', 'alt': 'Piel con sensores y estetoscopio virtual',
+             'blocks': [
+                 {'t': 'Montaje', 'ol': ['Desenrosca la campana del estetoscopio.', 'Tira suavemente de la lengüeta para quitar el protector de plástico y vuelve a atornillar la campana.', 'Coloca la piel con sensores sobre el simulador y fíjala en la parte superior del torso.']},
+                 {'t': 'Uso', 'ol': ['Mantén pulsado el botón de encendido (luz verde = encendido).', 'Pulsa el botón de sonido para elegir el conjunto según la tabla de sonidos VS.', 'Apoya el estetoscopio en los puntos de auscultación: 9 anteriores y 4 posteriores.']}],
+             'warn': ['No tires de la lengüeta que rodea el diafragma: se daña la pieza.', 'Más detalle en la guía del usuario del VS105.'],
+             'clinic': ['Focos cardíacos: aórtico (2.º EIC derecho), pulmonar (2.º EIC izquierdo), tricuspídeo (borde esternal izquierdo bajo) y mitral (ápex).']},
+        ]},
+        {'t': 'Acceso vascular', 'items': [
+            {'id': 'brazo-iv', 't': 'Brazo de entrenamiento intravenoso', 'sub': 'Brazo derecho: venopunción, infusión, IM y SC', 'img': 'brazo-iv.jpg', 'alt': 'Circuito de venas del brazo de entrenamiento',
+             'specs': [['Aguja IV', '22 G o más fina']],
+             'blocks': [
+                 {'t': 'Qué incluye', 'ul': ['Venas cefálica, basílica, antecubital, radial y cubital simuladas, más dos venas en el dorso de la mano.', 'Punto IM en el deltoides; zonas SC en la cara palmar del antebrazo y lateral del brazo.']},
+                 {'t': 'Llenado', 'ol': ['Pon el extremo del tubo de drenaje (2) en un recipiente y abre la abrazadera.', 'Llena la jeringa y conéctala al tubo de llenado (1).', 'Deja que el líquido llegue al drenaje; cierra la abrazadera del tubo 2 y retira la jeringa.', 'Para infusión continua, deja el drenaje en el recipiente con la pinza abierta.']},
+                 {'t': 'Al terminar', 'ol': ['Abre la abrazadera del tubo 2.', 'Empuja alcohol y agua (30:70) por el tubo 1 hasta que salga limpio.', 'Empuja aire con una jeringa para sacar el líquido restante.']}],
+             'warn': ['Las agujas de calibre mayor que 22 G acortan la vida de la piel y las venas.', 'Para cambiar la piel: deslízala hacia abajo, coloca la nueva tirando hacia arriba y aplica un poco de aceite mineral.'],
+             'clinic': ['En lactantes, las venas del dorso de la mano y del pie son las de primera elección; la fosa antecubital es una alternativa.']},
+            {'id': 'tuberculosis', 't': 'Parche de tuberculosis', 'sub': 'Brazo izquierdo', 'img': 'tuberculosis.jpg', 'alt': 'Parche de prueba de tuberculina en el brazo',
+             'blocks': [{'t': 'Uso', 'ul': ['El brazo izquierdo tiene un parche para practicar la prueba de tuberculina intradérmica.']}],
+             'clinic': ['PPD: 0,1 ml (5 UT) intradérmico en la cara anterior del antebrazo, con el bisel hacia arriba, formando una pápula.', 'Lectura a las 48–72 h midiendo solo la induración (no el eritema).']},
+            {'id': 'intraoseo', 't': 'Acceso intraóseo', 'sub': 'Tibia reemplazable; pierna derecha llena, izquierda drena', 'img': 'intraoseo.jpg', 'alt': 'Llenado del circuito intraóseo de la pierna',
+             'specs': [['Aguja IO', '17–16 G']],
+             'blocks': [
+                 {'t': 'Llenado', 'ol': ['Pon la manguera de la pierna izquierda en un recipiente con la abrazadera abierta.', 'Llena una jeringa, conéctala a la manguera de la pierna derecha y empuja el líquido.', 'Deja que llegue al drenaje y cierra la abrazadera.', 'Realiza el ejercicio IO.']},
+                 {'t': 'Drenaje y cambio de hueso', 'ol': ['Drenaje de la pierna izquierda en un recipiente con la abrazadera abierta.', 'Empuja alcohol y agua (30:70) por la pierna derecha hasta que salga limpio; luego aire.', 'Con el hueso seco, retira la cubierta, saca la tibia, coloca una nueva y cierra la cubierta.']}],
+             'clinic': ['Sitio: tibia proximal, cara anteromedial, 1–3 cm por debajo de la tuberosidad tibial.', 'Es la vía de elección en el paro pediátrico si no hay acceso IV rápido.']},
+            {'id': 'femoral', 't': 'Acceso venoso femoral', 'sub': 'Vena femoral derecha',
+             'blocks': [{'t': 'Uso', 'ul': ['Comparte el sistema de líquidos del acceso intraóseo: llénalo con los mismos pasos.', 'Practica la canulación en la vena femoral derecha.']}],
+             'clinic': ['La vena femoral está medial a la arteria, bajo el ligamento inguinal.']},
+        ]},
+        {'t': 'Atención hospitalaria', 'items': [
+            {'id': 'gastrostomia', 't': 'Gastrostomía', 'sub': 'Drenaje del depósito gástrico (100 ml)',
+             'blocks': [{'t': 'Vaciar el estómago', 'ol': ['Abre la abrazadera de la manguera del lado derecho y drena en un recipiente.', 'Retira el tapón de gastrostomía.', 'Conecta la manguera a la jeringa con agua y alcohol (70:30) e introdúcela en el depósito.', 'Deja que drene el resto del contenido.']}]},
+            {'id': 'ostomias', 't': 'Ostomías y enema', 'sub': 'Ostomías derechas (50 ml) y ostomía izquierda al recto (250 ml)', 'img': 'ostomias.jpg', 'alt': 'Estomas en el abdomen del simulador',
+             'blocks': [
+                 {'t': 'Puertos', 'ul': ['Las ostomías derechas comparten el mismo depósito.', 'La ostomía izquierda conecta con el recto: úsala para practicar enemas con el simulador de costado y una cánula lubricada de diámetro pequeño.']},
+                 {'t': 'Llenar', 'ol': ['Conecta la jeringa a la manguera con adaptador.', 'Inserta el adaptador en un puerto de ostomía y llena el depósito.', 'Retira jeringa y adaptador y coloca los tapones.']},
+                 {'t': 'Vaciar', 'ol': ['Inserta el adaptador y aspira con la jeringa.', 'Llena con agua y alcohol (70:30) y vuelve a aspirar.']}],
+             'warn': ['Las ostomías están fijadas a la piel del abdomen: no intentes retirarlas.']},
+            {'id': 'sondaje', 't': 'Sondaje vesical', 'sub': 'Vejiga de 125 ml; genitales intercambiables', 'img': 'sonda-vesical.jpg', 'alt': 'Llenado de la vejiga por el puerto suprapúbico',
+             'specs': [['Sonda', '8 Fr'], ['Vejiga', '125 ml']],
+             'blocks': [{'t': 'Uso', 'ol': ['Inserta el adaptador del kit en el puerto suprapúbico y llena la vejiga con la jeringa.', 'Deja adaptador y jeringa en el puerto para mantener la presión.', 'Lubrica la sonda y sonda los genitales masculinos o femeninos.', 'Para cambiar de genitales, despega el velcro y retira los masculinos: los femeninos quedan debajo.']}],
+             'clinic': ['Diuresis normal en niños: 1–2 ml/kg/h (lactantes 2 ml/kg/h); menos de 1 ml/kg/h sugiere hipoperfusión.']},
+            {'id': 'im', 't': 'Inyección IM, vendaje y ojos', 'sub': 'Deltoides y cuádriceps derechos; dedos separados; ojos que abren',
+             'blocks': [{'t': 'Qué permite', 'ul': ['Inyecciones IM y SC en el deltoides y el cuádriceps derechos; almohadillas reemplazables.', 'Dedos de manos y pies separados para vendajes; superficie resistente a agua, aceite y linimentos.', 'Ojos que abren y cierran: medicación en el saco conjuntival, extracción de cuerpos extraños e irrigación.']}],
+             'clinic': ['En lactantes el sitio IM preferido es el vasto lateral; el deltoides se usa a partir de que tenga masa suficiente.']},
+        ]},
+        {'t': 'Opcionales', 'items': [
+            {'id': 'drenaje', 't': 'Descompresión y drenaje torácico', 'sub': 'Caja torácica con puntos en el 2.º y 5.º espacio intercostal', 'img': 'descompresion.jpg', 'alt': 'Caja torácica de descompresión en el simulador',
+             'blocks': [
+                 {'t': 'Instalación', 'ol': ['Levanta la piel del pecho y retira la caja torácica normal.', 'Coloca la caja de descompresión y drenaje.', 'Conecta la pera al tubo de llenado y cierra la abrazadera de drenaje.', 'Infla la bolsa bajo la caja para simular un neumotórax.', 'Vuelve a colocar la piel y realiza la descompresión con aguja.']},
+                 {'t': 'Ejercicio de drenaje', 'ol': ['Abre la abrazadera de drenaje con la manguera en un recipiente.', 'Conecta una jeringa llena al tubo de llenado y deja fluir el líquido.', 'Cierra la abrazadera, vuelve a colocar la piel y realiza el drenaje.']}],
+             'warn': ['No hagas compresiones con esta caja torácica instalada.'],
+             'clinic': ['Descompresión con aguja: 2.º espacio intercostal, línea medioclavicular, sobre el borde superior de la costilla inferior.', 'Tubo de drenaje: 4.º–5.º espacio intercostal, línea axilar media.']},
+        ]},
+    ],
+    'omni': omni_cards('S117.250', 'omni2-rcp.jpg', calib=True),
+    'trouble': TROUBLE_OMNI,
+    'care': [CARE_GENERAL, CARE_CLEAN, CARE_STOMA, CARE_STORAGE],
+}

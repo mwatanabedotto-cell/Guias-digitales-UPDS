@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulador ginecológico ZOE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: ficha de simulador — cabecera con foto del maniquí y datos rápidos, índice lateral en escritorio, tarjetas de procedimiento con foto, pasos y nota clínica. Acento azul de tableta de control. */
+:root {
+  --paper: #F2F4F7;
+  --surface: #FFFFFF;
+  --surface-2: #E7EBF1;
+  --ink: #141C27;
+  --muted: #566070;
+  --line: #D4DAE3;
+  --accent: #1D5DA8;
+  --accent-soft: #DCE7F5;
+  --on-accent: #FFFFFF;
+  --warn: #9A5B00;
+  --warn-soft: #FBEBD3;
+  --ok: #1F7A45;
+  --ok-soft: #DDF0E3;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.2rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E131A; --surface: #151C26; --surface-2: #1C2531; --ink: #E3E8EF; --muted: #98A3B3; --line: #2A3442;
+    --accent: #7FB0EC; --accent-soft: #1A2C44; --on-accent: #0B1624; --warn: #F0B866; --warn-soft: #3A2A12; --ok: #6CC487; --ok-soft: #173325;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E131A; --surface: #151C26; --surface-2: #1C2531; --ink: #E3E8EF; --muted: #98A3B3; --line: #2A3442;
+  --accent: #7FB0EC; --accent-soft: #1A2C44; --on-accent: #0B1624; --warn: #F0B866; --warn-soft: #3A2A12; --ok: #6CC487; --ok-soft: #173325;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 600; }
+h4 { font-size: var(--step-0); font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.muted { color: var(--muted); }
+.prose { max-width: 70ch; display: grid; gap: 12px; }
+
+.masthead { background: var(--surface); border-bottom: 1px solid var(--line); }
+.masthead-inner { max-width: 1180px; margin: 0 auto; padding-block: 28px; display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+@media (min-width: 860px) { .masthead-inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+.masthead h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.02em; }
+.masthead h1 span { color: var(--accent); }
+.lede { max-width: 60ch; color: var(--muted); font-size: 1.1rem; }
+.head-text { display: grid; gap: 16px; min-width: 0; }
+.hero-img { width: 100%; max-width: 100%; border-radius: 12px; border: 1px solid var(--line); background: #fff; display: block; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 28px 64px; }
+@media (min-width: 980px) { .shell { grid-template-columns: 220px minmax(0, 1fr); gap: 48px; } }
+.toc { display: none; }
+@media (min-width: 980px) { .toc { display: block; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; } }
+.toc ol { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 2px; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; padding: 6px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: var(--step--1); }
+.toc a::before { counter-increment: toc; content: counter(toc, decimal-leading-zero); font-family: var(--font-mono); color: var(--muted); font-size: 0.75rem; padding-top: 2px; }
+.toc a:hover { background: var(--accent-soft); }
+.toc .prog { margin-top: 16px; display: grid; gap: 6px; font-size: var(--step--1); }
+.mobile-toc { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.mobile-toc a { flex: none; font-size: var(--step--1); padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--ink); background: var(--surface); }
+@media (min-width: 980px) { .mobile-toc { display: none; } }
+
+main { min-width: 0; display: grid; gap: 60px; }
+section { display: grid; gap: 20px; scroll-margin-top: 24px; }
+.section-head { display: grid; gap: 6px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.bar { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--accent); transition: width .2s; }
+
+.quick { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .quick { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+caption { text-align: left; padding: 12px 14px 4px; font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; background: var(--surface-2); }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.cat { display: grid; gap: 14px; }
+.cat > h3 { display: flex; gap: 10px; align-items: baseline; }
+.cat > h3 small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+.proc { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.proc > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 16px 12px 12px; }
+.proc > summary::-webkit-details-marker { display: none; }
+.proc > summary img { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; background: var(--surface-2); }
+.proc > summary .thumb-empty { width: 72px; height: 54px; border-radius: 6px; background: var(--surface-2); }
+.proc > summary .t { display: grid; gap: 2px; min-width: 0; }
+.proc > summary .t small { color: var(--muted); font-size: var(--step--1); }
+.badge { font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.badge.done { border-color: var(--ok); color: var(--ok); background: var(--ok-soft); }
+.proc[open] > summary { border-bottom: 1px solid var(--line); }
+.pbody { padding: 18px; display: grid; gap: 18px; }
+.pgrid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .pgrid.has-img { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); } }
+.pgrid img { width: 100%; max-width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+.pgrid figure { margin: 0; display: grid; gap: 6px; align-content: start; }
+.pgrid figcaption { font-size: 0.8rem; color: var(--muted); }
+.block { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.block ol, .block ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; font-size: var(--step--1); }
+.specs { display: flex; flex-wrap: wrap; gap: 8px; }
+.spec { font-size: var(--step--1); background: var(--surface-2); border-radius: 8px; padding: 6px 10px; display: grid; }
+.spec span { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.spec b { font-family: var(--font-mono); font-weight: 500; }
+.warn { font-size: var(--step--1); background: var(--warn-soft); border-left: 3px solid var(--warn); padding: 10px 14px; border-radius: 0 8px 8px 0; display: grid; gap: 4px; }
+.warn b { color: var(--warn); }
+.clinic { font-size: var(--step--1); background: var(--accent-soft); border-radius: 10px; padding: 12px 16px; display: grid; gap: 6px; }
+.clinic .label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+.clinic ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.done-toggle { display: inline-flex; gap: 10px; align-items: center; font-weight: 600; font-size: var(--step--1); cursor: pointer; justify-self: start; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+.done-toggle input { accent-color: var(--ok); width: 16px; height: 16px; margin: 0; }
+
+.reset-btn { justify-self: start; font: 600 var(--step--1) var(--font-body); background: none; border: 1px solid var(--line); color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.cols { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.card ul, .card ol { margin: 0; padding-left: 1.2em; display: grid; gap: 5px; font-size: var(--step--1); }
+
+footer { border-top: 1px solid var(--line); background: var(--surface); }
+footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<header class="masthead">
+  <div class="pad"><div class="masthead-inner">
+    <div class="head-text">
+      <p class="eyebrow" id="h-eyebrow"></p>
+      <h1 id="h-title"></h1>
+      <p class="lede" id="h-lede"></p>
+      <ul class="facts" id="h-facts"></ul>
+    </div>
+    <img class="hero-img" id="h-img" alt="" width="900" height="520">
+  </div></div>
+</header>
+
+<div class="pad"><div class="shell">
+  <nav class="toc" aria-label="Índice">
+    <p class="eyebrow">Contenido</p>
+    <ol id="toc"></ol>
+    <div class="prog"><span id="prog-txt"></span><div class="bar"><span id="prog-bar" style="width:0"></span></div></div>
+  </nav>
+  <main>
+    <nav class="mobile-toc" id="mtoc" aria-label="Índice rápido"></nav>
+
+    <section id="inicio">
+      <div class="section-head"><p class="eyebrow">01 · Preparación</p><h2>Antes de empezar</h2></div>
+      <div class="cols" id="inicio-cols"></div>
+    </section>
+
+    <section id="referencia">
+      <div class="section-head"><p class="eyebrow">02 · Referencia rápida</p><h2 id="quick-title">Tamaños, capacidades y pulsos</h2></div>
+      <div class="quick" id="quick"></div>
+    </section>
+
+    <section id="procedimientos">
+      <div class="section-head"><p class="eyebrow">03 · Práctica</p><h2>Procedimientos</h2></div>
+      <div class="prose"><p>Cada tarjeta resume qué permite el simulador, cómo prepararlo y cómo dejarlo limpio, con los puntos clínicos que se evalúan. Marca cada procedimiento al practicarlo: el avance se guarda en este navegador.</p></div>
+      <div id="procs" style="display:grid;gap:28px"></div>
+      <button type="button" class="reset-btn" id="reset">Desmarcar todo</button>
+    </section>
+
+    <section id="omni">
+      <div class="section-head"><p class="eyebrow">04 · Control</p><h2>Tableta OMNI® 2</h2></div>
+      <div class="cols" id="omni-cols"></div>
+    </section>
+
+    <section id="problemas">
+      <div class="section-head"><p class="eyebrow">05 · Soporte</p><h2>Solución de problemas</h2></div>
+      <div class="table-wrap"><table><thead><tr><th>Problema</th><th>Causa probable</th><th>Qué hacer</th></tr></thead><tbody id="trouble"></tbody></table></div>
+    </section>
+
+    <section id="cuidado">
+      <div class="section-head"><p class="eyebrow">06 · Laboratorio</p><h2>Cuidado, limpieza y almacenamiento</h2></div>
+      <div class="cols" id="care"></div>
+    </section>
+  </main>
+</div></div>
+
+<footer><div class="pad"><div>
+  <p id="f-src"></p>
+  <p>Gaumard®, OMNI® y los nombres de los simuladores son marcas de Gaumard Scientific. Esta guía es material docente interno de la UPDS; no sustituye al instructor ni está destinada a decisiones clínicas.</p>
+</div></div></footer>
+
+<script>
+window.SIM = {"key": "gaumard-s504", "title": "Simulador ginecológico ZOE", "eyebrow": "UPDS · Simulación clínica · Gaumard S504.100", "titleHtml": "Simulador ginecológico <span>ZOE®</span> S504.100", "lede": "Torso inferior femenino adulto de tamaño real para examen pélvico, espéculo, examen bimanual, DIU de intervalo y posparto, oclusión tubárica por minilaparotomía o laparoscopia y aspiración manual endouterina.", "facts": [["Úteros incluidos", "6"], ["Cuellos uterinos", "15"], ["Módulos opcionales", "S504.1 · .2 · .3 · .5"], ["Procedimientos", "12"]], "hero": "portada.jpg", "heroAlt": "Simulador ginecológico ZOE sobre su base metálica", "source": "Basada en la Guía del usuario del simulador ginecológico ZOE® S504.100 (versión 13.5.1) de Gaumard Scientific.", "start": [{"t": "Antes de cada sesión", "ol": ["Los estudiantes se lavan las manos antes de ponerse los guantes; manipula siempre el simulador con manos limpias.", "Humedece dedos e instrumentos con unas gotas de agua jabonosa diluida, o usa solo lubricante a base de agua (KY Jelly®).", "Palpa con las yemas de los dedos, nunca con las uñas: la piel del abdomen se desgarra.", "Trátalo con la misma delicadeza que a una paciente real."]}, {"t": "Cómo viene armado", "ul": ["Cuello uterino normal, introito con vagina y recto, útero antevertido con ligamentos redondos, ligamentos ováricos, fimbrias y ovarios.", "Los úteros cuelgan en la pelvis con tubos de goma intercambiables que simulan los ligamentos redondos; acortarlos lleva el fondo uterino hacia adelante y facilita la palpación.", "La mitad superior transparente del útero deja ver el DIU o la sonda uterina.", "La <b>ventana de visualización</b> del extremo posterior permite mirar la pelvis, comprobar qué palpa el alumno y cambiar úteros sin quitar la piel."]}, {"t": "Contenido del equipo", "ul": ["Úteros no gestantes antevertido y retrovertido (mitad transparente)", "Útero gestante de 6–8 semanas y útero posparto de 20 semanas con trompas", "Kit de AMV: úteros de 6–8 y 10–12 semanas con 3 cuellos permeables cada uno", "5 cuellos permeables normales y 4 no permeables (normal multípara y patológicos)", "10 trompas de Falopio para oclusión, 2 ovarios, 2 fimbrias, ligamentos", "Introito extraíble con vagina y recto, pasadores y anillos de bloqueo", "Talco, linterna, bolsa de transporte y CD de examen pélvico"]}, {"t": "Repuestos (código de pieza)", "ul": ["Piel exterior: 504.100.001 · Inserto de espuma: 504.100.002", "Introito con vagina y recto + 4 pasadores: 504.100.004", "Útero antevertido: 504.100.005 · retrovertido: 504.100.011", "Útero posparto 20 semanas: 504.100.008 · Kit de embarazo temprano: 504.100.014", "Cuellos anormales (4): 504.100.009 · normales (5): 504.100.010", "Trompas (10): 504.100.012 · Anillos cervicales (2): 504.100.015 · Pasadores (2): 504.100.016", "Reparación de la piel: RA-504.100"]}], "quickTitle": "Instrumental y piezas intercambiables", "quick": [{"t": "Instrumental recomendado", "h": ["Procedimiento", "Instrumento"], "rows": [["Examen con espéculo", "Bivalvo Pederson o Graves mediano"], ["Pinzamiento cervical", "Tenáculo de 1 o 2 dientes"], ["DIU de intervalo", "Insertador de DIU, histerómetro"], ["DIU posparto 48 h", "Pinza placentaria Kelly larga y curva, DIU T-380"], ["DIU posparto 10 min", "Guante largo hasta el codo, DIU T-380"], ["Laparoscopia", "Laprocator® y anillo de Falope"], ["Diafragma (introito S504.3)", "75 mm"]]}, {"t": "Úteros y cuellos intercambiables", "h": ["Pieza", "Uso"], "rows": [["Útero antevertido / retrovertido", "Bimanual, DIU, histerometría"], ["Útero gestante 6–8 semanas", "Tamaño uterino, AMV"], ["Útero 10–12 semanas", "AMV"], ["Útero posparto 20 semanas", "Oclusión tubárica posparto, DIU posparto"], ["4 cuellos no permeables", "Normal multípara y 3 patológicos"], ["5 cuellos permeables", "Cuello normal, tenáculo"]]}], "cats": [{"t": "Armado del simulador", "items": [{"id": "piel", "t": "Retirar y colocar la piel", "sub": "Para cambiar piezas o limpiar el interior", "img": "piel.jpg", "alt": "Retiro de la piel del simulador ZOE", "blocks": [{"t": "Retirar", "ol": ["Separa con cuidado la piel desde el extremo posterior (el de la ventana) levantándola.", "Retira la piel de cada pierna.", "Termina de quitarla por completo."]}, {"t": "Colocar", "ol": ["Ajusta primero la piel sobre cada pierna.", "Deslízala hacia arriba y sobre la parte posterior del torso."]}], "warn": ["No hagas fuerza al retirar la piel.", "Las incisiones infraumbilical y de minilaparotomía están reforzadas (parches blancos) para que no se desgarren.", "Con práctica, todos los cambios se pueden hacer sin quitar la piel."]}, {"id": "cuello", "t": "Cambiar cuello uterino y útero", "sub": "Anillo estrecho (cuello) y anillo ancho (cuerpo uterino)", "img": "cuello.jpg", "alt": "Cambio del cuello uterino", "blocks": [{"t": "Cambiar el cuerpo uterino", "ol": ["Introduce dos dedos en la vagina y sujeta el cuello.", "Con la otra mano desenrosca el anillo de bloqueo ancho.", "Separa el cuerpo uterino y coloca otro."]}, {"t": "Cambiar el cuello", "ol": ["Separa primero el cuerpo uterino.", "Desenrosca el anillo estrecho (gris oscuro).", "Retira el cuello y coloca otro."]}]}, {"id": "introito", "t": "Cambiar el introito con vagina y recto", "sub": "4 pasadores de bloqueo", "img": "introito.jpg", "alt": "Cambio del introito vaginal", "blocks": [{"t": "Pasos", "ol": ["Tira de los 4 pasadores de bloqueo para soltar el introito.", "Coloca el nuevo introito introduciendo los 4 pasadores en los orificios de la pelvis.", "Empújalos con los dedos hasta que queden firmes."]}]}]}, {"t": "Examen ginecológico", "items": [{"id": "especulo", "t": "Examen con espéculo", "sub": "Espéculo bivalvo mediano", "img": "especulo.jpg", "alt": "Inserción de un espéculo bivalvo", "blocks": [{"t": "Qué permite", "ul": ["Inspección de vulva y vagina.", "Reconocer cuellos normales y anormales con los cuellos intercambiables."]}, {"t": "Técnica", "ol": ["Usa un espéculo Pederson o Graves mediano.", "Humedece las puntas de las valvas con agua jabonosa diluida para no desgarrar los labios.", "Introduce el espéculo cerrado y ábrelo para exponer el cuello."]}], "clinic": ["Citología cervical: muestra de la zona de transformación (exocérvix con espátula y endocérvix con cepillo).", "En Brasil, el tamizaje con Papanicolaou se hace de los 25 a los 64 años, cada 3 años tras dos resultados anuales normales."], "warn": ["No uses povidona yodada ni soluciones con yodo: manchan el simulador."]}, {"id": "bimanual", "t": "Examen bimanual", "sub": "Posición y tamaño de útero, trompas y ovarios", "img": "bimanual.jpg", "alt": "Examen bimanual en el simulador", "blocks": [{"t": "Técnica", "ul": ["Palpa con las yemas de la mano abdominal, nunca con las uñas.", "Practica con útero antevertido, retrovertido y gestante.", "El instructor puede meter la mano por la ventana para comprobar qué palpa el alumno."]}], "clinic": ["Describe posición (anteversoflexión es la más frecuente), tamaño, consistencia, movilidad y dolor a la movilización cervical.", "Dolor a la movilización del cuello y anexial sugiere enfermedad inflamatoria pélvica."]}]}, {"t": "Anticoncepción y procedimientos", "items": [{"id": "diu", "t": "Inserción y retiro de DIU de intervalo", "sub": "Tenáculo, histerometría e inserción visibles en el útero transparente", "img": "diu.jpg", "alt": "Inserción de DIU en el simulador", "blocks": [{"t": "Pasos", "ol": ["Examen con espéculo y bimanual.", "Pinza el cuello con un tenáculo de un diente (en cuellos permeables se puede aplicar repetidamente).", "Limpia el cuello con agua jabonosa diluida para que pase el histerómetro.", "Mide la cavidad con el histerómetro e inserta el DIU por el orificio cervical.", "Para una demostración, retira la piel para que se vea el útero."]}], "warn": ["Al retirar un tenáculo dentado, asegúrate de que los dientes estén libres del cuello para no desgarrarlo."], "clinic": ["Contraindicaciones del DIU de cobre: embarazo, EPI o cervicitis actual, sangrado uterino no explicado, cáncer de cuello o endometrio, malformación de la cavidad.", "Histerometría habitual: 6–9 cm."]}, {"id": "oclusion", "t": "Oclusión tubárica", "sub": "Minilaparotomía y laparoscopia operatoria", "img": "laparoscopia.jpg", "alt": "Laparoscopia operatoria en el simulador", "blocks": [{"t": "Minilaparotomía", "ul": ["Pasa un gancho tubárico por la incisión para capturar la trompa.", "Exteriorízala, ocluye y vuelve a introducirla.", "Posparto: con el útero de 20 semanas, incisión infraumbilical de 3–4 cm."]}, {"t": "Laparoscopia", "ul": ["Identifica la trompa y sujétala con el brazo del Laprocator® de punción única.", "Atrapa un asa de 2–3 cm en forma de U y coloca el anillo de Falope.", "Requiere práctica y coordinación ojo-mano."]}], "clinic": ["La ligadura tubárica es un método permanente: requiere consentimiento informado y asesoría sobre alternativas reversibles."]}, {"id": "amv", "t": "Aspiración manual endouterina (AMV)", "sub": "Úteros de 6–8 y 10–12 semanas", "img": "uteros.jpg", "alt": "Úteros y cuellos del kit de AMV", "blocks": [{"t": "Uso", "ul": ["Cada útero tiene 3 cuellos permeables.", "Practica la medición del útero gestante y la AMV en el aborto incompleto."]}], "clinic": ["La AMV es el método recomendado por la OMS para la evacuación uterina en el primer trimestre (hasta 12–14 semanas)."]}]}, {"t": "Módulos opcionales", "items": [{"id": "palpacion", "t": "Kit de palpación (S504.1)", "sub": "7 úteros con morfología externa normal y anormal", "img": "palpacion.jpg", "alt": "Úteros del kit de palpación", "blocks": [{"t": "Úteros", "ol": ["Normal con retroversión moderada", "Miomatoso", "Salpingitis derecha", "Salpingitis izquierda", "Anteversoflexión marcada", "Deformado con salpingitis derecha", "Quiste de ovario izquierdo"]}], "clinic": ["El mioma es el tumor pélvico más frecuente de la mujer; agranda el útero de forma irregular."]}, {"id": "histeroscopia", "t": "Kit de histeroscopia (S504.2)", "sub": "7 úteros con patología interna", "img": "histeroscopia.jpg", "alt": "Úteros del kit de histeroscopia", "blocks": [{"t": "Úteros", "ol": ["Cavidad sana", "Poliposis endometrial", "Hiperplasia endometrial", "Mioma pediculado torsionado y descamado", "Carcinoma endometrial temprano", "Carcinoma endometrial avanzado", "Carcinoma del fondo"]}], "clinic": ["Sangrado posmenopáusico: descartar carcinoma de endometrio (ecografía transvaginal y biopsia si el endometrio mide más de 4 mm)."]}, {"id": "posparto48", "t": "DIU posparto de 48 horas (S504.3)", "sub": "Útero de 20 semanas con cuello en pico de pato", "img": "posparto48.jpg", "alt": "Útero posparto del módulo S504.3", "blocks": [{"t": "Inserción con pinza", "ol": ["Instala el útero posparto: sujeta el cuello y enrosca el anillo ancho.", "Lubrica con agua jabonosa una pinza placentaria Kelly larga y curva.", "Sujeta el DIU T-380 y avanza por la vagina, el cuello y el útero hasta el fondo.", "Suelta el DIU en el fondo, retira la pinza y corta el hilo."]}, {"t": "Otros usos del introito S504.3", "ul": ["Medir y colocar un diafragma de 75 mm.", "Demostrar la colocación del condón femenino."]}], "clinic": ["El DIU posparto se coloca en los primeros 10 minutos tras la placenta o dentro de las 48 h; si no, después de 4 semanas."]}, {"id": "posparto10", "t": "DIU posparto de 10 minutos (S504.5)", "sub": "Inserción manual tras el alumbramiento", "img": "posparto10.jpg", "alt": "Útero posparto del módulo S504.5", "blocks": [{"t": "Inserción manual", "ol": ["Coloca el conjunto introito-útero del módulo.", "Usa un guante largo hasta el codo, lubricado con agua jabonosa.", "Sujeta el DIU T-380 entre índice y medio y avanza la mano hasta el fondo uterino.", "Empuja el DIU a través de la trampa cónica del fondo, suéltalo y retira la mano.", "Corta el hilo si hace falta."]}]}]}], "care": [{"t": "Para evitar manchas", "ul": ["No apoyes la piel sobre superficies sucias ni papel de diario.", "No lo envuelvas en material impreso, plástico de color ni film transparente.", "Bolígrafos, tinta y marcadores manchan la piel de forma permanente.", "No uses povidona yodada (Betadine®) ni soluciones con yodo."]}, {"t": "Limpieza y almacenamiento", "ul": ["Al terminar, limpia el simulador y retira todo resto de lubricante.", "Lava con detergente suave o agua y jabón; nunca con abrasivos.", "Una vez seco, aplica un poco de talco para devolverle la textura de piel.", "Guárdalo en su contenedor y bolsa de transporte, a temperatura ambiente.", "No guardes objetos afilados junto al simulador."]}]};
+</script>
+<script>
+(function () {
+  var S = window.SIM;
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  function $(id) { return document.getElementById(id); }
+  function li(arr) { return arr.map(function (x) { return '<li>' + x + '</li>'; }).join(''); }
+
+  $('h-eyebrow').textContent = S.eyebrow;
+  $('h-title').innerHTML = S.titleHtml;
+  $('h-lede').textContent = S.lede;
+  $('h-facts').innerHTML = S.facts.map(function (f) { return '<li><span class="eyebrow">' + f[0] + '</span><b>' + f[1] + '</b></li>'; }).join('');
+  $('h-img').src = 'img/' + S.hero; $('h-img').alt = S.heroAlt;
+  $('f-src').textContent = S.source;
+
+  var toc = [['inicio', 'Antes de empezar', 'Inicio'], ['referencia', 'Referencia rápida', 'Referencia'], ['procedimientos', 'Procedimientos', 'Procedimientos'], ['omni', 'Tableta OMNI 2', 'OMNI 2'], ['problemas', 'Solución de problemas', 'Problemas'], ['cuidado', 'Cuidado y limpieza', 'Cuidado']];
+  if (!S.omni || !S.omni.length) { $('omni').hidden = true; S.omni = []; }
+  if (!S.trouble || !S.trouble.length) { $('problemas').hidden = true; S.trouble = []; }
+  toc = toc.filter(function (t) { return !$(t[0]).hidden; });
+  var nums = document.querySelectorAll('main > section:not([hidden]) .section-head .eyebrow');
+  nums.forEach(function (e, i) { e.textContent = String(i + 1).padStart(2, '0') + ' · ' + e.textContent.split(' · ')[1]; });
+  $('toc').innerHTML = toc.map(function (t) { return '<li><a href="#' + t[0] + '">' + t[1] + '</a></li>'; }).join('');
+  $('mtoc').innerHTML = toc.map(function (t) { return '<a href="#' + t[0] + '">' + t[2] + '</a>'; }).join('');
+
+  $('inicio-cols').innerHTML = S.start.map(function (c) { return '<div class="card"><h3>' + c.t + '</h3>' + (c.ol ? '<ol>' + li(c.ol) + '</ol>' : '<ul>' + li(c.ul) + '</ul>') + (c.note ? '<p class="muted" style="font-size:var(--step--1)">' + c.note + '</p>' : '') + '</div>'; }).join('');
+
+  if (S.quickTitle) $('quick-title').textContent = S.quickTitle;
+  $('quick').innerHTML = S.quick.map(function (q) {
+    return '<div class="table-wrap"><table><caption>' + q.t + '</caption><thead><tr>' + q.h.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      q.rows.map(function (r) { return '<tr><td>' + r[0] + '</td>' + r.slice(1).map(function (c) { return '<td' + (String(c).length <= 18 ? ' class="num"' : '') + '>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  }).join('');
+
+  var done = store.get(S.key + '-done', {});
+  var procsEl = $('procs'), total = 0;
+  S.cats.forEach(function (cat) {
+    var wrap = document.createElement('div'); wrap.className = 'cat';
+    var h = '<h3>' + cat.t + ' <small>' + cat.items.length + ' procedimiento' + (cat.items.length > 1 ? 's' : '') + '</small></h3>';
+    cat.items.forEach(function (p) {
+      total++;
+      var thumb = p.img ? '<img src="img/' + p.img + '" alt="" loading="lazy" width="72" height="54">' : '<span class="thumb-empty"></span>';
+      h += '<details class="proc" id="p-' + p.id + '"><summary>' + thumb + '<span class="t"><h4>' + p.t + '</h4><small>' + p.sub + '</small></span><span class="badge" data-badge></span></summary><div class="pbody">';
+      if (p.specs) h += '<div class="specs">' + p.specs.map(function (s) { return '<div class="spec"><span>' + s[0] + '</span><b>' + s[1] + '</b></div>'; }).join('') + '</div>';
+      h += '<div class="pgrid' + (p.img ? ' has-img' : '') + '"><div class="block" style="gap:16px">';
+      (p.blocks || []).forEach(function (b) { h += '<div class="block"><p class="eyebrow">' + b.t + '</p>' + (b.ol ? '<ol>' + li(b.ol) + '</ol>' : '<ul>' + li(b.ul) + '</ul>') + '</div>'; });
+      h += '</div>' + (p.img ? '<figure><img src="img/' + p.img + '" alt="' + p.alt + '" loading="lazy"><figcaption>Foto del manual del fabricante.</figcaption></figure>' : '') + '</div>';
+      if (p.warn) h += '<div class="warn"><b>Atención</b>' + p.warn.map(function (w) { return '<span>' + w + '</span>'; }).join('') + '</div>';
+      if (p.clinic) h += '<div class="clinic"><p class="label">Punto clínico · Revalida</p><ul>' + li(p.clinic) + '</ul></div>';
+      h += '<label class="done-toggle" for="d-' + p.id + '"><input type="checkbox" id="d-' + p.id + '"' + (done[p.id] ? ' checked' : '') + '> Practicado</label></div></details>';
+    });
+    wrap.innerHTML = h; procsEl.appendChild(wrap);
+  });
+  function update() {
+    var n = 0;
+    document.querySelectorAll('.proc').forEach(function (d) {
+      var id = d.id.slice(2), on = !!done[id]; if (on) n++;
+      var b = d.querySelector('[data-badge]'); b.textContent = on ? 'Practicado' : 'Pendiente'; b.classList.toggle('done', on);
+    });
+    $('prog-txt').textContent = n + ' de ' + total + ' procedimientos practicados';
+    $('prog-bar').style.width = (total ? Math.round(n * 100 / total) : 0) + '%';
+  }
+  procsEl.addEventListener('change', function (e) {
+    if (e.target.type !== 'checkbox') return;
+    var id = e.target.id.slice(2);
+    if (e.target.checked) done[id] = true; else delete done[id];
+    store.set(S.key + '-done', done); update();
+  });
+  $('reset').addEventListener('click', function () {
+    done = {}; store.set(S.key + '-done', done);
+    procsEl.querySelectorAll('input[type=checkbox]').forEach(function (c) { c.checked = false; }); update();
+  });
+  update();
+
+  $('omni-cols').innerHTML = S.omni.map(function (c) { return '<div class="card"><h3>' + c.t + '</h3>' + (c.p ? '<p style="font-size:var(--step--1)">' + c.p + '</p>' : '') + (c.ol ? '<ol>' + li(c.ol) + '</ol>' : '') + (c.ul ? '<ul>' + li(c.ul) + '</ul>' : '') + (c.img ? '<img src="img/' + c.img + '" alt="' + c.alt + '" loading="lazy" style="max-width:100%;border-radius:8px;border:1px solid var(--line)">' : '') + '</div>'; }).join('');
+  $('trouble').innerHTML = S.trouble.map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>'; }).join('');
+  $('care').innerHTML = S.care.map(function (c) { return '<div class="card"><h3>' + c.t + '</h3><ul>' + li(c.ul) + '</ul></div>'; }).join('');
+})();
+</script>
+
+</html>

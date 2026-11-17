@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guías digitales UPDS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root { --paper:#F1F5F4; --surface:#FFFFFF; --ink:#132226; --muted:#53656A; --line:#D3DDDC; --accent:#0A6A6E; }
+@media (prefers-color-scheme: dark) { :root { --paper:#0D1618; --surface:#142024; --ink:#E2EBEA; --muted:#95A8AA; --line:#283A3E; --accent:#52C0C1; color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:1.0625rem/1.6 "Source Sans 3", "Segoe UI", Arial, sans-serif; }
+.wrap { max-width:960px; margin:0 auto; padding:40px max(16px, env(safe-area-inset-left, 0px)) 64px; display:grid; gap:28px; }
+.eyebrow { font:0.75rem "IBM Plex Mono", monospace; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:0; }
+h1, h2 { font-family:Archivo, Arial, sans-serif; margin:0; line-height:1.15; }
+h1 { font-size:2.2rem; font-weight:800; }
+h2 { font-size:1.25rem; font-weight:600; border-top:2px solid var(--ink); padding-top:12px; }
+p { margin:0; }
+.grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+a.card { display:grid; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px; color:var(--ink); text-decoration:none; }
+a.card:hover, a.card:focus-visible { border-color:var(--accent); outline:none; }
+a.card b { font-family:Archivo, Arial, sans-serif; font-weight:600; font-size:1.1rem; color:var(--accent); }
+a.card span { color:var(--muted); font-size:.92rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:grid;gap:10px">
+    <p class="eyebrow">UPDS · Carrera de Medicina</p>
+    <h1>Guías digitales de laboratorio</h1>
+    <p style="color:var(--muted);max-width:60ch">Guías de uso de los equipos de anatomía y simulación clínica, con pasos, listas de cotejo y puntos clínicos para el Revalida.</p>
+  </div>
+  <h2>Anatomía</h2>
+  <div class="grid">
+    <a class="card" href="anatomage/index.html"><b>Mesa Anatomage Table 12.0</b><span>Interfaz, prácticas guiadas, manuales por sistema con capturas y listas ES–PT, anatomía funcional y quiz.</span></a>
+  </div>
+  <h2>Simulación clínica · Gaumard</h2>
+  <div class="grid">
+    <a class="card" href="gaumard-s117/index.html"><b>Simulador pediátrico S117</b><span>Cuidados del paciente y RCP pediátrica, con OMNI y OMNI 2.</span></a>
+    <a class="card" href="gaumard-s157/index.html"><b>Mike y Michelle S157.250</b><span>Simulador pediátrico multipropósito con acceso subclavio y drenaje torácico.</span></a>
+    <a class="card" href="gaumard-s320/index.html"><b>PEDI Blue S320</b><span>Reanimación neonatal con cianosis SmartSkin y cateterismo umbilical.</span></a>
+    <a class="card" href="gaumard-s504/index.html"><b>ZOE S504.100</b><span>Simulador ginecológico: espéculo, bimanual, DIU, oclusión tubárica y AMV.</span></a>
+  </div>
+</div>
+</body>
+</html>
