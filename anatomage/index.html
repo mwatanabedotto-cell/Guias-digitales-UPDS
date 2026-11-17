@@ -238,6 +238,52 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
 .rules ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: var(--step--1); }
 .do h3 { color: var(--ok); } .dont h3 { color: var(--bad); }
 
+
+/* Disection swatches */
+.swatches { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: var(--step--1); color: var(--muted); }
+.swatches li { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+.swatches i { width: 14px; height: 4px; border-radius: 2px; display: inline-block; transform: translateY(-3px); }
+section > h3 { margin-top: 8px; }
+
+/* Manuales por sistema */
+.sys-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.sys-tab { display: grid; gap: 2px; text-align: left; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; cursor: pointer; min-width: 132px; }
+.sys-tab b { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; display: flex; align-items: center; gap: 8px; }
+.sys-tab b i { width: 8px; height: 8px; border-radius: 50%; }
+.sys-tab small { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.sys-tab[aria-selected="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); }
+.sys-panel { display: grid; gap: 18px; }
+.sys-head { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between; }
+.sys-head h3 .pt { font-size: 0.9rem; }
+.bar { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; width: 100%; }
+.bar > span { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width .2s; }
+.group { border-top: 1px solid var(--line); }
+.group > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; justify-content: space-between; padding: 14px 2px; }
+.group > summary::-webkit-details-marker { display: none; }
+.group > summary h4 { font-size: var(--step-1); display: flex; gap: 10px; align-items: baseline; }
+.group > summary h4::before { content: "+"; font-family: var(--font-mono); color: var(--accent); width: 1ch; }
+.group[open] > summary h4::before { content: "−"; }
+.group > summary .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.group > summary .meta.done { color: var(--ok); }
+.views { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); padding-bottom: 18px; }
+.view { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.view .shot { display: block; width: 100%; padding: 0; border: 0; background: #000; cursor: zoom-in; aspect-ratio: 16 / 9; }
+.view .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.view .vbody { padding: 12px 14px 14px; display: grid; gap: 8px; align-content: start; }
+.view .vtitle { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.view .vtitle h5 { margin: 0; font-family: var(--font-display); font-size: 1rem; font-weight: 600; line-height: 1.25; }
+.view .vcode { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+.chip { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: .05em; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 1px 8px; justify-self: start; }
+.view .checklist label { padding: 3px 6px; }
+
+/* Visor de capturas */
+.viewer { border: 0; padding: 0; background: transparent; max-width: min(1100px, 100vw - 32px); width: 100%; }
+.viewer::backdrop { background: rgba(5, 12, 14, 0.82); }
+.viewer figure { margin: 0; display: grid; gap: 10px; }
+.viewer img { width: 100%; height: auto; border-radius: 8px; background: #000; }
+.viewer figcaption { color: #E2EBEA; display: flex; gap: 12px; justify-content: space-between; align-items: center; font-size: var(--step--1); }
+.viewer button { font: 600 var(--step--1) var(--font-body); background: #E2EBEA; color: #132226; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+
 footer { border-top: 1px solid var(--line); background: var(--surface); }
 footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
 </style>
@@ -247,11 +293,13 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     <div class="masthead-inner">
       <p class="eyebrow">UPDS · Carrera de Medicina · Laboratorio de Anatomía Virtual</p>
       <h1>Mesa de disección virtual <span>Anatomage</span></h1>
-      <p class="lede">Guía práctica para usar la mesa, orientarte en los planos anatómicos y completar seis prácticas guiadas con correlación quirúrgica y temas de alto rendimiento para el Revalida.</p>
+      <p class="lede">Guía práctica para usar la mesa con el software Table 12.0: interfaz, planos, seis prácticas guiadas y los manuales de sistemas con sus capturas, listas de cotejo en español y portugués, correlación quirúrgica y temas de alto rendimiento para el Revalida.</p>
       <ul class="facts">
         <li><span class="eyebrow">Sesión</span><b>50 minutos</b></li>
         <li><span class="eyebrow">Grupo por mesa</span><b>4 a 6 estudiantes</b></li>
         <li><span class="eyebrow">Prácticas</span><b>6 regiones</b></li>
+        <li><span class="eyebrow">Manuales</span><b id="fact-manuales">7 sistemas</b></li>
+        <li><span class="eyebrow">Software</span><b>Table 12.0</b></li>
         <li><span class="eyebrow">Idiomas</span><b>Español · Português</b></li>
       </ul>
       <div class="toolbar">
@@ -279,6 +327,8 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <li><a href="#planos">Planos y cortes</a></li>
         <li><a href="#tc">Ventanas de TC</a></li>
         <li><a href="#practicas">Prácticas guiadas</a></li>
+        <li><a href="#manuales">Manuales por sistema</a></li>
+        <li><a href="#funcional">Anatomía funcional</a></li>
         <li><a href="#autoevaluacion">Autoevaluación</a></li>
         <li><a href="#glosario">Glosario ES–PT</a></li>
         <li><a href="#normas">Normas y cuidado</a></li>
@@ -287,7 +337,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
 
     <main>
       <nav class="mobile-toc" aria-label="Índice rápido">
-        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Prácticas</a><a href="#autoevaluacion">Quiz</a><a href="#glosario">Glosario</a><a href="#normas">Normas</a>
+        <a href="#sesion">Sesión</a><a href="#gestos">Gestos</a><a href="#herramientas">Herramientas</a><a href="#planos">Planos</a><a href="#tc">TC</a><a href="#practicas">Prácticas</a><a href="#manuales">Manuales</a><a href="#funcional">Funcional</a><a href="#autoevaluacion">Quiz</a><a href="#glosario">Glosario</a><a href="#normas">Normas</a>
       </nav>
 
       <!-- 1. Sesión -->
@@ -297,7 +347,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <h2>Cómo se desarrolla una sesión</h2>
         </div>
         <div class="prose">
-          <p>La Anatomage es una mesa con pantalla táctil a tamaño real que muestra cadáveres digitales segmentados a partir de donantes reales, además de una biblioteca de casos con tomografías y resonancias. Permite cortar, ocultar y aislar estructuras sin dañar el material, y repetir la disección tantas veces como haga falta.</p>
+          <p>La Anatomage Table es una mesa con pantalla táctil a tamaño real. Con el software 12.0 incluye seis cadáveres digitales de cuerpo completo obtenidos de donantes reales, un cuerpo sintético, una biblioteca de casos con TC y RM, histología, prosecciones y simulaciones de anatomía funcional. Permite cortar, eliminar y aislar estructuras sin dañar el material, y repetir la disección tantas veces como haga falta.</p>
           <p>Para aprovechar los 50 minutos, llega con la práctica leída y el grupo organizado en roles que rotan cada 10 a 15 minutos.</p>
         </div>
         <div class="phases">
@@ -308,16 +358,16 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
               <li>Lávate o desinféctate las manos.</li>
               <li>Lee los objetivos de la práctica asignada.</li>
               <li>Repartan los roles del grupo.</li>
-              <li>Verifica que la mesa muestre la escena inicial (cadáver completo, sin cortes).</li>
+              <li>Abre <b>Inicio › Cadáveres</b> y verifica que el cuerpo esté completo y sin cortes.</li>
             </ol>
           </div>
           <div class="phase">
             <span class="time">Durante · 40 min</span>
             <h3>Disecar e identificar</h3>
             <ol>
-              <li>Selecciona el cadáver y los sistemas indicados.</li>
+              <li>Selecciona el cadáver y activa los sistemas indicados en <b>Visibilidad</b>.</li>
               <li>Sigue los pasos en la mesa; el guía los lee en voz alta.</li>
-              <li>Identifica cada estructura y márcala en la lista de cotejo.</li>
+              <li>Identifica cada estructura, confírmala con el <b>Asistente de aprendizaje</b> y márcala en la lista de cotejo.</li>
               <li>Discute la correlación clínica antes de pasar a la siguiente.</li>
             </ol>
           </div>
@@ -325,8 +375,8 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
             <span class="time">Después · 5 min</span>
             <h3>Cerrar</h3>
             <ol>
-              <li>Guarda la escena si el docente lo pide.</li>
-              <li>Restaura el cadáver a su estado inicial.</li>
+              <li>Guarda la vista como preajuste si el docente lo pide.</li>
+              <li>Usa <b>Restablecer</b> y deshaz los recortes para dejar el cadáver completo.</li>
               <li>Cierra la sesión de usuario y deja la pantalla limpia.</li>
               <li>Responde la autoevaluación de esta guía.</li>
             </ol>
@@ -345,81 +395,153 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       <section id="gestos">
         <div class="section-head">
           <p class="eyebrow">02 · Interacción</p>
-          <h2>Gestos táctiles básicos</h2>
+          <h2>Gestos táctiles</h2>
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Gesto</th><th>Dedos</th><th>Resultado</th></tr></thead>
+            <thead><tr><th>Dedos</th><th>Gesto</th><th>Resultado en el software</th></tr></thead>
             <tbody>
-              <tr><td>Toque corto sobre una estructura</td><td><span class="gesture"><span class="dot"></span></span></td><td>La selecciona y muestra su nombre.</td></tr>
-              <tr><td>Arrastrar</td><td><span class="gesture"><span class="dot"></span></span></td><td>Rota el modelo en 3D.</td></tr>
-              <tr><td>Pellizcar o separar</td><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Acerca o aleja (zoom).</td></tr>
-              <tr><td>Arrastrar en paralelo</td><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Desplaza el modelo sin rotarlo.</td></tr>
-              <tr><td>Girar dos dedos</td><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Rota el modelo sobre el eje perpendicular a la pantalla.</td></tr>
+              <tr><td><span class="gesture"><span class="dot"></span></span></td><td>Arrastrar</td><td>Rota el cuerpo o el volumen en 3D.</td></tr>
+              <tr><td><span class="gesture"><span class="dot"></span></span></td><td>Toque sobre una estructura</td><td>La selecciona y muestra su nombre. Doble toque abre el <b>menú de acciones</b>.</td></tr>
+              <tr><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Arrastrar</td><td>Desplaza (navega) el modelo sin rotarlo.</td></tr>
+              <tr><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Pellizcar o separar</td><td>Acerca o aleja (zoom).</td></tr>
+              <tr><td><span class="gesture"><span class="dot"></span><span class="dot"></span></span></td><td>Girar</td><td>Gira el volumen en círculo. Solo funciona con <b>Girar</b> activado en Propiedades de la aplicación.</td></tr>
+              <tr><td><span class="gesture"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td><td>Arrastrar hacia arriba o abajo</td><td>Mueve el plano de corte o la sección transversal 2D.</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="note">Los gestos y los nombres de los botones cambian según la versión del software instalado en la mesa. Si algo no responde como se describe aquí, pide al docente o al encargado del laboratorio que te muestre la variante de tu equipo. Toca con la yema del dedo: uñas, bolígrafos o anillos generan toques falsos.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Fuera del software (escritorio de Windows)</th><th>Equivale a</th></tr></thead>
+            <tbody>
+              <tr><td>Pulsar una vez</td><td>Clic del ratón</td></tr>
+              <tr><td>Pulsar dos veces</td><td>Doble clic</td></tr>
+              <tr><td>Mantener pulsado con un dedo</td><td>Clic derecho</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Según la guía de interfaz de la Anatomage Table 12.0. Toca con la yema del dedo: uñas, bolígrafos o anillos generan toques falsos.</p>
       </section>
 
       <!-- 3. Herramientas -->
       <section id="herramientas">
         <div class="section-head">
-          <p class="eyebrow">03 · Software</p>
-          <h2>Herramientas que vas a usar</h2>
+          <p class="eyebrow">03 · Software Table 12.0</p>
+          <h2>Menú principal y herramientas</h2>
         </div>
+        <p class="prose">El icono <b>Inicio</b> abre el menú principal. Desde ahí eliges el tipo de contenido; las herramientas de la barra lateral cambian según el módulo abierto.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Módulo</th><th>Qué contiene</th></tr></thead>
+            <tbody>
+              <tr><td><b>Cadáveres</b></td><td>Seis cadáveres reales de cuerpo completo, un cuerpo sintético y datos de anatomía topográfica de alta resolución. <b>Multi-cuerpo</b> compara la misma región en varios cuerpos.</td></tr>
+              <tr><td><b>Anatomía funcional</b></td><td>Corazón que late, movimiento articular, embarazo, parto y otras simulaciones (ver sección 08).</td></tr>
+              <tr><td><b>Biblioteca de casos</b></td><td>TC y RM de pacientes con patología real y notas de caso; también animales y primates segmentados.</td></tr>
+              <tr><td><b>Histología</b></td><td>Cientos de láminas con varios aumentos y anotaciones interactivas.</td></tr>
+              <tr><td><b>Prosección</b></td><td>Modelos 3D anotados de disecciones profesionales.</td></tr>
+              <tr><td><b>Currículo</b></td><td>Cadáveres y TC preanotados, ordenados por región y por sistema.</td></tr>
+              <tr><td><b>Navegación</b></td><td>Busca contenido por tema y guarda tus propios temas personalizados.</td></tr>
+              <tr><td><b>Abrir archivo</b></td><td>Abre estudios DICOM sin comprimir con cortes 2D y reconstrucción 3D.</td></tr>
+              <tr><td><b>Anatomage Share · Ayuda</b></td><td>Transferencia de archivos con la cuenta de Anatomage, y documentos de instrucciones y soporte.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Explorar y disecar</h3>
         <div class="tools">
           <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 2v20"/></svg>Corte por planos</h4>
-            <p>Corta el cadáver en plano sagital, coronal o axial. Arrastra el control para mover el corte capa por capa.</p>
-            <p class="tip">Úsalo para ver relaciones de profundidad, como un corte de TC.</p>
+            <h4>Herramienta de exploración</h4>
+            <p><b>Eliminar:</b> toca una estructura para retirarla. Con pantalla dividida, las estructuras eliminadas aparecen a la derecha.</p>
+            <p><b>Aislar:</b> el primer toque resalta la estructura; tocar varias veces la aísla.</p>
           </div>
           <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 14 10"/><path d="M14 10l4-6 2 2-6 4"/></svg>Corte libre</h4>
-            <p>Dibuja una línea con el dedo y la mesa corta siguiendo ese trazo, como un bisturí.</p>
-            <p class="tip">Ideal para abrir una ventana en la pared torácica o abdominal.</p>
+            <h4>Disección</h4>
+            <ul class="swatches">
+              <li><i style="background:#D33A2C"></i><span><b>Curva roja:</b> dibuja una región cerrada.</span></li>
+              <li><i style="background:#D33A2C"></i><span><b>Recta roja:</b> toca el lado a disecar y luego las estructuras a eliminar.</span></li>
+              <li><i style="background:#8A3FC4"></i><span><b>Punto a punto (púrpura):</b> dos puntos y un diámetro de corte.</span></li>
+              <li><i style="background:#2E9E4F"></i><span><b>Bisturí verde:</b> región cerrada; toca donde quieras retirar volumen.</span></li>
+            </ul>
           </div>
           <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><path d="M4 4l16 16"/></svg>Ocultar y mostrar</h4>
-            <p>Retira una estructura o un sistema completo para ver lo que está debajo.</p>
-            <p class="tip">Trabaja de superficial a profundo: piel, fascia, músculo, vísceras.</p>
+            <h4>Herramienta de recorte</h4>
+            <p>Aplica un plano de recorte estándar (sagital, coronal, axial) o uno personalizado: dibuja una línea y elige el lado a retirar.</p>
+            <p class="tip">Ajusta el último corte con la barra o arrastrando tres dedos. Tiene opciones para voltear y restaurar.</p>
           </div>
           <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6" stroke-dasharray="2 2"/></svg>Transparencia</h4>
-            <p>Vuelve semitransparente un órgano para ver estructuras internas sin perder la referencia.</p>
-            <p class="tip">Útil para ver la vía biliar a través del hígado.</p>
+            <h4>Menú de acciones</h4>
+            <p>Selecciona una estructura (o tócala dos veces) para: activar o desactivar, aplicar <b>transparencia</b> con barra deslizante, <b>color uniforme</b> o aleatorio, y <b>Sin cortar</b>.</p>
+            <p class="tip">«Sin cortar» protege una estructura de los cortes: útil para dejar intacto un nervio mientras retiras músculo.</p>
           </div>
           <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12 12 20 3 11V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Identificar y etiquetar</h4>
-            <p>Muestra el nombre de la estructura seleccionada; algunas versiones también dan su descripción.</p>
-            <p class="tip">Antes de tocar, di el nombre en voz alta y luego verifica.</p>
+            <h4>Visibilidad y complejidad</h4>
+            <p>Activa o desactiva sistemas, estructuras y anotaciones; separa mitades derecha e izquierda. <b>Niveles de complejidad:</b> básico, intermedio y avanzado.</p>
           </div>
           <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg>Aislar</h4>
-            <p>Deja visible solo la estructura seleccionada para estudiarla desde todos los ángulos.</p>
-            <p class="tip">Rota el órgano aislado para reconocer sus caras y bordes.</p>
-          </div>
-          <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg>Deshacer y restaurar</h4>
-            <p>Revierte el último paso o devuelve el cadáver a su estado completo.</p>
-            <p class="tip">Restaura siempre al terminar, para el siguiente grupo.</p>
-          </div>
-          <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>Anotar</h4>
-            <p>Dibuja o escribe sobre la imagen para señalar una estructura al grupo.</p>
-            <p class="tip">Las anotaciones no reemplazan tus apuntes.</p>
-          </div>
-          <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg>Medir</h4>
-            <p>Mide distancias y ángulos, sobre todo en los estudios de imagen de la biblioteca de casos.</p>
-            <p class="tip">Compara medidas reales, por ejemplo el diámetro de la aorta.</p>
-          </div>
-          <div class="tool">
-            <h4><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Biblioteca de casos</h4>
-            <p>Estudios de TC y RM con patología real, renderizados en 3D o por cortes.</p>
-            <p class="tip">Relaciona la anatomía normal con la imagen patológica.</p>
+            <h4>Barras deslizantes</h4>
+            <p>Retiran grupos de estructuras capa por capa. Con <b>Grupo de ramas</b> eliges arterias, venas o nervios y recorres cada región.</p>
+            <p class="tip">En TC y RM ajustan el brillo y el contraste del filtro.</p>
           </div>
         </div>
+
+        <h3>Aprender</h3>
+        <div class="tools">
+          <div class="tool">
+            <h4>Asistente de aprendizaje</h4>
+            <p>Actívalo y toca una estructura para ver su origen, inserción, irrigación, inervación, acción y función.</p>
+            <p class="tip">Es la herramienta clave para estudiar los manuales de sistemas (sección 07).</p>
+          </div>
+          <div class="tool">
+            <h4>Orígenes, inserciones y puntos óseos</h4>
+            <p>Resalta en un hueso las áreas de origen e inserción muscular y sus puntos de referencia (solo huesos).</p>
+          </div>
+          <div class="tool">
+            <h4>Herramientas cardiovasculares</h4>
+            <p><b>Flujo sanguíneo</b> en un vaso o en todo el cuerpo, <b>desarrollo vascular</b> (el vaso crece desde su origen) y <b>corazón en movimiento</b>.</p>
+          </div>
+          <div class="tool">
+            <h4>Esquemas y ultrasonido</h4>
+            <p>Diagramas simplificados de vasos, nervios y linfáticos. La herramienta de ultrasonido simula la imagen ecográfica sincronizada con el corte 2D.</p>
+          </div>
+          <div class="tool">
+            <h4>Diseños de pantalla</h4>
+            <p>Solo 3D, 3D + 2D, o los tres planos 2D lado a lado. Incluye <b>sobrevuelo</b> (recorrido por el interior) y <b>visor de planos curvos</b>.</p>
+          </div>
+          <div class="tool">
+            <h4>Preferencias</h4>
+            <p><b>Pronunciación</b> del nombre al tocar la estructura, <b>Dual Res</b> (más resolución al hacer zoom) y <b>Modesty</b>, que oculta los órganos reproductivos.</p>
+          </div>
+        </div>
+
+        <h3>Señalar, medir y evaluar</h3>
+        <div class="tools">
+          <div class="tool">
+            <h4>Orientación del volumen</h4>
+            <p>Coloca el cuerpo en vista coronal, sagital, axial o rotada 90°. Tocar otra vez invierte la vista; <b>1:1</b> muestra el tamaño real.</p>
+          </div>
+          <div class="tool">
+            <h4>Mediciones</h4>
+            <p>Mediciones lineales, angulares, de área y de perfil curvo, en 3D o en la imagen 2D.</p>
+          </div>
+          <div class="tool">
+            <h4>Bolígrafo, puntero y pines</h4>
+            <p>El bolígrafo escribe y dibuja flechas en 2D (no sigue a las estructuras). Los <b>pines</b> son marcadores 3D numerados que sí se quedan sobre la estructura.</p>
+          </div>
+          <div class="tool">
+            <h4>Preajustes</h4>
+            <p>Vistas prediseñadas del cadáver por tema. Puedes guardar la vista actual como preajuste, ordenarlos en carpetas y exportarlos a USB (VPF).</p>
+            <p class="tip">Las capturas de la sección 07 son preajustes de la mesa.</p>
+          </div>
+          <div class="tool">
+            <h4>Modo cuestionario</h4>
+            <p>Tipos: Elígeme, Tarjetas, Resaltar y Opción múltiple. Cualquier preajuste se convierte en cuestionario. <b>Modo juego</b> y <b>torneo</b> para varios jugadores.</p>
+          </div>
+          <div class="tool">
+            <h4>Captura y lecciones</h4>
+            <p>Captura de pantalla con o sin iconos. La <b>herramienta de lecciones</b> graba lecciones interactivas en la mesa.</p>
+          </div>
+        </div>
+        <p class="note">Para dejar la mesa como la encontraste usa <b>Restablecer</b>, que deshace colores, transparencias y marcas de todo el cuerpo.</p>
       </section>
 
       <!-- 4. Planos -->
@@ -428,7 +550,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <p class="eyebrow">04 · Orientación</p>
           <h2>Planos anatómicos y cortes</h2>
         </div>
-        <p class="prose">La mesa siempre presenta el cadáver en posición anatómica. Elige un plano para ver qué parte del cuerpo separa y cómo se verá en pantalla.</p>
+        <p class="prose">La mesa presenta el cadáver en posición anatómica. El botón <b>Orientación del volumen</b> lo coloca en vista coronal, sagital o axial, y la <b>Herramienta de recorte</b> corta en el plano elegido; arrastra tres dedos para mover el corte. Elige un plano para ver qué separa y cómo se verá en pantalla.</p>
         <div class="planes">
           <svg id="plane-svg" viewBox="0 0 360 380" role="img" aria-labelledby="plane-title">
             <title id="plane-title">Volumen del cuerpo con el plano de corte seleccionado</title>
@@ -492,26 +614,72 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         <div id="practice-list" style="display:grid;gap:14px"></div>
       </section>
 
-      <!-- 7. Quiz -->
+      <!-- 7. Manuales por sistema -->
+      <section id="manuales">
+        <div class="section-head">
+          <p class="eyebrow">07 · Manuales Anatomage</p>
+          <h2>Manuales por sistema</h2>
+        </div>
+        <div class="prose">
+          <p>Cada tarjeta es un preajuste de la mesa: abre el mismo preajuste, compara con la captura e identifica las estructuras. Las etiquetas de las capturas están en inglés, como aparecen en la mesa; la lista de cotejo da el nombre en español y en portugués.</p>
+          <p class="muted">Toca una captura para verla ampliada. Tu avance se guarda en este navegador.</p>
+        </div>
+        <div class="sys-tabs" role="tablist" aria-label="Sistema" id="sys-tabs"></div>
+        <div id="sys-panels"></div>
+      </section>
+
+      <!-- 8. Anatomía funcional -->
+      <section id="funcional">
+        <div class="section-head">
+          <p class="eyebrow">08 · Simulaciones</p>
+          <h2>Anatomía funcional</h2>
+        </div>
+        <p class="prose">Se abre desde <b>Inicio › Anatomía funcional</b>. Son simulaciones de fisiología y procedimientos: úsalas después de identificar la anatomía estática.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Módulo</th><th>Qué hace en la mesa</th><th>Úsalo para</th></tr></thead>
+            <tbody>
+              <tr><td><b>Cardiología</b></td><td>Corazón latiendo con ECG de 12 derivaciones, diagrama de Wiggers, flujo sanguíneo, conducción, cámara lenta y condiciones cardíacas comparadas con el ritmo sinusal.</td><td>Relacionar el ECG con el ciclo cardíaco y reconocer arritmias.</td></tr>
+              <tr><td><b>Cateterismo</b></td><td>Eliges procedimiento y trayectoria y avanzas paso a paso; visor de angiogramas.</td><td>Accesos vasculares y anatomía coronaria en angiografía.</td></tr>
+              <tr><td><b>Flujo de nervios</b></td><td>Toca un dermatoma o un músculo para ver su vía nerviosa; mapas de áreas de Brodmann y áreas funcionales; herramienta de ACV.</td><td>Dermatomas, miotomas y territorios del accidente cerebrovascular.</td></tr>
+              <tr><td><b>Broncoscopia</b></td><td>Arrastra para avanzar o retroceder por la vía aérea, dirige el broncoscopio y agrega patología respiratoria.</td><td>Árbol bronquial segmentario.</td></tr>
+              <tr><td><b>Colonoscopia y endoscopia</b></td><td>Recorrido por colon y estómago con patologías, iluminación del endoscopio y torsión.</td><td>Anatomía endoscópica y lesiones de mucosa.</td></tr>
+              <tr><td><b>Embarazo y parto</b></td><td>Fases del parto con reproducción, transparencia y corte sagital; ECG materno y fetal; circulación fetal en esquemas.</td><td>Mecanismo del parto y circulación fetal.</td></tr>
+              <tr><td><b>Anatomía del desarrollo</b></td><td>Etapas embrionarias 13 a 23, en conjunto o una por una.</td><td>Embriología.</td></tr>
+              <tr><td><b>Kinesiología y cuerpo cinemático</b></td><td>Movimientos de cadera, rodilla y hombro con los músculos activos resaltados; ángulo, trayectoria y duración del movimiento.</td><td>Repasar las vistas de acción del sistema muscular.</td></tr>
+              <tr><td><b>Expresiones faciales</b></td><td>Músculos activos en cada expresión; pantalla dividida piel y músculo.</td><td>Exploración del nervio facial.</td></tr>
+              <tr><td><b>Aplicaciones oculares</b></td><td>Movimientos oculares, parámetros ópticos, tabla optométrica y lentes.</td><td>Músculos extrínsecos y pares III, IV y VI.</td></tr>
+              <tr><td><b>Fisiología del oído</b></td><td>Recorrido del sonido, cambios de presión y equilibrio (canales semicirculares y vestíbulo).</td><td>Audición y vértigo.</td></tr>
+              <tr><td><b>Fisiología renal</b></td><td>Sustancias filtradas en 3D e histología, con las etapas de filtración.</td><td>Fisiología de la nefrona.</td></tr>
+              <tr><td><b>Homeostasis</b></td><td>Regulación de la glucosa en sangre por etapas y efectos de distintas condiciones.</td><td>Insulina, glucagón y diabetes.</td></tr>
+              <tr><td><b>Radiología y oncología radioterápica</b></td><td>Simula una TC de una región; procedimientos de radioterapia con visor 2D y radio del haz.</td><td>Correlación anatomía e imagen.</td></tr>
+              <tr><td><b>Vías, dental e inyección</b></td><td>Procesos fisiológicos paso a paso y personalizables; arco dental 3D o radiografía; procedimientos de inyección y medicina estética.</td><td>Repaso guiado de procesos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Según la guía de interfaz de anatomía funcional de la Table 12.0. Los módulos disponibles dependen de la licencia instalada en la mesa.</p>
+      </section>
+
+      <!-- 9. Quiz -->
       <section id="autoevaluacion">
         <div class="section-head">
-          <p class="eyebrow">07 · Repaso</p>
+          <p class="eyebrow">09 · Repaso</p>
           <h2>Autoevaluación</h2>
         </div>
         <div class="quiz-top">
-          <p class="muted">Doce preguntas tipo examen. Elige una respuesta para ver la explicación.</p>
+          <p class="muted">Preguntas tipo examen de las prácticas y los manuales. Elige una respuesta para ver la explicación.</p>
           <div style="display:flex;gap:14px;align-items:center">
-            <span class="score" id="score">Aciertos <b>0</b> / 12</span>
+            <span class="score" id="score">Aciertos <b>0</b> / 20</span>
             <button type="button" class="reset-btn" id="quiz-reset">Reiniciar</button>
           </div>
         </div>
         <div class="quiz" id="quiz"></div>
       </section>
 
-      <!-- 8. Glosario -->
+      <!-- 10. Glosario -->
       <section id="glosario">
         <div class="section-head">
-          <p class="eyebrow">08 · Terminología</p>
+          <p class="eyebrow">10 · Terminología</p>
           <h2>Glosario español – português</h2>
         </div>
         <p class="prose">Términos que cambian entre los dos idiomas y que suelen confundirse en el laboratorio y en los exámenes.</p>
@@ -528,10 +696,10 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
         </div>
       </section>
 
-      <!-- 9. Normas -->
+      <!-- 11. Normas -->
       <section id="normas">
         <div class="section-head">
-          <p class="eyebrow">09 · Laboratorio</p>
+          <p class="eyebrow">11 · Laboratorio</p>
           <h2>Normas de uso y cuidado del equipo</h2>
         </div>
         <div class="rules">
@@ -565,11 +733,19 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
 
 <footer>
   <div class="pad"><div>
-    <p>Guía de apoyo para el Laboratorio de Anatomía Virtual · UPDS. Complementa, no reemplaza, las indicaciones del docente ni el manual del fabricante.</p>
-    <p>Anatomage es una marca de su respectivo titular. Esta guía es material docente independiente.</p>
+    <p>Guía de apoyo para el Laboratorio de Anatomía Virtual · UPDS. Basada en las guías de interfaz de la Anatomage Table 12.0 y en los manuales de sistemas del fabricante; complementa, no reemplaza, las indicaciones del docente.</p>
+    <p>Anatomage es una marca de su respectivo titular. Las capturas de los preajustes provienen de los manuales del fabricante y se usan como material interno del laboratorio.</p>
   </div></div>
 </footer>
 
+<dialog class="viewer" id="viewer" aria-label="Captura ampliada">
+  <figure>
+    <img id="viewer-img" alt="">
+    <figcaption><span id="viewer-cap"></span><button type="button" id="viewer-close">Cerrar</button></figcaption>
+  </figure>
+</dialog>
+
+<script src="sistemas.js"></script>
 <script>
 (function () {
   var store = {
@@ -650,9 +826,9 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       objectives: 'Reconocer las estructuras del mediastino, la anatomía externa del corazón y los puntos de referencia para procedimientos torácicos.',
       steps: [
         'Selecciona un cadáver completo y activa los sistemas <b>cardiovascular</b>, <b>respiratorio</b> y <b>esquelético</b>.',
-        'Oculta piel, músculos pectorales y la parte anterior de las costillas con <b>corte libre</b>, abriendo una ventana desde las clavículas hasta el xifoides.',
-        'Haz un <b>corte axial</b> a nivel del ángulo esternal (T4–T5): busca el arco aórtico y la bifurcación traqueal.',
-        'Vuelve transparentes los pulmones para seguir los nervios frénico y vago a ambos lados del hilio.',
+        'Abre una ventana desde las clavículas hasta el xifoides con <b>Disección</b> (curva roja o bisturí verde) y retira piel, pectorales y parrilla costal anterior.',
+        'Con la <b>Herramienta de recorte</b> en plano axial, lleva el corte al ángulo esternal (T4–T5) arrastrando tres dedos: busca el arco aórtico y la bifurcación traqueal.',
+        'Aplica <b>transparencia</b> a los pulmones desde el menú de acciones y sigue los nervios frénico y vago a ambos lados del hilio.',
         '<b>Aísla</b> el corazón y rótalo para ver las caras esternocostal y diafragmática y las arterias coronarias.'
       ],
       items: [
@@ -682,10 +858,10 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       id: 'p2', code: 'P2', region: 'Abdomen superior', title: 'Hígado y vía biliar',
       objectives: 'Identificar la vía biliar extrahepática, la irrigación de la vesícula y el contenido del ligamento hepatoduodenal.',
       steps: [
-        'Activa los sistemas <b>digestivo</b> y <b>cardiovascular</b>. Retira la pared abdominal anterior con <b>corte libre</b>.',
-        'Oculta el colon transverso y el epiplón mayor para exponer el estómago y la cara inferior del hígado.',
-        'Aplica <b>transparencia</b> al hígado y sigue los conductos hepáticos hasta el colédoco.',
-        'Haz un <b>corte axial</b> en el plano transpilórico (L1) para ver páncreas, vena porta y riñones.',
+        'Activa los sistemas <b>digestivo</b> y <b>cardiovascular</b>. Retira la pared abdominal anterior con <b>Disección</b>.',
+        'Con <b>Eliminar</b>, retira el colon transverso y el omento mayor para exponer el estómago y la cara inferior del hígado.',
+        'Aplica <b>transparencia</b> al hígado y sigue los conductos hepáticos hasta el colédoco (compara con el manual Digestivo, vista «Árbol biliar»).',
+        'Con la <b>Herramienta de recorte</b> axial en el plano transpilórico (L1), observa páncreas, vena porta y riñones.',
         'Localiza el agujero omental (de Winslow) por detrás del borde libre del ligamento hepatoduodenal.'
       ],
       items: [
@@ -715,9 +891,9 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       id: 'p3', code: 'P3', region: 'Pared abdominal y muslo', title: 'Región inguinal y triángulo femoral',
       objectives: 'Diferenciar los tipos de hernia según su relación con los vasos epigástricos y describir el contenido del triángulo femoral.',
       steps: [
-        'Activa los sistemas <b>muscular</b>, <b>cardiovascular</b> y <b>nervioso</b>. Oculta la piel de la región inguinal.',
+        'Activa los sistemas <b>muscular</b>, <b>cardiovascular</b> y <b>nervioso</b>. Retira la piel de la región inguinal con <b>Disección</b>.',
         'Identifica la aponeurosis del oblicuo externo y el anillo inguinal superficial.',
-        'Oculta el oblicuo externo para ver el conducto inguinal y su contenido.',
+        '<b>Elimina</b> el oblicuo externo para ver el conducto inguinal y su contenido.',
         'Desde la vista posterior (interna) de la pared, localiza los vasos epigástricos inferiores y el anillo inguinal profundo.',
         'Pasa al muslo: retira la fascia lata y delimita el triángulo femoral.'
       ],
@@ -748,11 +924,11 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       id: 'p4', code: 'P4', region: 'Cuello', title: 'Tiroides y nervios laríngeos',
       objectives: 'Relacionar la glándula tiroides con su irrigación y con los nervios que están en riesgo en la tiroidectomía.',
       steps: [
-        'Activa los sistemas <b>endocrino</b>, <b>cardiovascular</b> y <b>nervioso</b>. Oculta piel, platisma y músculos infrahioideos.',
+        'Activa los sistemas <b>endocrino</b>, <b>cardiovascular</b> y <b>nervioso</b>. <b>Elimina</b> piel, platisma y músculos infrahioideos.',
         'Identifica los cartílagos tiroides y cricoides y la membrana cricotiroidea.',
         'Rota la vista hacia posterolateral y aplica <b>transparencia</b> a los lóbulos tiroideos.',
         'Sigue el nervio laríngeo recurrente por el surco traqueoesofágico hasta la laringe.',
-        'Con un <b>corte axial</b> a nivel de C6, observa la relación tiroides, tráquea, esófago y vaina carotídea.'
+        'Con un recorte axial a nivel de C6, observa la relación entre tiroides, tráquea, esófago y vaina carotídea.'
       ],
       items: [
         ['org', 'Lóbulos e istmo de la tiroides', 'lobos e istmo da tireoide'],
@@ -781,7 +957,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       id: 'p5', code: 'P5', region: 'Miembro superior', title: 'Plexo braquial y nervios periféricos',
       objectives: 'Reconstruir la organización del plexo braquial y relacionar cada nervio terminal con su lesión clínica típica.',
       steps: [
-        'Activa los sistemas <b>nervioso</b>, <b>muscular</b> y <b>esquelético</b>. Oculta piel, pectoral mayor y pectoral menor.',
+        'Activa los sistemas <b>nervioso</b>, <b>muscular</b> y <b>esquelético</b>. <b>Elimina</b> piel, pectoral mayor y pectoral menor.',
         'Localiza las raíces C5–T1 entre los escalenos anterior y medio.',
         'Sigue troncos, divisiones y fascículos alrededor de la arteria axilar.',
         'Rastrea los cinco ramos terminales hasta el brazo y el antebrazo.',
@@ -814,10 +990,10 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
       id: 'p6', code: 'P6', region: 'Cabeza', title: 'Encéfalo y polígono de Willis',
       objectives: 'Reconocer la irrigación arterial del encéfalo y diferenciar los hematomas intracraneales en la biblioteca de casos.',
       steps: [
-        'Activa los sistemas <b>nervioso</b> y <b>cardiovascular</b>. Oculta piel, calota y duramadre.',
-        'Retira los hemisferios con <b>ocultar</b> o haz un corte para ver la base del encéfalo.',
+        'Activa los sistemas <b>nervioso</b> y <b>cardiovascular</b>. <b>Elimina</b> piel, calota y duramadre.',
+        'Retira los hemisferios con <b>Eliminar</b> o con un recorte para ver la base del encéfalo.',
         '<b>Aísla</b> las arterias cerebrales y reconstruye el polígono de Willis.',
-        'Haz <b>cortes axial y coronal</b> del encéfalo para ver ventrículos, cápsula interna y núcleos basales.',
+        'Usa el diseño <b>3D + 2D</b> o recortes axial y coronal para ver ventrículos, cápsula interna y núcleos basales.',
         'Si tu mesa tiene casos de TC de cráneo, abre uno con ventana de encéfalo (80 / 40) y compara.'
       ],
       items: [
@@ -889,6 +1065,99 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     update();
   });
 
+  /* ---------- Manuales por sistema ---------- */
+  var SYS = window.SISTEMAS || [];
+  var tabsEl = document.getElementById('sys-tabs'), panelsEl = document.getElementById('sys-panels');
+  var viewer = document.getElementById('viewer'), vImg = document.getElementById('viewer-img'), vCap = document.getElementById('viewer-cap');
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var sideTxt = { der: 'Lado derecho', izq: 'Lado izquierdo' };
+  var factEl = document.getElementById('fact-manuales');
+  if (factEl) factEl.textContent = SYS.length + ' sistemas';
+  var activeSys = store.get('anat-sys', '');
+  if (!SYS.some(function (s) { return s.id === activeSys; }) && SYS.length) activeSys = SYS[0].id;
+
+  SYS.forEach(function (s) {
+    var tab = document.createElement('button');
+    tab.type = 'button'; tab.className = 'sys-tab'; tab.id = 'tab-' + s.id;
+    tab.setAttribute('role', 'tab'); tab.setAttribute('aria-controls', 'panel-' + s.id);
+    tab.innerHTML = '<b><i style="background:' + s.color + '"></i>' + esc(s.name) + '</b><small data-tabprog></small>';
+    tabsEl.appendChild(tab);
+
+    var panel = document.createElement('div');
+    panel.className = 'sys-panel'; panel.id = 'panel-' + s.id;
+    panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', tab.id);
+    var h = '<div class="sys-head"><h3>Sistema ' + esc(s.name.toLowerCase()) + ' <span class="pt">' + esc(s.pt) + '</span></h3>' +
+      '<div style="display:flex;gap:14px;align-items:center"><span class="score" data-sysprog></span><button type="button" class="reset-btn" data-sysreset>Desmarcar sistema</button></div></div>' +
+      '<div class="bar"><span data-sysbar style="width:0"></span></div>' +
+      '<div class="clinic"><div class="surg"><p class="label">Correlación quirúrgica</p><ul>' + s.surg.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="rev"><p class="label">Alto rendimiento · Revalida</p><ul>' + s.rev.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div></div>';
+    s.groups.forEach(function (g, gi) {
+      h += '<details class="group"' + (gi === 0 ? ' open' : '') + '><summary><h4>' + esc(g.name) + ' <span class="pt">' + esc(g.pt) + '</span></h4><span class="meta" data-gprog></span></summary><div class="views">';
+      g.views.forEach(function (v, vi) {
+        var src = 'img/' + s.img + '-' + (v.n < 10 ? '0' : '') + v.n + '.jpg';
+        var cap = s.name + ' · ' + g.name + ' ' + (vi + 1) + ': ' + v.t;
+        h += '<article class="view"><button type="button" class="shot" data-src="' + src + '" data-cap="' + esc(cap) + '" aria-label="Ampliar captura: ' + esc(v.t) + '">' +
+          '<img src="' + src + '" alt="Preajuste de la mesa: ' + esc(v.t) + ' (etiquetas en inglés)" loading="lazy" decoding="async" width="960" height="541"></button>' +
+          '<div class="vbody"><div class="vtitle"><h5>' + esc(v.t) + '</h5><span class="vcode">Vista ' + (vi + 1) + '</span></div>' +
+          (v.side ? '<span class="chip">' + sideTxt[v.side] + '</span>' : '') + '<ul class="checklist">';
+        v.items.forEach(function (it, ii) {
+          var id = 'm-' + s.id + '-' + v.n + '-' + ii;
+          h += '<li><label for="' + id + '"><input type="checkbox" id="' + id + '"' + (checks[id] ? ' checked' : '') + '><span>' + esc(it.es) + ' <span class="pt">' + esc(it.pt) + '</span></span></label></li>';
+        });
+        h += '</ul></div></article>';
+      });
+      h += '</div></details>';
+    });
+    panel.innerHTML = h;
+    panelsEl.appendChild(panel);
+
+    function update() {
+      var all = panel.querySelectorAll('.checklist input'), n = 0;
+      all.forEach(function (b) { if (b.checked) n++; });
+      var pct = all.length ? Math.round(n * 100 / all.length) : 0;
+      panel.querySelector('[data-sysprog]').innerHTML = '<b>' + n + '</b> / ' + all.length;
+      panel.querySelector('[data-sysbar]').style.width = pct + '%';
+      tab.querySelector('[data-tabprog]').textContent = s.total + ' vistas · ' + pct + ' %';
+      panel.querySelectorAll('.group').forEach(function (gEl) {
+        var b = gEl.querySelectorAll('.checklist input'), m = 0;
+        b.forEach(function (x) { if (x.checked) m++; });
+        var meta = gEl.querySelector('[data-gprog]');
+        meta.textContent = gEl.querySelectorAll('.view').length + ' vistas · ' + m + ' / ' + b.length;
+        meta.classList.toggle('done', m === b.length);
+      });
+    }
+    panel.addEventListener('change', function (e) {
+      if (e.target.type !== 'checkbox') return;
+      if (e.target.checked) checks[e.target.id] = true; else delete checks[e.target.id];
+      store.set('anat-checks', checks); update();
+    });
+    panel.querySelector('[data-sysreset]').addEventListener('click', function () {
+      panel.querySelectorAll('.checklist input').forEach(function (b) { b.checked = false; delete checks[b.id]; });
+      store.set('anat-checks', checks); update();
+    });
+    tab.addEventListener('click', function () { selectSys(s.id); });
+    update();
+  });
+
+  function selectSys(id) {
+    activeSys = id; store.set('anat-sys', id);
+    SYS.forEach(function (s) {
+      var on = s.id === id;
+      document.getElementById('tab-' + s.id).setAttribute('aria-selected', String(on));
+      document.getElementById('panel-' + s.id).hidden = !on;
+    });
+  }
+  if (SYS.length) selectSys(activeSys);
+
+  function closeViewer() { if (viewer.close) viewer.close(); else viewer.removeAttribute('open'); vImg.removeAttribute('src'); }
+  panelsEl.addEventListener('click', function (e) {
+    var b = e.target.closest('.shot'); if (!b) return;
+    vImg.src = b.dataset.src; vImg.alt = b.getAttribute('aria-label'); vCap.textContent = b.dataset.cap;
+    if (viewer.showModal) viewer.showModal(); else viewer.setAttribute('open', '');
+  });
+  document.getElementById('viewer-close').addEventListener('click', closeViewer);
+  viewer.addEventListener('click', function (e) { if (e.target === viewer) closeViewer(); });
+
   /* ---------- Quiz ---------- */
   var quiz = [
     { q: '¿Qué plano divide el cuerpo en mitades derecha e izquierda?', o: ['Coronal', 'Sagital medio', 'Axial', 'Oblicuo'], a: 1, e: 'El plano sagital medio pasa por la línea media. El coronal separa anterior de posterior y el axial separa superior de inferior.' },
@@ -902,7 +1171,15 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     { q: 'El hematoma epidural se produce típicamente por lesión de:', o: ['Venas puente', 'Arteria meníngea media', 'Arteria comunicante anterior', 'Seno sagital superior'], a: 1, e: 'Fractura temporal en el pterión con lesión de la meníngea media. En TC se ve biconvexo y no cruza suturas.' },
     { q: 'Para evaluar el parénquima pulmonar en TC se usa la ventana:', o: ['W 80 / L 40', 'W 400 / L 40', 'W 1500 / L −600', 'W 1800 / L 400'], a: 2, e: 'La ventana pulmonar es ancha y centrada en densidades negativas. 400/40 es mediastino; 80/40, encéfalo; 1800/400, hueso.' },
     { q: 'La parálisis de Erb-Duchenne compromete las raíces:', o: ['C5–C6', 'C7', 'C8–T1', 'C3–C5'], a: 0, e: 'Brazo en aducción y rotación interna (“mano de camarero”). C8–T1 corresponde a Klumpke.' },
-    { q: 'La maniobra de Pringle consiste en pinzar:', o: ['El ligamento falciforme', 'El ligamento hepatoduodenal', 'El ligamento gastroesplénico', 'La vena cava inferior suprahepática'], a: 1, e: 'Ocluye la arteria hepática propia y la vena porta para controlar el sangrado del parénquima hepático.' }
+    { q: 'La maniobra de Pringle consiste en pinzar:', o: ['El ligamento falciforme', 'El ligamento hepatoduodenal', 'El ligamento gastroesplénico', 'La vena cava inferior suprahepática'], a: 1, e: 'Ocluye la arteria hepática propia y la vena porta para controlar el sangrado del parénquima hepático.' },
+    { q: 'La venopunción de rutina se realiza en la vena:', o: ['Cefálica en la tabaquera anatómica', 'Mediana del codo (cubital media)', 'Basílica en la axila', 'Braquial'], a: 1, e: 'La vena mediana del codo une la cefálica con la basílica en la fosa del codo y es superficial y estable. Manual Cardiovascular, Miembro superior 3.' },
+    { q: 'La arteria apendicular es rama de la arteria:', o: ['Cólica derecha', 'Ileocólica', 'Cólica media', 'Mesentérica inferior'], a: 1, e: 'La ileocólica nace de la mesentérica superior. Manual Cardiovascular, Abdomen y pelvis 3.' },
+    { q: 'Vena más usada como injerto en la revascularización miocárdica:', o: ['Safena menor', 'Cefálica', 'Safena mayor', 'Femoral'], a: 2, e: 'La safena mayor (PT: veia safena magna) asciende por la cara medial del miembro y desemboca en la vena femoral.' },
+    { q: 'Una infección en el triángulo peligroso de la cara puede llegar al:', o: ['Seno sagital superior', 'Seno cavernoso', 'Seno transverso', 'Seno sigmoideo'], a: 1, e: 'La vena angular comunica con la oftálmica superior, que drena al seno cavernoso. Manual Cardiovascular, Cabeza y cuello 10.' },
+    { q: 'Un adenoma hipofisario que comprime el quiasma óptico produce:', o: ['Hemianopsia homónima derecha', 'Hemianopsia bitemporal', 'Ceguera monocular', 'Cuadrantanopsia superior'], a: 1, e: 'Se comprimen las fibras nasales que se cruzan en el quiasma, que llevan los campos temporales.' },
+    { q: 'La vena suprarrenal derecha drena en:', o: ['La vena renal derecha', 'La vena cava inferior', 'La vena porta', 'La vena ácigos'], a: 1, e: 'Es corta y drena directo en la cava inferior; la izquierda drena en la vena renal izquierda.' },
+    { q: 'La lesión del nervio peroneo común en el cuello del peroné produce:', o: ['Pérdida de la flexión plantar', 'Pie caído', 'Signo de Trendelenburg', 'Pérdida de la extensión de la rodilla'], a: 1, e: 'Se paralizan los dorsiflexores (tibial anterior, extensores largos). Manual Muscular, Miembro inferior: acción 9.' },
+    { q: 'Músculo del manguito rotador que más se lesiona:', o: ['Subescapular', 'Redondo menor', 'Supraespinoso', 'Infraespinoso'], a: 2, e: 'El tendón del supraespinoso pasa bajo el acromion; se evalúa con la prueba de Jobe. Manual Muscular, Miembro superior: ubicación 1–2.' }
   ];
   var qWrap = document.getElementById('quiz'), scoreEl = document.getElementById('score');
   var answers = store.get('anat-quiz', {});
@@ -956,7 +1233,12 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
     ['Cráneo', 'Crânio', 'Cabeza'], ['Encéfalo', 'Encéfalo', 'Cabeza'], ['Médula espinal', 'Medula espinal', 'Columna'], ['Duramadre', 'Dura-máter', 'Cabeza'],
     ['Ojo', 'Olho', 'Cabeza'], ['Oído', 'Orelha', 'Cabeza'], ['Lengua', 'Língua', 'Cabeza'], ['Diente', 'Dente', 'Cabeza'],
     ['Piel', 'Pele', 'General'], ['Tendón', 'Tendão', 'General'], ['Cartílago', 'Cartilagem', 'General'], ['Hueso', 'Osso', 'General'],
-    ['Glándula', 'Glândula', 'General'], ['Suprarrenal', 'Glândula suprarrenal (adrenal)', 'Abdomen'], ['Mano en garra', 'Mão em garra', 'Clínica'], ['Mano caída', 'Mão caída (punho caído)', 'Clínica']
+    ['Glándula', 'Glândula', 'General'], ['Suprarrenal', 'Glândula suprarrenal (adrenal)', 'Abdomen'], ['Mano en garra', 'Mão em garra', 'Clínica'], ['Mano caída', 'Mão caída (punho caído)', 'Clínica'],
+    ['Safena mayor', 'Safena magna', 'Miembro inferior'], ['Safena menor', 'Safena parva', 'Miembro inferior'], ['Arteria peronea', 'Artéria fibular', 'Miembro inferior'], ['Dedo gordo del pie', 'Hálux', 'Miembro inferior'],
+    ['Seno (venoso, paranasal)', 'Seio', 'Cabeza'], ['Amígdala', 'Tonsila', 'Cabeza'], ['Ácigos', 'Ázigo', 'Tórax'], ['Vena mediana del codo', 'Veia intermédia do cotovelo', 'Miembro superior'],
+    ['Colon', 'Colo', 'Abdomen'], ['Mesenterio', 'Mesentério', 'Abdomen'], ['Conducto pancreático', 'Ducto pancreático', 'Abdomen'], ['Hipófisis', 'Hipófise', 'Cabeza'],
+    ['Dorsal ancho', 'Latíssimo do dorso', 'Músculos'], ['Serrato', 'Serrátil', 'Músculos'], ['Glúteo mayor', 'Glúteo máximo', 'Músculos'], ['Aductor mayor', 'Adutor magno', 'Músculos'],
+    ['Peroneo largo / corto', 'Fibular longo / curto', 'Músculos'], ['Depresor', 'Abaixador', 'Músculos'], ['Elevador', 'Levantador', 'Músculos'], ['Trompa uterina', 'Tuba uterina', 'Pelvis']
   ];
   var gBody = document.getElementById('gloss-body'), gSearch = document.getElementById('gloss-search'), gCount = document.getElementById('gloss-count');
   function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
