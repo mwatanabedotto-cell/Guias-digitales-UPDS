@@ -53,3 +53,19 @@ Las guías de simuladores Gaumard se generan desde `gaumard-plantilla/`:
   compartidos (OMNI 2, limpieza, RCP pediátrica).
 - Para regenerar después de editar los datos: `python3 gaumard-plantilla/build.py`.
 - Las fotos de cada guía están en `gaumard-<modelo>/img/`.
+
+## Marca UPDS
+
+Las páginas del repositorio llevan arriba la barra institucional de la UPDS
+(símbolo, nombre y lema en blanco sobre azul `#203C85`) y el favicon.
+
+- `marca/`: logo completo, símbolo y nombre en blanco y en azul, icono y favicon.
+- `marca/marca.py`: genera la barra; la usan los tres scripts de construcción.
+- La guía Anatomage se edita en `anatomage/fuente.html` y se genera con
+  `python3 anatomage/build.py`.
+- Las guías Gaumard: `python3 gaumard-plantilla/build.py`.
+- El índice: `python3 indice/build_indice.py`.
+
+Los logos se recortaron de la portada del Reglamento Estudiantil (409 px de ancho).
+Para mejor nitidez, reemplaza los archivos de `marca/` por los originales en alta
+resolución con el mismo nombre y vuelve a generar las páginas.

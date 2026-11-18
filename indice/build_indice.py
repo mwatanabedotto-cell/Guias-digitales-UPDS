@@ -2,6 +2,8 @@
 Uso: python3 indice/build_indice.py [carpeta_fragmento]"""
 import os, sys, html
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..')
+sys.path.insert(0, os.path.join(ROOT, 'marca'))
+from marca import barra, icono
 
 GRUPOS = [
   ('Anatomía', 'Mesa de disección virtual', [
@@ -102,7 +104,7 @@ def build(mode):
     return body
 
 head = '<!doctype html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(head + build('repo').replace('<div class="wrap">', '</head>\n<body>\n<div class="wrap">', 1) + '</body>\n</html>\n')
+open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(head + icono('') + build('repo').replace('<div class="wrap">', '</head>\n<body>\n' + barra('', inicio=False) + '<div class="wrap">', 1) + '</body>\n</html>\n')
 if len(sys.argv) > 1:
     d = sys.argv[1]; os.makedirs(os.path.join(d, 'img'), exist_ok=True)
     open(os.path.join(d, 'indice.html'), 'w', encoding='utf-8').write(build('artifact'))
