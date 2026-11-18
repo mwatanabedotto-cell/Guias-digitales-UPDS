@@ -4,7 +4,7 @@
  * Cada icono: [archivo en iconos/, nombre, explicación]
  */
 window.ICONOS = [
-  { g: 'Menú principal (icono Inicio)', d: 'Se abre con el icono Inicio. Es la puerta de entrada a cada tipo de contenido.', wide: true, items: [
+  { g: 'Menú principal (icono Inicio)', parent: ['ui-1_1'], via: 'Se abre con el icono Inicio', d: 'Se abre con el icono Inicio. Es la puerta de entrada a cada tipo de contenido.', wide: true, items: [
     ['ui-9_3', 'Cadáveres', 'Seis cadáveres reales de cuerpo completo, un cuerpo sintético y anatomía topográfica de alta resolución. Incluye Multi-cuerpo para comparar regiones de distintos cuerpos.'],
     ['ui-9_5', 'Anatomía funcional', 'Corazón que late, movimiento articular, embarazo, parto y demás simulaciones.'],
     ['ui-9_7', 'Biblioteca de casos', 'TC y RM de pacientes y animales, y cadáveres segmentados de primates, perros y gatos. Se busca por patología y tiene notas del caso.'],
@@ -40,14 +40,14 @@ window.ICONOS = [
     ['ui-1_14', 'Navegación personalizada', 'Agrega el cadáver, caso, lámina o simulación actual a un tema propio de Navegación.'],
     ['ui-3_1', 'Preajustes', 'Abre los preajustes: vistas guardadas que se recorren en orden. Se guardan en carpetas o se exportan a USB.']
   ] },
-  { g: 'Orientación del volumen', d: 'Opciones del icono Orientación del volumen.', items: [
+  { g: 'Orientación del volumen', parent: ['ui-1_3'], via: 'Se abren con el icono Orientación del volumen', d: 'Opciones del icono Orientación del volumen.', items: [
     ['ui-1_3', 'Coronal', 'Vista de frente.'],
     ['ui-1_4', 'Sagital', 'Vista de perfil.'],
     ['ui-1_5', 'Axial', 'Vista desde arriba (o desde abajo al tocar de nuevo).'],
     ['ui-1_6', 'Rotación de 90°', 'Gira la vista 90 grados.'],
     ['ui-1_7', '1:1', 'Escala la imagen al tamaño real.']
   ] },
-  { g: 'Disección y recorte', d: 'Herramientas para cortar el cadáver.', items: [
+  { g: 'Disección y recorte', parent: ['ui-2_2', 'ui-2_7'], via: 'Se abren con los iconos Disección y Herramienta de recorte', d: 'Herramientas para cortar el cadáver.', items: [
     ['ui-2_3', 'Línea curva roja', 'Dibuja una región cerrada para disecar.'],
     ['ui-2_4', 'Línea recta roja', 'Diseca un lado de la línea: toca el lado a disecar y luego las estructuras a eliminar.'],
     ['ui-2_5', 'Punto a punto (púrpura)', 'Elige dos puntos del cadáver y un diámetro de corte; diseca dentro de esa área.'],
@@ -57,17 +57,17 @@ window.ICONOS = [
     ['ui-2_8', 'Barra del plano de corte', 'Ajusta el último plano de corte (también se hace arrastrando tres dedos).'],
     ['ui-5_17', 'Restablecer', 'Deshace los cortes y devuelve el cuerpo a su estado completo.']
   ] },
-  { g: 'Exploración', d: 'Opciones de la herramienta de exploración.', items: [
+  { g: 'Exploración', parent: ['ui-3_19'], via: 'Se abren con el icono Herramienta de exploración', d: 'Opciones de la herramienta de exploración.', items: [
     ['ui-3_20', 'Eliminar', 'Toca estructuras para retirarlas.'],
     ['ui-3_21', 'Eliminar en pantalla dividida', 'Las estructuras eliminadas aparecen en la mitad derecha de la pantalla.'],
     ['ui-3_22', 'Aislar', 'Un toque resalta la estructura; varios toques la dejan aislada.']
   ] },
-  { g: 'Barras deslizantes y ramas', d: 'Control de grupos de estructuras y ramas vasculonerviosas.', items: [
+  { g: 'Barras deslizantes y ramas', parent: ['ui-3_16'], via: 'Se abren con el icono Barras deslizantes', d: 'Control de grupos de estructuras y ramas vasculonerviosas.', items: [
     ['ui-3_16', 'Barra deslizante', 'Activa o desactiva grupos de estructuras; en TC y RM ajusta brillo y contraste del filtro.'],
     ['ui-3_17', 'Grupo de ramas', 'Elige el tipo de rama (arterias, venas o nervios); la barra solo afecta a ese tipo.'],
     ['ui-3_18', 'Preajustes de ramas regionales', 'Recorre cada región con el tipo de rama elegido.']
   ] },
-  { g: 'Visibilidad y menú de acciones', d: 'Iconos del diálogo de visibilidad y del menú de acciones.', items: [
+  { g: 'Visibilidad y menú de acciones', parent: ['ui-4_7', 'ui-4_17'], via: 'Se abren con los iconos Visibilidad y Menú de acciones', d: 'Iconos del diálogo de visibilidad y del menú de acciones.', items: [
     ['ui-4_18', 'Activar / desactivar', 'Muestra u oculta la estructura, categoría o sistema seleccionado.'],
     ['ui-4_19', 'Transparencia', 'Hace transparente la estructura; el nivel se ajusta con la barra.'],
     ['ui-4_20', 'Color uniforme', 'Aplica un color simple a una estructura, categoría o sistema.'],
@@ -82,13 +82,13 @@ window.ICONOS = [
     ['ui-5_8', 'R (derecha)', 'Muestra u oculta la mitad derecha.'],
     ['ui-5_9', 'Restaurar visibilidad', 'Deshace colores, transparencias, puntos óseos y orígenes e inserciones de todo el cuerpo.']
   ] },
-  { g: 'Herramientas cardiovasculares', d: 'Se usan con los vasos del cadáver.', items: [
+  { g: 'Herramientas cardiovasculares', parent: ['ui-4_11'], via: 'Se abren con el icono Herramientas cardiovasculares', d: 'Se usan con los vasos del cadáver.', items: [
     ['ui-4_12', 'Flujo sanguíneo', 'Toca el icono y luego un vaso para ver el flujo. Tócalo otra vez para colorear los vasos y una vez más para las anotaciones.'],
     ['ui-4_14', 'Desarrollo vascular', 'Toca el icono y luego un vaso para verlo crecer desde su origen; se puede reproducir y pausar.'],
     ['ui-4_15', 'Flujo en todo el cuerpo', 'Activa o desactiva el flujo sanguíneo en todo el cadáver.'],
     ['ui-4_16', 'Corazón en movimiento', 'Activa o desactiva los latidos del corazón.']
   ] },
-  { g: 'Preajustes', d: 'Para preparar y recorrer las vistas de la clase.', items: [
+  { g: 'Preajustes', parent: ['ui-3_1'], via: 'Se abren con el icono Preajustes', d: 'Para preparar y recorrer las vistas de la clase.', items: [
     ['ui-3_2', 'Adición rápida', 'Añade la vista actual como siguiente preajuste.'],
     ['ui-3_3', 'Menú completo de preajustes', 'Abre el menú completo para organizar los preajustes.'],
     ['ui-2_15', 'Vista rápida de preajustes', 'Abre el menú de preajustes.'],
@@ -105,7 +105,7 @@ window.ICONOS = [
     ['ui-3_15', 'Captura de video', 'Exporta un video de los preajustes.'],
     ['ui-3_4', 'Currículo de Anatomage', 'Colección de imágenes prediseñadas con los cadáveres, por sistema y tema.']
   ] },
-  { g: 'Modo cuestionario', d: 'Para evaluar a los alumnos en la mesa.', items: [
+  { g: 'Modo cuestionario', parent: ['ui-3_1', 'ui-3_5'], via: 'Se abren desde Preajustes con el icono Modo cuestionario', d: 'Para evaluar a los alumnos en la mesa.', items: [
     ['ui-3_5', 'Modo cuestionario', 'Crea cuestionarios, juegos o competencias; cualquier preajuste se convierte en cuestionario.'],
     ['ui-3_6', 'Crear cuestionario', 'Crea un cuestionario personalizado.'],
     ['ui-3_7', 'Importar preguntas (.csv)', 'Carga preguntas desde un archivo .csv.'],
@@ -123,7 +123,7 @@ window.ICONOS = [
     ['ui-4_5', 'Exportar', 'Guarda el cuestionario como archivo.'],
     ['ui-4_6', 'Añadir a carpeta', 'Guarda el cuestionario en una carpeta.']
   ] },
-  { g: 'Biblioteca de casos, histología y prosección', d: 'Iconos al abrir estudios de imagen, láminas o prosecciones.', items: [
+  { g: 'Biblioteca de casos, histología y prosección', parent: ['ui-9_7', 'ui-9_9', 'ui-9_2'], via: 'Aparecen al abrir un caso desde estos botones del menú principal', d: 'Iconos al abrir estudios de imagen, láminas o prosecciones.', items: [
     ['ui-6_8', 'Info', 'Muestra la información del caso o del estudio.'],
     ['ui-5_18', 'Anotaciones', 'Crea anotaciones propias en cualquier caso de la biblioteca o de prosección.'],
     ['ui-5_19', 'Regiones anotadas', 'Activa las regiones sombreadas o resaltadas con anotaciones en prosección e histología.'],
@@ -138,7 +138,7 @@ window.ICONOS = [
     ['ui-7_5', 'Sobrevuelo', 'Recorrido por el interior de una estructura: elige uno hecho o crea el tuyo.'],
     ['ui-7_6', 'Visor de planos curvos', 'Crea vistas planas 2D de anatomía curva en 3D.']
   ] },
-  { g: 'Diseños de pantalla', d: 'Opciones del icono Diseños.', items: [
+  { g: 'Diseños de pantalla', parent: ['ui-1_13'], via: 'Se abren con el icono Diseños', d: 'Opciones del icono Diseños.', items: [
     ['ui-7_15', 'Solo 3D', 'Muestra solo el volumen 3D.'],
     ['ui-7_16', '3D + 2D', 'Muestra el volumen 3D junto a la sección transversal 2D.'],
     ['ui-7_17', 'Colorear sección', 'Colorea automáticamente todas las estructuras en la sección transversal.'],
@@ -150,7 +150,7 @@ window.ICONOS = [
     ['ui-6_17', 'Ajustar a la derecha', 'Coloca el software en el monitor derecho.'],
     ['ui-6_18', 'Modo vertical', 'Cambia la interfaz a vertical (solo mesas convertibles).']
   ] },
-  { g: 'Propiedades de la aplicación', d: 'Opciones del icono Propiedades de la aplicación.', items: [
+  { g: 'Propiedades de la aplicación', parent: ['ui-1_2'], via: 'Se abren con el icono Propiedades de la aplicación', d: 'Opciones del icono Propiedades de la aplicación.', items: [
     ['ui-6_2', 'Regla', 'Muestra una regla en pantalla.'],
     ['ui-6_3', 'Girar', 'Permite girar el volumen en círculo con dos dedos.'],
     ['ui-6_4', 'Modos de usuario', 'Bloquea funciones con modos predefinidos o personalizados, con contraseña opcional.'],
@@ -168,7 +168,7 @@ window.ICONOS = [
     ['ui-8_11', 'Color de ramas', 'Aplica un color uniforme a ramas arteriales, venosas, nerviosas y linfáticas.'],
     ['ui-8_12', 'Color de fondo', 'Cambia el color de fondo.']
   ] },
-  { g: 'Esquemas, ultrasonido y multi-cuerpo', d: 'Herramientas especiales.', items: [
+  { g: 'Esquemas, ultrasonido y multi-cuerpo', parent: ['ui-9_3'], via: 'Aparecen al trabajar con un cadáver (Cadáveres) o en Multi-cuerpo', d: 'Herramientas especiales.', items: [
     ['ui-8_1', 'Esquemas', 'Diagramas simplificados de vasos, nervios y linfáticos.'],
     ['ui-8_2', 'Ultrasonido', 'Imagen de ultrasonido simulada, sincronizada con la vista 2D a color.'],
     ['ui-8_3', 'Vinculación de movimiento', 'En Multi-cuerpo, vincula o desvincula el movimiento entre las vistas.'],
@@ -179,7 +179,7 @@ window.ICONOS = [
     ['ui-8_8', 'O₂', 'Muestra la sangre oxigenada.'],
     ['ui-8_9', 'O₂ / CO₂', 'Muestra ambas a la vez.']
   ] },
-  { g: 'Anatomía funcional: parto, embarazo y desarrollo', d: 'Iconos dentro de Inicio › Anatomía funcional.', items: [
+  { g: 'Anatomía funcional: parto, embarazo y desarrollo', parent: ['ui-9_5'], via: 'Se abren desde Inicio › Anatomía funcional', d: 'Iconos dentro de Inicio › Anatomía funcional.', items: [
     ['fa-1_1', 'Fases del parto', 'Toca un punto para saltar a esa fase.'],
     ['fa-1_3', 'Reproducir y siguiente', 'Reproduce la simulación o salta a la fase siguiente.'],
     ['fa-1_4', 'Barra de transparencia', 'Aplica transparencia a la modelo embarazada.'],
@@ -192,7 +192,7 @@ window.ICONOS = [
     ['fa-2_5', 'Etapa embrionaria única', 'Muestra una sola etapa.'],
     ['fa-2_6', 'Barra de etapas', 'Elige la etapa a mostrar.']
   ] },
-  { g: 'Anatomía funcional: corazón y cateterismo', d: '', items: [
+  { g: 'Anatomía funcional: corazón y cateterismo', parent: ['ui-9_5'], via: 'Se abren desde Inicio › Anatomía funcional', d: '', items: [
     ['fa-1_10', 'ECG y latidos', 'Activa el ECG y los latidos del corazón.'],
     ['fa-4_1', 'ECG de 12 derivaciones', 'Muestra el ECG completo.'],
     ['fa-4_2', 'Diagrama de Wiggers', 'Ciclo cardíaco en ritmo sinusal normal.'],
@@ -205,7 +205,7 @@ window.ICONOS = [
     ['fa-1_15', 'Catéter', 'Elige un procedimiento y una trayectoria y avanza paso a paso.'],
     ['fa-1_16', 'Visor de angiogramas', 'Simula el angiograma del procedimiento.']
   ] },
-  { g: 'Anatomía funcional: nervios, movimiento y cara', d: '', items: [
+  { g: 'Anatomía funcional: nervios, movimiento y cara', parent: ['ui-9_5'], via: 'Se abren desde Inicio › Anatomía funcional', d: '', items: [
     ['fa-1_12', 'Flujo de nervios', 'Toca un dermatoma o músculo para ver su vía nerviosa.'],
     ['fa-1_13', 'Áreas de Brodmann', 'Mapa de áreas de Brodmann o áreas funcionales.'],
     ['fa-1_14', 'Accidente cerebrovascular', 'Muestra la región afectada según el ACV elegido.'],
@@ -221,7 +221,7 @@ window.ICONOS = [
     ['fa-2_10', 'Optometría', 'Cambia parámetros oculares, muestra la tabla optométrica y aplica lentes.'],
     ['fa-1_17', 'Dental', 'Arco dental en 3D o radiografía en 2D.']
   ] },
-  { g: 'Anatomía funcional: fisiología y procedimientos', d: '', items: [
+  { g: 'Anatomía funcional: fisiología y procedimientos', parent: ['ui-9_5'], via: 'Se abren desde Inicio › Anatomía funcional', d: '', items: [
     ['fa-2_11', 'Vías', 'Procesos fisiológicos paso a paso en cuerpo masculino o femenino; se pueden personalizar.'],
     ['fa-2_12', 'Sustancias filtradas', 'Fisiología renal: elige una sustancia (agua, sodio, urea, H⁺, glucosa, K⁺) para verla en 3D y 2D.'],
     ['fa-2_18', 'Etapas de filtración', 'Reproduce la filtración o elige una etapa.'],
@@ -236,7 +236,7 @@ window.ICONOS = [
     ['fa-4_11', 'Visor 2D', 'Compara la sección 2D con la posición.'],
     ['fa-4_12', 'Radio del haz', 'Aumenta o reduce el radio del haz.']
   ] },
-  { g: 'Anatomía funcional: endoscopia y oído', d: '', items: [
+  { g: 'Anatomía funcional: endoscopia y oído', parent: ['ui-9_5'], via: 'Se abren desde Inicio › Anatomía funcional', d: '', items: [
     ['fa-3_11', 'Avance del broncoscopio', 'Arrastra arriba o abajo para avanzar o retroceder por la vía aérea.'],
     ['fa-3_12', 'Mirar arriba o abajo', 'Arrastra para orientar la vista del broncoscopio.'],
     ['fa-3_13', 'Dirigir el broncoscopio', 'Elige la vía aérea a recorrer.'],

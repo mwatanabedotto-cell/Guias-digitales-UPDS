@@ -306,6 +306,27 @@ section > h3 { margin-top: 8px; }
 .icon-tile img { max-width: 56px; max-height: 56px; width: auto; height: auto; display: block; }
 .icon-grid.wide .icon-tile img { max-width: 104px; }
 .icon-item h4 { font-size: 0.98rem; margin-bottom: 2px; }
+.igroup > summary .sumright { display: inline-flex; align-items: center; gap: 8px; }
+.mini { width: 30px; height: 30px; border-radius: 6px; background: #FFFFFF; border: 1px solid var(--line); display: inline-grid; place-items: center; overflow: hidden; flex: none; }
+.mini img { max-width: 26px; max-height: 26px; display: block; }
+.ifamily { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); padding-bottom: 18px; }
+@media (min-width: 760px) { .ifamily { grid-template-columns: 200px minmax(0, 1fr); align-items: start; } .iparent { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); } }
+.iparent { background: var(--accent-soft); border-radius: 12px; padding: 14px; display: grid; gap: 10px; align-content: start; }
+.iparent p { font-size: var(--step--1); color: var(--muted); }
+.pcard { display: flex; align-items: center; gap: 10px; }
+.pcard b { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; line-height: 1.2; }
+.icon-tile.big { width: 72px; height: 72px; }
+.icon-tile.big img { max-width: 64px; max-height: 64px; }
+.icon-tile.wide-tile { width: 104px; height: 60px; background: #1E1E1E; }
+.icon-tile.wide-tile img { max-width: 96px; max-height: 52px; }
+.ichildren { display: grid; gap: 8px; min-width: 0; }
+.ichildren .icon-grid { padding-bottom: 0; }
+.icon-item.is-parent { border-color: var(--accent); }
+.substrip { margin-top: 8px; display: grid; gap: 6px; }
+.subtiles { display: flex; flex-wrap: wrap; gap: 4px; }
+.subtiles .more { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); align-self: center; padding-left: 4px; }
+.sublink { justify-self: start; font: 600 var(--step--1) var(--font-body); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.sublink:hover { text-decoration: underline; }
 .icon-item p { font-size: var(--step--1); color: var(--muted); }
 
 kbd { font-family: var(--font-mono); font-size: 0.82em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--surface-2); }
@@ -660,7 +681,7 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
           <p class="eyebrow">04 · Referencia</p>
           <h2>Iconos de la mesa, uno por uno</h2>
         </div>
-        <p class="prose">Cada icono del software Table 12.0 con lo que hace, según las guías de interfaz del fabricante. Busca por nombre o función, o abre cada grupo.</p>
+        <p class="prose">Cada icono del software Table 12.0 con lo que hace, según las guías de interfaz del fabricante. Cada grupo muestra a la izquierda el <b>icono principal</b> que lo abre y a la derecha sus <b>subiconos</b>; los iconos principales (borde de color) muestran debajo sus subiconos. Busca por nombre o función, o abre cada grupo.</p>
         <div class="icon-search">
           <label for="icon-q" class="eyebrow">Buscar icono</label>
           <input type="search" id="icon-q" class="search" placeholder="Ej.: transparencia, recorte, pines, ECG…" autocomplete="off">
@@ -1312,19 +1333,50 @@ footer .pad > div { max-width: 1180px; margin: 0 auto; padding-block: 24px; font
   /* ---------- Iconos ---------- */
   (function () {
     var IG = window.ICONOS || [], wrap = document.getElementById('icon-groups'), q = document.getElementById('icon-q'), cnt = document.getElementById('icon-count');
-    var total = 0;
+    function norm(t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+    var byId = {}, children = {}, total = 0;
+    IG.forEach(function (g) { g.items.forEach(function (it) { if (!byId[it[0]]) byId[it[0]] = it; }); });
+    IG.forEach(function (g, gi) { (g.parent || []).forEach(function (pid) { (children[pid] = children[pid] || []).push(gi); }); });
+    function tile(id, cls) { return '<span class="icon-tile' + (cls ? ' ' + cls : '') + '"><img src="iconos/' + id + '.png" alt="" loading="lazy"></span>'; }
+    function card(it, gi) {
+      var kids = (children[it[0]] || []).filter(function (k) { return k !== gi; });
+      var strip = '';
+      if (kids.length) {
+        var subs = [];
+        kids.forEach(function (k) { IG[k].items.forEach(function (s) { if (s[0] !== it[0] && subs.indexOf(s[0]) === -1) subs.push(s[0]); }); });
+        strip = '<div class="substrip"><span class="eyebrow">Subiconos</span><div class="subtiles">' +
+          subs.slice(0, 12).map(function (sid) { return '<span class="mini" title="' + esc(byId[sid] ? byId[sid][1] : '') + '"><img src="iconos/' + sid + '.png" alt="" loading="lazy"></span>'; }).join('') +
+          (subs.length > 12 ? '<span class="more">+' + (subs.length - 12) + '</span>' : '') + '</div>' +
+          kids.map(function (k) { return '<button type="button" class="sublink" data-go="' + k + '">Ver ' + esc(IG[k].g) + ' (' + IG[k].items.length + ') ↓</button>'; }).join('') + '</div>';
+      }
+      return '<div class="icon-item' + (kids.length ? ' is-parent' : '') + '" data-k="' + esc(norm(it[1] + ' ' + it[2])) + '">' + tile(it[0]) +
+        '<div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p>' + strip + '</div></div>';
+    }
     IG.forEach(function (g, gi) {
-      var d = document.createElement('details'); d.className = 'igroup'; if (gi < 2) d.open = true;
+      var d = document.createElement('details'); d.className = 'igroup'; d.id = 'ig-' + gi; if (gi < 2) d.open = true;
       total += g.items.length;
-      d.innerHTML = '<summary><h3>' + esc(g.g) + '</h3><span class="meta">' + g.items.length + ' iconos</span></summary>' +
-        (g.d ? '<p class="gdesc">' + esc(g.d) + '</p>' : '') +
-        '<div class="icon-grid' + (g.wide ? ' wide' : '') + '">' + g.items.map(function (it) {
-          return '<div class="icon-item" data-k="' + esc((it[1] + ' ' + it[2]).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')) + '"><span class="icon-tile"><img src="iconos/' + it[0] + '.png" alt="" loading="lazy"></span><div><h4>' + esc(it[1]) + '</h4><p>' + esc(it[2]) + '</p></div></div>';
-        }).join('') + '</div>';
+      var par = (g.parent || []).filter(function (pid) { return byId[pid]; });
+      var head = '<summary><h3>' + esc(g.g) + '</h3><span class="sumright">' +
+        par.map(function (pid) { return '<span class="mini" title="' + esc(byId[pid][1]) + '"><img src="iconos/' + pid + '.png" alt=""></span>'; }).join('') +
+        '<span class="meta">' + g.items.length + ' iconos</span></span></summary>';
+      var grid = '<div class="icon-grid' + (g.wide ? ' wide' : '') + '">' + g.items.map(function (it) { return card(it, gi); }).join('') + '</div>';
+      var body;
+      if (par.length) {
+        body = '<div class="ifamily"><aside class="iparent"><span class="eyebrow">Icono principal</span>' +
+          par.map(function (pid) { var w = /^ui-9_/.test(pid); return '<div class="pcard">' + tile(pid, w ? 'wide-tile' : 'big') + '<b>' + esc(byId[pid][1]) + '</b></div>'; }).join('') +
+          '<p>' + esc(g.via || '') + '</p></aside><div class="ichildren"><span class="eyebrow">Subiconos</span>' + grid + '</div></div>';
+      } else {
+        body = (g.d ? '<p class="gdesc">' + esc(g.d) + '</p>' : '') + grid;
+      }
+      d.innerHTML = head + body;
       wrap.appendChild(d);
     });
+    wrap.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-go]'); if (!b) return;
+      var t = document.getElementById('ig-' + b.dataset.go); t.open = true; t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
     function filter() {
-      var v = q.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''), shown = 0;
+      var v = norm(q.value.trim()), shown = 0;
       wrap.querySelectorAll('.igroup').forEach(function (d) {
         var n = 0;
         d.querySelectorAll('.icon-item').forEach(function (el) { var ok = !v || el.dataset.k.indexOf(v) !== -1; el.hidden = !ok; if (ok) n++; });
